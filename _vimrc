@@ -237,6 +237,10 @@ if has("gui_running")
 
     " Remove toolbar
     set guioptions-=T
+
+    " set window size
+    set columns=180
+    set lines=55
 else
     colorscheme torte
 endif
