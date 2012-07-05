@@ -204,7 +204,8 @@ set noautowriteall          " NEVER.
 set noautoread              " Don't automatically re-read changed files.
 set modeline                " Allow vim options to be embedded in files;
 set modelines=5             " they must be within the first or last 5 lines.
-set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
+"set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
+set ffs=unix,dos            " Try recognizing dos and unix line endings.
 
 """" Messages, Info, Status
 set ls=2                    " allways show status line
