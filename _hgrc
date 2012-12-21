@@ -1,2 +1,5 @@
 [ui]
 username = Walter Scheper <ratlaw@gmail.com>
+
+[extensions]
+forest=/home/wasche/hg/hgforest/forest.py
