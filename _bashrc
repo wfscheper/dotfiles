@@ -199,3 +199,6 @@ if [ -d $HOME/aws ]; then
         PATH=$PATH:$EC2_HOME/bin
     fi
 fi
+
+# pythonbrew
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
