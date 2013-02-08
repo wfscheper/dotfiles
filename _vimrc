@@ -307,5 +307,3 @@ endif
 if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
-
-set colorcolumn=79
