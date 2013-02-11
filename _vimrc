@@ -147,6 +147,9 @@ set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
 
+" turn off swap file creation
+set noswapfile
+
 " don't bell or blink
 set noerrorbells
 set vb t_vb=
