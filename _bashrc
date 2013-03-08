@@ -2,7 +2,7 @@
 [ -z "$PS1" ] && return
 
 # set PATH
-PATH=$HOME/bin:/home/wasche/.local/bin:$PATH
+PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 #osx color terminal
 export CLICOLOR=1
