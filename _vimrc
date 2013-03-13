@@ -240,7 +240,9 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 """" Display
+colorscheme github
 if has("gui_running")
+    colorscheme vividchalk
     " Remove menu bar
     set guioptions-=m
 
@@ -252,7 +254,6 @@ if has("gui_running")
     set lines=55
 endif
 
-colorscheme vividchalk
 
 " Paste from clipboard
 map <leader>p "+p
@@ -317,4 +318,4 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
 
-set colorcolumn=79
+set colorcolumn=80
