@@ -2,4 +2,6 @@
 username = Walter Scheper <ratlaw@gmail.com>
 
 [extensions]
-forest=/home/wasche/hg/hgforest/forest.py
+prompt=$HOME/.hgext/prompt.py
+forest=$HOME/.hgext/forest.py
+mq=
