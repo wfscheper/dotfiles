@@ -61,3 +61,6 @@
 [submodule "_vim/bundle/coffee"]
 	path = _vim/bundle/coffee
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "_vim/bundle/vim-pathogen"]
+	path = _vim/bundle/vim-pathogen
+	url = git@github.com:tpope/vim-pathogen.git

@@ -2,7 +2,7 @@
 [ -z "$PS1" ] && return
 
 # set PATH
-PATH=$HOME/bin:/home/wasche/.local/bin:$PATH
+PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 #osx color terminal
 export CLICOLOR=1
@@ -170,13 +170,18 @@ parse_svn_url() {
 parse_svn_repository_root() {
   svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
 }
+
+parse_hg_branch() {
+    hg prompt "(hg::{branch|quiet}{bookmark})" 2> /dev/null
+}
+
 #set -o emacs
 set -o vi
 export EDITOR="$vim"
 export GIT_EDITOR="$vim"
 
-# Add git and svn branch names
-export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
+# Add git and hg branch names
+export PS1="$PS1\$(parse_git_branch)\$(parse_hg_branch) "
 
 # set JAVA_HOME
 export JAVA_HOME=/usr

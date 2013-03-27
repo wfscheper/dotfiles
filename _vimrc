@@ -48,6 +48,11 @@
 "    Generic test runner that works with nose
 "
 " ==========================================================
+" Load pathgen from bundle
+" ==========================================================
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+" ==========================================================
 " Shortcuts
 " ==========================================================
 set nocompatible              " Don't be compatible with vi
@@ -115,6 +120,7 @@ map <leader>n :NERDTreeToggle<CR>
 
 " Run command-t file search
 map <leader>f :CommandT<CR>
+
 " Ack searching
 nmap <leader>a <Esc>:Ack!
 
@@ -131,8 +137,9 @@ map <leader>r :RopeRename<CR>
 " ==========================================================
 " Load pathogen with docs for all plugins
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
+execute pathogen#helptags()
 
 " ==========================================================
 " Basic Settings
@@ -233,6 +240,7 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 """" Display
+colorscheme vividchalk
 if has("gui_running")
     " Remove menu bar
     set guioptions-=m
@@ -245,7 +253,6 @@ if has("gui_running")
     set lines=55
 endif
 
-colorscheme vividchalk
 
 " Paste from clipboard
 map <leader>p "+p
