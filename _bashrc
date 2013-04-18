@@ -2,7 +2,7 @@
 [ -z "$PS1" ] && return
 
 # Disable terminal software flow control
-stty -ixon -ixof ixany
+stty -ixon -ixoff ixany
 
 # set PATH
 PATH=$HOME/bin:$HOME/.local/bin:$PATH
