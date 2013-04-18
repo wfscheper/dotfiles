@@ -151,8 +151,8 @@ filetype plugin indent on     " enable loading indent file for filetype
 set numberwidth=1             " using only 1 column (and 1 space) while possible
 set background=dark           " We are using dark background in vim
 set title                     " show title in console title bar
+set wildmode=longest,list,full " <Tab> cycles between all matching choices.
 set wildmenu                  " Menu completion in command mode on <Tab>
-set wildmode=full             " <Tab> cycles between all matching choices.
 
 " turn off swap file creation
 set noswapfile
