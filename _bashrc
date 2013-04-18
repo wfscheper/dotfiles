@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Disable terminal software flow control
+stty -ixon -ixof ixany
+
 # set PATH
 PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
