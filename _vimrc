@@ -48,6 +48,19 @@
 "    Generic test runner that works with nose
 "
 " ==========================================================
+" Set CamelCaseMotion bindings before plugin loads
+" ==========================================================
+map .w <Plug>CamelCaseMotion_w
+omap i.w <plug>CamelCaseMotion_iw
+xmap i.w <plug>CamelCaseMotion_iw
+map .b <Plug>CamelCaseMotion_b
+omap i.b <plug>CamelCaseMotion_ib
+xmap i.b <plug>CamelCaseMotion_ib
+map .e <Plug>CamelCaseMotion_e
+omap i.e <plug>CamelCaseMotion_ie
+xmap i.e <plug>CamelCaseMotion_ie
+
+" ==========================================================
 " Load pathgen from bundle
 " ==========================================================
 runtime bundle/vim-pathogen/autoload/pathogen.vim
