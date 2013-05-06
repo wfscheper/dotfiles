@@ -142,6 +142,28 @@ map <leader>j :RopeGotoDefinition<CR>
 
 " Rename whatever the cursor is on (including references to it)
 map <leader>r :RopeRename<CR>
+
+" Run the current file with rspec
+"map <Leader>vb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+
+" Close all other tmux panes in current window
+map <Leader>vx :VimuxClosePanes<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>vs :VimuxInterruptRunner<CR>
+
 " ==========================================================
 " Pathogen - Allows us to organize our vim plugins
 " ==========================================================
