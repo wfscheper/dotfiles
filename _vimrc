@@ -273,7 +273,8 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 """" Display
-colorscheme vividchalk
+colorscheme solarized
+set t_Co=16
 if has("gui_running")
     " Remove menu bar
     set guioptions-=m
