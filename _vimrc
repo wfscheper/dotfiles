@@ -274,9 +274,7 @@ set incsearch               " Incrementally search while typing a /regex
 
 """" Display
 colorscheme solarized
-" Because I like it better, use 'degraded' 256
 set t_Co=16
-let g:solarized_termcolors=256
 if has("gui_running")
     " Remove menu bar
     set guioptions-=m
