@@ -179,8 +179,8 @@ parse_hg_branch() {
     hg prompt "(hg::{branch|quiet}{bookmark})" 2> /dev/null
 }
 
-#set -o emacs
-set -o vi
+set -o emacs
+#set -o vi
 export EDITOR="$vim"
 export GIT_EDITOR="$vim"
 
