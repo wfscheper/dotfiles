@@ -48,6 +48,19 @@
 "    Generic test runner that works with nose
 "
 " ==========================================================
+" Set CamelCaseMotion bindings before plugin loads
+" ==========================================================
+map .w <Plug>CamelCaseMotion_w
+omap i.w <plug>CamelCaseMotion_iw
+xmap i.w <plug>CamelCaseMotion_iw
+map .b <Plug>CamelCaseMotion_b
+omap i.b <plug>CamelCaseMotion_ib
+xmap i.b <plug>CamelCaseMotion_ib
+map .e <Plug>CamelCaseMotion_e
+omap i.e <plug>CamelCaseMotion_ie
+xmap i.e <plug>CamelCaseMotion_ie
+
+" ==========================================================
 " Load pathgen from bundle
 " ==========================================================
 runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -80,9 +93,6 @@ cmap W! w !sudo tee % >/dev/null
 
 " Toggle the tasklist
 map <leader>td <Plug>TaskList
-
-" Run pep8
-let g:pep8_map='<leader>8'
 
 " run py.test's
 nmap <silent><Leader>tf <Esc>:Pytest file<CR>
@@ -132,6 +142,28 @@ map <leader>j :RopeGotoDefinition<CR>
 
 " Rename whatever the cursor is on (including references to it)
 map <leader>r :RopeRename<CR>
+
+" Run the current file with rspec
+"map <Leader>vb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+
+" Close all other tmux panes in current window
+map <Leader>vx :VimuxClosePanes<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>vs :VimuxInterruptRunner<CR>
+
 " ==========================================================
 " Pathogen - Allows us to organize our vim plugins
 " ==========================================================
@@ -241,7 +273,8 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 """" Display
-colorscheme vividchalk
+colorscheme solarized
+set t_Co=16
 if has("gui_running")
     " Remove menu bar
     set guioptions-=m
