@@ -1,69 +1,70 @@
-xterm*background: black
-xterm*foreground: white
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
 
-URxvt.buffered:         true
-URxvt.background:       black
-URxvt.foreground:       white
-URxvt.cursorColor:      green
-URxvt.perl-ext-common:  default,matcher
-URxvt.urlLauncher:      /usr/bin/chromium
-URxvt.matcher.button:   1
-URxvt.scrollBar:        false
 
-! urxvt defaults:
-! color0       (black)            = Black
-! color1       (red)              = Red3
-! color2       (green)            = Green3
-! color3       (yellow)           = Yellow3
-! color4       (blue)             = Blue3
-! color5       (magenta)          = Magenta3
-! color6       (cyan)             = Cyan3
-! color7       (white)            = AntiqueWhite
-! color8       (bright black)     = Grey25
-! color9       (bright red)       = Red
-! color10      (bright green)     = Green
-! color11      (bright yellow)    = Yellow
-! color12      (bright blue)      = Blue
-! color13      (bright magenta)   = Magenta
-! color14      (bright cyan)      = Cyan
-! color15      (bright white)     = White
+! Common
 
-! Black
-!URxvt.color1:          Black
-! Red
-URxvt.color1:           brown2
-! Green
-URxvt.color2:           SpringGreen2
-! Yellow
-URxvt.color3:           yellow2
-! Blue
-URxvt.color4:           DeepSkyBlue2
-! Magenta
-URxvt.color5:           magenta2
-! Cyan
-URxvt.color6:           DarkSlateGray1
-! White
-URxvt.color7:           MintCream
-! Bright black
-!URxvt.color8:          Grey25
-! Bright red
-URxvt.color9:           firebrick1
-! Bright green
-URxvt.color10:          SpringGreen1
-! Bright yellow
-URxvt.color11:          yellow1
-! Bright blue
-URxvt.color12:          DeepSkyBlue1
-! Bright magenta
-URxvt.color13:          magenta1
-! Bright cyan
-URxvt.color14:          cyan1
-! Bright white
-!URxvt.color15:         White
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
-! Alternatives
-! Blue: lighter (looks closer to cyan, but it is an option if deepsky is too
-! dark to read (it might be a good idea to make symlinks green))
-!URxvt.color4:          SteelBlue2
-!URxvt.color12:         SteelBlue1
-!URxvt.color6:          cyan1
+
+! Dark
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+
+! Light
+
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
+
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+*background:              S_base03
+*foreground:              S_base0
+*fading:                  40
+*fadeColor:               S_base03
+*cursorColor:             S_base1
+*pointerColorBackground:  S_base01
+*pointerColorForeground:  S_base1
+
+*color0:                  S_base02
+*color1:                  S_red
+*color2:                  S_green
+*color3:                  S_yellow
+*color4:                  S_blue
+*color5:                  S_magenta
+*color6:                  S_cyan
+*color7:                  S_base2
+*color9:                  S_orange
+*color8:                  S_base03
+*color10:                 S_base01
+*color11:                 S_base00
+*color12:                 S_base0
+*color13:                 S_violet
+*color14:                 S_base1
+*color15:                 S_base3
