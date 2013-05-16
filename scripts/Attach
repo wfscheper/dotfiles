@@ -6,7 +6,9 @@ grabssh
 
 # Attach to running tmux session
 if [ ${1} ] ; then
-  TERM=screen-256color-bce tmux -L ${1} attach-session
+  TERM=screen-256color-bce tmux -L ${1} attach-session || \
+    TERM=screen-256color-bce tmux -L ${1} new
 else 
-  TERM=screen-256color-bce tmux -L default attach-session
+  TERM=screen-256color-bce tmux -L default attach-session || \
+    TERM=screen-256color-bce tmux -L default new
 fi
