@@ -13,6 +13,6 @@ fi
 cd scripts
 for f in *
 do
-  cp -vi $f $SCRIPT_DIR/$f
+  ln -sfi $(pwd)/$f $SCRIPT_DIR/
 done
 )
