@@ -212,3 +212,14 @@ fi
 
 # pythonbrew
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+# for mirrorball
+PYTHONPATH=$PYTHONPATH:~/mirrorball
+
+# tmux SSH
+if [ ! -z "$TMUX" ]; then
+    profile="$(echo $TMUX | cut -d/ -f4 | cut -d, -f1)"
+    if [ ! -z "$SSH_TTY" ]; then
+        export SSH_AUTH_SOCK="$HOME/.wrap_auth_sock_$profile"
+    fi
+fi

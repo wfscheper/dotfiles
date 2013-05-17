@@ -1,14 +1,25 @@
 #!/bin/sh
 # Attach to existing ssh session
 
-# Get new ssh vars
-grabssh
+if [ -z "$1" ]; then
+    profile="default"
+else
+    profile="$1"
+fi
 
+# ssh auth sock for tmux
+if [ -z "$TMUX" ]; then
+  if [ ! -z "$SSH_TTY" ]; then
+      if [ ! -z "$SSH_AUTH_SOCK" ]; then
+          ln -sf "$SSH_AUTH_SOCK" "$HOME/.wrap_auth_sock_$profile"
+      fi
+  fi
+fi
+
+TERM=screen-256color-bce
 # Attach to running tmux session
-if [ ${1} ] ; then
-  TERM=screen-256color-bce tmux -L ${1} attach-session || \
-    TERM=screen-256color-bce tmux -L ${1} new
-else 
-  TERM=screen-256color-bce tmux -L default attach-session || \
-    TERM=screen-256color-bce tmux -L default new
+if tmux has-session -t "$profile" 2>/dev/null; then
+    exec tmux -L "$profile" attach-session
+else
+    exec tmux -L "$profile" new-session
 fi
