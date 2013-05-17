@@ -3,13 +3,15 @@
   suppress_multiple_term_dialog = True
 [keybindings]
   go_up = <Shift><Alt>k
-  broadcast_group = <Shift><Alt>g
   move_tab_right = <Shift><Alt>braceright
+  broadcast_group = <Shift><Alt>g
+  go_prev = <Shift><Alt>p
   go_down = <Shift><Alt>j
   move_tab_left = <Shift><Alt>braceleft
-  go_right = <Shift><Alt>h
+  go_right = <Shift><Alt>l
   broadcast_off = <Shift><Alt>r
-  go_left = <Shift><Alt>l
+  go_next = <Shift><Alt>n
+  go_left = <Shift><Alt>h
   copy = <Alt>c
   paste = <Alt>v
 [profiles]
