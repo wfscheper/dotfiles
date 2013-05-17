@@ -10,7 +10,7 @@ fi
 # ssh auth sock for tmux
 if [ -z "$TMUX" ]; then
   if [ ! -z "$SSH_TTY" ]; then
-      if [ ! -z "SSH_AUTH_SOCK" ]; then
+      if [ ! -z "$SSH_AUTH_SOCK" ]; then
           ln -sf "$SSH_AUTH_SOCK" "$HOME/.wrap_auth_sock_$profile"
       fi
   fi
