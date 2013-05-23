@@ -223,3 +223,6 @@ if [ ! -z "$TMUX" ]; then
         export SSH_AUTH_SOCK="$HOME/.wrap_auth_sock_$profile"
     fi
 fi
+
+# Finally, export PATH
+export PATH

@@ -1,5 +1,4 @@
 [global_config]
-  dbus = True
   suppress_multiple_term_dialog = True
 [keybindings]
   go_up = <Shift><Alt>k
@@ -12,14 +11,14 @@
   broadcast_off = <Shift><Alt>r
   go_next = <Shift><Alt>n
   go_left = <Shift><Alt>h
-  copy = <Alt>c
-  paste = <Alt>v
+  copy = <Primary><Shift>c
+  paste = <Primary><Shift>v
+  edit_window_title = <Shift><Alt>e
 [profiles]
   [[default]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     visible_bell = True
     background_image = None
-    cursor_shape = ibeam
     use_system_font = False
     foreground_color = "#839496"
     icon_bell = False
@@ -29,7 +28,6 @@
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     visible_bell = True
     background_image = None
-    cursor_shape = ibeam
     use_system_font = False
     foreground_color = "#839496"
     icon_bell = False
@@ -43,48 +41,13 @@
     [[[window0]]]
       type = Window
       parent = ""
-  [[wsdevimage]]
-    [[[child0]]]
-      position = 0:27
-      type = Window
-      order = 0
-      parent = ""
-      size = 640, 427
-    [[[child1]]]
-      position = 320
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 213
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[terminal2]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child1
-      command = "ssh -t -A ws-devimage 'source ~/.bash_profile && Attach'"
-    [[[terminal5]]]
-      profile = small
-      type = Terminal
-      order = 1
-      parent = child2
-      command = "ssh -t -A ws-devimage 'source ~/.bash_profile && Attach small1'"
-    [[[terminal4]]]
-      profile = small
-      type = Terminal
-      order = 0
-      parent = child2
-      command = "ssh -t -A ws-devimage 'source ~/.bash_profile && Attach small2'"
   [[tripane]]
     [[[child0]]]
-      position = 0:27
+      position = 10:37
       type = Window
       order = 0
       parent = ""
-      size = 640, 427
+      size = 1900, 1024
     [[[child1]]]
       position = 320
       type = HPaned
@@ -110,74 +73,4 @@
       type = Terminal
       order = 0
       parent = child2
-  [[barney]]
-    [[[child0]]]
-      position = 0:27
-      type = Window
-      order = 0
-      parent = ""
-      size = 640, 427
-    [[[child1]]]
-      position = 320
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 213
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[terminal2]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child1
-      command = "ssh -t -A barney.unx.sas.com 'source ~/.bash_profile && Attach'"
-    [[[terminal5]]]
-      profile = small
-      type = Terminal
-      order = 1
-      parent = child2
-      command = "ssh -t -A barney.unx.sas.com 'source ~/.bash_profile && Attach small1'"
-    [[[terminal4]]]
-      profile = small
-      type = Terminal
-      order = 0
-      parent = child2
-      command = "ssh -t -A barney.unx.sas.com 'source ~/.bash_profile && Attach small2'"
-  [[autodev]]
-    [[[child0]]]
-      position = 0:27
-      type = Window
-      order = 0
-      parent = ""
-      size = 640, 427
-    [[[child1]]]
-      position = 320
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 213
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[terminal2]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child1
-      command = "ssh -t -A jenkins@ws-devimage 'source ~/.bash_profile && Attach'"
-    [[[terminal5]]]
-      profile = small
-      type = Terminal
-      order = 1
-      parent = child2
-      command = "ssh -t -A jenkins@ws-devimage 'source ~/.bash_profile && Attach small1'"
-    [[[terminal4]]]
-      profile = small
-      type = Terminal
-      order = 0
-      parent = child2
-      command = "ssh -t -A jenkins@ws-devimage 'source ~/.bash_profile && Attach small2'"
 [plugins]
