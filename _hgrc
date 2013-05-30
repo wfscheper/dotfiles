@@ -1,7 +1,7 @@
 [ui]
-username = Walter Scheper <ratlaw@gmail.com>
+username = Walter Scheper <walter.scheper@sas.com>
 
 [extensions]
 prompt=$HOME/.hgext/prompt.py
-forest=$HOME/.hgext/forest.py
+forest=
 mq=
