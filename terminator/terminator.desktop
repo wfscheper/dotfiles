@@ -131,7 +131,7 @@ Type=Application
 Categories=GNOME;GTK;Utility;TerminalEmulator;System;
 StartupNotify=true
 X-Ubuntu-Gettext-Domain=terminator
-Actions=NewWindow;NewTriPane;WsDevimage;
+Actions=NewWindow;NewTriPane;WsDevimage;Jenkins;
 
 [Desktop Action NewWindow]
 Name=Open a New Window
@@ -144,3 +144,7 @@ Exec=terminator -m --layout=tripane
 [Desktop Action WsDevimage]
 Name=Open ws-devimage
 Exec=terminator -m --layout=wsdevimage
+
+[Desktop Action Jenkins]
+Name=Open jenkins@ws-devimage
+Exec=terminator -m --layout=jenkins
