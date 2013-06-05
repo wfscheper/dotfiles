@@ -213,6 +213,9 @@ fi
 # pythonbrew
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
+# nvm
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+
 # for mirrorball
 PYTHONPATH=$PYTHONPATH:~/mirrorball
 
