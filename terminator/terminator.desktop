@@ -143,8 +143,8 @@ Exec=terminator -m --layout=tripane
 
 [Desktop Action WsDevimage]
 Name=Open ws-devimage
-Exec=terminator -m --layout=wsdevimage
+Exec=terminator -m --layout=wsdevimage --title=ws-deviamge
 
 [Desktop Action Jenkins]
-Name=Open jenkins@ws-devimage
-Exec=terminator -m --layout=jenkins
+Name=Open ws-devimage as jenkins
+Exec=terminator -m --layout=jenkins --title='jenkins@ws-devimage'
