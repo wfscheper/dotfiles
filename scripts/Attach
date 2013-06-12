@@ -11,7 +11,7 @@ fi
 if [ -z "$TMUX" ]; then
   if [ ! -z "$SSH_TTY" ]; then
       if [ ! -z "$SSH_AUTH_SOCK" ]; then
-          ln -sf "$SSH_AUTH_SOCK" "$HOME/.wrap_auth_sock_$profile"
+          ln -sf "$SSH_AUTH_SOCK" "$HOME/.wrap_auth_sock"
       fi
   fi
 fi
@@ -19,7 +19,7 @@ fi
 TERM=screen-256color-bce
 # Attach to running tmux session
 if tmux has-session -t "$profile" 2>/dev/null; then
-    exec tmux -L "$profile" attach-session
+    exec tmux attach-session -t "$profile" 
 else
-    exec tmux -L "$profile" new-session
+    exec tmux new-session -s "$profile"
 fi
