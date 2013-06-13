@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ -z "${2}" ]; then
+    profile="main"
+else
+    profile="$2"
+fi
+
+ssh -t ${1} "/bin/bash ~/bin/Attach ${profile}"
