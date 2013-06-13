@@ -98,7 +98,7 @@ esac
 if $TERM_IS_COLOR && ( dircolors --help && ls --color ) &> /dev/null; then
   # For some reason, the unixs machines need me to use $HOME instead of ~
   # List files from highest priority to lowest.  As soon as the loop finds one that works, it will exit.
-  for POSSIBLE_DIR_COLORS in "$HOME/.dir_colors" "/etc/DIR_COLORS"; do
+  for POSSIBLE_DIR_COLORS in "$HOME/.dircolors" "/etc/DIR_COLORS"; do
     [[ -f "$POSSIBLE_DIR_COLORS" ]] && [[ -r "$POSSIBLE_DIR_COLORS" ]] && eval `dircolors -b "$POSSIBLE_DIR_COLORS"` && break
   done
 
