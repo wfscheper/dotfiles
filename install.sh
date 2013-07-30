@@ -40,3 +40,11 @@ fi
 
 git submodule update --init --recursive
 #git submodule foreach --recursive git pull origin master
+
+# setup command-t
+#cd _vim/bundle/command-t
+#rake make
+
+ln -sfn ssh_config ~/.ssh/config
+
+./tmux_setup.sh

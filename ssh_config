@@ -1,0 +1,32 @@
+ForwardAgent yes
+ControlMaster auto
+ControlPath /tmp/ssh_mux_%h_%p_%r
+ControlPersist 4h
+
+Host delphi delphi.unx.sas.com
+    User wscheper
+
+Host barney barney.unx.sas.com
+    User wscheper
+
+Host scc scc.unx.sas.com
+    User wscheper
+
+Host jtdevimg
+    Hostname 10.12.17.235
+    User rbuilder.wasche
+
+Host ws-devimage
+    #Hostname 10.12.35.108
+    Hostname 10.12.31.105
+    User wscheper
+
+Host sasball sasball.unx.sas.com
+    User root
+
+Host jenkins2 jenkins2.unx.sas.com
+    User wscheper
+
+Host ws-rce-devel ws-rce-devel.na.sas.com
+    Hostname ws-rce-devel.na.sas.com
+    User wscheper
