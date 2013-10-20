@@ -61,6 +61,11 @@ omap i.e <plug>CamelCaseMotion_ie
 xmap i.e <plug>CamelCaseMotion_ie
 
 " ==========================================================
+" explicitly set shell to bash
+" ==========================================================
+set shell=/bin/bash
+
+" ==========================================================
 " Load pathgen from bundle
 " ==========================================================
 runtime bundle/vim-pathogen/autoload/pathogen.vim
