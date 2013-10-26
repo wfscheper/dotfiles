@@ -16,3 +16,6 @@ set fish_plugins aws pyenv
 . $fish_path/oh-my-fish.fish
 
 eval (dircolors -c "$HOME/.dircolors")
+
+# PYTHONSTARTUP
+set -x PYTHONSTARTUP "$HOME/.pythonrc.py"
