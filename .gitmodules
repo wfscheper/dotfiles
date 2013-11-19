@@ -82,3 +82,6 @@
 [submodule "_oh-my-fish"]
 	path = _oh-my-fish
 	url = git@github.com:wfscheper/oh-my-fish.git
+[submodule "_vim/bundle/vim-fish"]
+	path = _vim/bundle/vim-fish
+	url = https://github.com/dag/vim-fish.git
