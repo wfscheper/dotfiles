@@ -1,6 +1,12 @@
 # Path to your oh-my-fish.
 set fish_path $HOME/.oh-my-fish
 
+# set path
+set PATH $HOME/bin $HOME/.local/bin $PATH
+
+# set editor
+set EDITOR /bin/vim
+
 # Theme
 set fish_theme ratlaw
 
