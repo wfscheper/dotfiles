@@ -5,4 +5,4 @@ else
     profile="$2"
 fi
 
-ssh -t ${1} "/bin/fish ~/bin/Attach ${profile}"
+ssh -t ${1} "/bin/fish ~/bin/attach ${profile}"
