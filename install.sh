@@ -45,6 +45,8 @@ git submodule update --init --recursive
 #cd _vim/bundle/command-t
 #rake make
 
-ln -sfn ssh_config ~/.ssh/config
+ln -sfn "$(pwd)/ssh_config" ~/.ssh/config
+
+ln -sfn "$(pwd)/config.fish" ~/.config/fish/config.fish
 
 ./tmux_setup.sh
