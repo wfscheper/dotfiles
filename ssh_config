@@ -1,7 +1,6 @@
 ForwardAgent yes
 ControlMaster auto
-ControlPath /tmp/ssh_mux_%h_%p_%r
-ControlPersist 4h
+ControlPersist yes
 
 Host delphi delphi.unx.sas.com
     User wscheper
@@ -17,8 +16,6 @@ Host jtdevimg
     User rbuilder.wasche
 
 Host ws-devimage
-    #Hostname 10.12.35.108
-    Hostname 10.12.31.105
     User wscheper
 
 Host sasball sasball.unx.sas.com
