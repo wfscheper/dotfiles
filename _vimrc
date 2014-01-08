@@ -278,7 +278,7 @@ set incsearch               " Incrementally search while typing a /regex
 
 
 """ Highlight anything in column 80 and beyond
-autocmd BufEnter * match ErrorMsg /\%80v.*/
+autocmd BufEnter * match ErrorMsg /\%81v.*/
 
 """" Display
 colorscheme solarized
