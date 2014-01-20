@@ -88,3 +88,6 @@
 [submodule "_vim/bundle/minibufexpl.vim"]
 	path = _vim/bundle/minibufexpl.vim
 	url = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "_vim/bundle/vim-plugin-minibufexpl"]
+	path = _vim/bundle/vim-plugin-minibufexpl
+	url = https://github.com/techlivezheng/vim-plugin-minibufexpl.git
