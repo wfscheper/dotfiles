@@ -1,10 +1,10 @@
 #!/bin/fish
 # Attach to existing ssh session
 
-if [ -z "$1" ]
+if [ -z "$argv[1]" ]
     set profile "main"
 else
-    set profile "$1"
+    set profile "$argv[1]"
 end
 
 # ssh auth sock for tmux
