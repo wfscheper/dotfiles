@@ -1,7 +1,23 @@
 [ui]
-username = Walter Scheper <walter.scheper@sas.com>
+username = Walter Scheper <ratlaw@gmail.com>
 
 [extensions]
 prompt=$HOME/.hgext/prompt.py
 forest=
 mq=
+pager=
+color =
+
+[pager]
+pager = LESS='FRX' less -R
+
+[color]
+qseries.applied = red bold
+qseries.unapplied = white
+qseries.missing = red
+status.modified = red
+status.added = green
+status.removed = green bold
+status.deleted = cyan
+status.unknown = blue
+status.ignored = white

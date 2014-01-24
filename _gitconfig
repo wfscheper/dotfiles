@@ -1,34 +1,37 @@
 [user]
-    name = Walter Scheper
-    email = ratlaw@gmail.com
+	name = Walter Scheper
+	email = ratlaw@gmail.com
 
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
 
 [push]
-    default = tracking
+	default = upstream
 
 [core]
-    editor = vim
-    pager = less -R
-    eol = lf
-    autocrlf = input
+	editor = vim
+	pager = less -R
+	eol = lf
+	autocrlf = input
 
 [alias]
-    diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
-    st = status
-    ci = commit
-    br = branch
-    co = checkout
-    df = diff
-    lg = log -p
-    up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    ls = ls-files
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log -p
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-files
+	incoming = !sh -c 'git fetch --quiet && git log ..@{u}'
+	outgoing = !sh -c 'git fetch --quiet && git log @{u}..'
+	out = !sh -c 'git outgoing'
+	in = !sh -c 'git incoming'
+	bmerge = merge --no-ff
 
 [merge]
-    renormalize = true
+	renormalize = true
