@@ -91,3 +91,6 @@
 [submodule "_vim/bundle/vim-plugin-minibufexpl"]
 	path = _vim/bundle/vim-plugin-minibufexpl
 	url = https://github.com/techlivezheng/vim-plugin-minibufexpl.git
+[submodule "_vim/bundle/paster"]
+	path = _vim/bundle/paster
+	url = https://github.com/pr3d4t0r/paster.git
