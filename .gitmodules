@@ -93,4 +93,4 @@
 	url = https://github.com/techlivezheng/vim-plugin-minibufexpl.git
 [submodule "_vim/bundle/paster"]
 	path = _vim/bundle/paster
-	url = git@:github.com:wfscheper/paster.git
+	url = git@github.com:wfscheper/paster.git
