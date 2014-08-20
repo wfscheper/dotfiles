@@ -8,7 +8,7 @@ set PATH $HOME/bin $HOME/.local/bin $PATH
 set EDITOR /bin/vim
 
 # Theme
-set fish_theme ratlaw
+set fish_theme agnoster
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
