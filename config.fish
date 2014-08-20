@@ -9,6 +9,7 @@ set EDITOR /bin/vim
 
 # Theme
 set fish_theme agnoster
+set theme_display_user yes
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
