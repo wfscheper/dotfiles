@@ -1,6 +1,6 @@
 [user]
 	name = Walter Scheper
-	email = ratlaw@gmail.com
+	email = Walter.Scheper@sas.com
 
 [color]
 	diff = auto
@@ -32,6 +32,10 @@
 	out = !sh -c 'git outgoing'
 	in = !sh -c 'git incoming'
 	bmerge = merge --no-ff
+    up = remote update
 
 [merge]
 	renormalize = true
+[gui]
+	fontui = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
