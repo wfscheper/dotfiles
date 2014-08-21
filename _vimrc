@@ -179,6 +179,15 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 " ==========================================================
+" Pymode
+" ==========================================================
+let g:pymode = 1
+let g:pymode_breakpoint_cmd = 'import epdb; epdb.set_trace()  # XXX BREAKPOINT'
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_lint_ignore = "E128"
+let g:pymode_trim_whitespaces = 0
+
+" ==========================================================
 " Basic Settings
 " ==========================================================
 syntax on                     " syntax highlighing
@@ -277,9 +286,6 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 
-""" Highlight anything in column 80 and beyond
-autocmd BufEnter * match ErrorMsg /\%81v[^\n].*/
-
 """" Display
 colorscheme solarized
 set t_Co=16
@@ -320,8 +326,6 @@ au BufRead *.js set makeprg=jslint\ %
 "autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
 "autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
 
-let g:acp_completeoptPreview=1
-
 " ===========================================================
 " FileType specific changes
 " ============================================================
@@ -331,15 +335,15 @@ autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 so
 
 " Python
 "au BufRead *.py compiler nose
+
+" Highlight anything in column 80 and beyond
+autocmd FileType python,sh,fish match ErrorMsg /\%81v[^\n].*/
+
 au FileType python set omnifunc=pythoncomplete#Complete
-au FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with indentexpr=GetGooglePythonIndent(v:lnum) colorcolumn=80
+au FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with colorcolumn=80
 au FileType coffee setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with colorcolumn=80
 au FileType javascript setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with colorcolumn=80
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-" Don't let pyflakes use the quickfix window
-let g:pyflakes_use_quickfix = 0
-
-
 
 " Add the virtualenv's site-packages to vim path
 if has('python')
