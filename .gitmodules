@@ -16,15 +16,9 @@
 [submodule "_vim/bundle/markdown"]
 	path = _vim/bundle/markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "_vim/bundle/snipmate"]
-	path = _vim/bundle/snipmate
-	url = https://github.com/garbas/vim-snipmate.git
 [submodule "_vim/bundle/vim-addon-mw-utils"]
 	path = _vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "_vim/bundle/snippets"]
-	path = _vim/bundle/snippets
-	url = git://github.com/honza/vim-snippets.git
 [submodule "_vim/bundle/vim-pathogen"]
 	path = _vim/bundle/vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
@@ -62,3 +56,12 @@
 [submodule "_vim/bundle/vim-fugitive"]
 	path = _vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "_vim/bundle/tlib_vim"]
+	path = _vim/bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "_vim/bundle/vim-snipmate"]
+	path = _vim/bundle/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "_vim/bundle/vim-snippets"]
+	path = _vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
