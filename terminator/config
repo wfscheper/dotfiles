@@ -1,8 +1,7 @@
 [global_config]
   enabled_plugins = PasteBinPlugin, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  dbus = True
   suppress_multiple_term_dialog = True
-  handle_size = 0
+  handle_size = 1
   focus = mouse
 [keybindings]
   go_up = <Shift><Alt>k
