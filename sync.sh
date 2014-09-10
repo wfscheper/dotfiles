@@ -11,4 +11,4 @@ shift || (usage; exit 1)
 TO=$1
 shift || (usage; exit 1)
 
-rsync -av --exclude=.git/ $FROM/* $TO
+rsync -av --delete --exclude=.git/ $FROM/* $TO
