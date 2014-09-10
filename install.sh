@@ -7,7 +7,7 @@ function link_file {
         mv $target $target.df.bak
     fi
 
-    ln -sf ${source} ${target}
+    ln -sfn ${source} ${target}
 }
 
 function unlink_file {
@@ -38,7 +38,7 @@ else
     done
 fi
 
-git submodule update --init --recursive
+#git submodule update --init --recursive
 #git submodule foreach --recursive git pull origin master
 
 # setup command-t
