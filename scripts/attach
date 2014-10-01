@@ -1,26 +1,21 @@
-#!/bin/fish
+#!/bin/bash
 # Attach to existing ssh session
+has_session="tmux has-session"
+attach="tmux attach"
+new="tmux new"
 
-if [ -z "$argv[1]" ]
-    set profile "main"
-else
-    set profile "$argv[1]"
-end
-
-# ssh auth sock for tmux
-if [ -z "$TMUX" ]
-  if [ ! -z "$SSH_TTY" ]
-      if [ ! -z "$SSH_AUTH_SOCK" ]
-          ln -sf "$SSH_AUTH_SOCK" "$HOME/.wrap_auth_sock_$profile"
-      end
-      set -x SSH_AUTH_SOCK "$HOME/.wrap_auth_sock_$profile"
-  end
-end
-
-set -x TERM screen-256color
+export TERM="screen-256color"
 # Attach to running tmux session
-if tmux has-session -t "$profile" ^/dev/null
-    exec tmux attach-session -t "$profile"
+if [ "$1" ]
+then
+    has_session="$has_session -t $1"
+    attach="$attach -t $1"
+    new="$new -s $1"
+fi
+
+if eval $has_session
+then
+    exec $attach
 else
-    exec tmux new-session -s "$profile"
-end
+    exec $new
+fi
