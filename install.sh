@@ -20,7 +20,12 @@ function unlink_file {
     fi
 }
 
-if [ "$1" = "vim" ]; then
+if [ "$1" = "bash"]; then
+    if [ ! -e $HOME/.bash_it ]; then
+        git clone https://github.com/revans/bash-it.git $HOME/.bash_it
+    fi
+    cp bash-it-config/* ~/.bash_it/.
+elif [ "$1" = "vim" ]; then
     for i in _vim*
     do
        link_file $i
