@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+usage () {
+    echo "$0 pull FROM"
+    echo "$0 push TO"
+}
+
+MODE=$1
+shift || (usage; exit 1)
+
+DEST=$1
+shift || (usage; exit 1)
+
+case $MODE in
+    pull)
+        ARGS="--delete $DEST/* $(pwd)"
+        ;;
+    push)
+        ARGS="$(pwd)/* $DEST"
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
+
+rsync -av --exclude='.*' $ARGS
