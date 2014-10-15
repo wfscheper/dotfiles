@@ -14,10 +14,10 @@ shift || (usage; exit 1)
 
 case $MODE in
     pull)
-        ARGS="--delete $DEST/* $(pwd)"
+        ARGS="$DEST/* $(pwd)"
         ;;
     push)
-        ARGS="$(pwd)/* $DEST"
+        ARGS="--delete $(pwd)/* $DEST"
         ;;
     *)
         usage
@@ -25,4 +25,4 @@ case $MODE in
         ;;
 esac
 
-rsync -av --exclude='.*' --exclude='bin/*' $ARGS
+rsync -av --exclude='.*' --exclude='bin/' $ARGS
