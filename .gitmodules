@@ -44,9 +44,6 @@
 [submodule "_vim/bundle/vim-fish"]
 	path = _vim/bundle/vim-fish
 	url = https://github.com/dag/vim-fish.git
-[submodule "_vim/bundle/vim-plugin-minibufexpl"]
-	path = _vim/bundle/vim-plugin-minibufexpl
-	url = https://github.com/techlivezheng/vim-plugin-minibufexpl.git
 [submodule "_vim/bundle/paster"]
 	path = _vim/bundle/paster
 	url = git@github.com:wfscheper/paster.git
@@ -65,3 +62,6 @@
 [submodule "_vim/bundle/vim-snippets"]
 	path = _vim/bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "_vim/bundle/vim-airline"]
+	path = _vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
