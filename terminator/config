@@ -5,18 +5,19 @@
   focus = mouse
 [keybindings]
   go_up = <Shift><Alt>k
-  move_tab_right = <Shift><Alt>braceright
-  broadcast_group = <Shift><Alt>g
-  go_prev = <Shift><Alt>p
+  switch_to_tab_10 = <Primary>0
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
   go_down = <Shift><Alt>j
-  move_tab_left = <Shift><Alt>braceleft
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_2 = <Primary>2
   go_right = <Shift><Alt>l
-  broadcast_off = <Shift><Alt>r
-  go_next = <Shift><Alt>n
+  switch_to_tab_1 = <Primary>1
   go_left = <Shift><Alt>h
-  copy = <Primary><Shift>c
-  paste = <Primary><Shift>v
-  edit_window_title = <Shift><Alt>e
+  switch_to_tab_9 = <Primary>9
+  switch_to_tab_8 = <Primary>8
+  switch_to_tab_3 = <Primary>3
 [profiles]
   [[default]]
     scrollbar_position = hidden
@@ -26,7 +27,7 @@
     use_system_font = False
     foreground_color = "#839496"
     icon_bell = False
-    font = Source Code Pro Semi-Bold 10
+    font = Inconsolata Bold 11
     background_color = "#002b36"
     scrollback_infinite = True
   [[small]]
