@@ -20,11 +20,39 @@ function unlink_file {
     fi
 }
 
-if [ "$1" = "bash" ]; then
+function install_bash_it {
     if [ ! -e $HOME/.bash_it ]; then
         git clone https://github.com/revans/bash-it.git $HOME/.bash_it
     fi
     cp -R bash-it-config/* ~/.bash_it/.
+}
+
+function tmux_setup {
+    # Install tmux configuration & scripts
+    SCRIPT_DIR="$HOME/bin"
+
+    # Check to see if specified directory exists
+    if [ ! -d $SCRIPT_DIR ] ; then
+        mkdir -v $SCRIPT_DIR
+    fi
+
+    # Start copying scripts
+    (
+    cd scripts
+    for f in *
+    do
+        source="${PWD}/${f}"
+        target="${SCRIPT_DIR}/${f}"
+        if [ -e "${target}" ] && [ ! -L "${target}" ]; then
+            mv $target $target.df.bak
+        fi
+        ln -sfn ${source} ${target}
+    done
+    )
+}
+
+if [ "$1" = "bash" ]; then
+    install_bash_it
 elif [ "$1" = "vim" ]; then
     for i in _vim*
     do
@@ -41,17 +69,9 @@ else
     do
         link_file $i
     done
+
+    install_bash_it
+    tmux_setup
+    ln -sfn "${PWD}/ssh_config" ~/.ssh/config
+    ln -sfn "${PWD}/config.fish" ~/.config/fish/config.fish
 fi
-
-#git submodule update --init --recursive
-#git submodule foreach --recursive git pull origin master
-
-# setup command-t
-#cd _vim/bundle/command-t
-#rake make
-
-ln -sfn "$(pwd)/ssh_config" ~/.ssh/config
-
-ln -sfn "$(pwd)/config.fish" ~/.config/fish/config.fish
-
-./tmux_setup.sh
