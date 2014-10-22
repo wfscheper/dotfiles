@@ -6,3 +6,5 @@ _vim/ropevim/pylibs*
 *.swp
 *.pyc
 _vim/.netrwhist
+_config/fish/fish_history
+_config/fish/fishd*

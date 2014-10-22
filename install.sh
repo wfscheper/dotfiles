@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
+set -e
+
+function link_directory {
+    # make the target directory
+    if [ ! -e "${target}" ];
+    then
+        mkdir $target
+    fi
+
+    for f in $1/*
+    do
+        link_file $f
+    done
+}
+
 function link_file {
     source="${PWD}/$1"
     target="${HOME}/${1/_/.}"
@@ -8,6 +23,22 @@ function link_file {
     fi
 
     ln -sfn ${source} ${target}
+}
+
+function link_target {
+    if [ -d $1 ]
+    then
+        link_directory $1
+    else
+        link_file $1
+    fi
+}
+
+function unlink_directory {
+    for f in $1/*
+    do
+        unlink_file $f
+    done
 }
 
 function unlink_file {
@@ -20,58 +51,32 @@ function unlink_file {
     fi
 }
 
-function install_bash_it {
-    if [ ! -e $HOME/.bash_it ]; then
-        git clone https://github.com/revans/bash-it.git $HOME/.bash_it
+function unlink_target {
+    if [ -d $1 ]
+    then
+        unlink_directory $1
+    else
+        unlink_file $1
     fi
-    cp -R bash-it-config/* ~/.bash_it/.
 }
 
-function tmux_setup {
-    # Install tmux configuration & scripts
-    SCRIPT_DIR="$HOME/bin"
-
-    # Check to see if specified directory exists
-    if [ ! -d $SCRIPT_DIR ] ; then
-        mkdir -v $SCRIPT_DIR
-    fi
-
-    # Start copying scripts
-    (
-    cd scripts
-    for f in *
-    do
-        source="${PWD}/${f}"
-        target="${SCRIPT_DIR}/${f}"
-        if [ -e "${target}" ] && [ ! -L "${target}" ]; then
-            mv $target $target.df.bak
-        fi
-        ln -sfn ${source} ${target}
-    done
-    )
-}
-
-if [ "$1" = "bash" ]; then
-    install_bash_it
-elif [ "$1" = "vim" ]; then
-    for i in _vim*
-    do
-       link_file $i
-    done
-elif [ "$1" = "restore" ]; then
-    for i in _*
-    do
-        unlink_file $i
-    done
-    exit
-else
-    for i in _*
-    do
-        link_file $i
-    done
-
-    install_bash_it
-    tmux_setup
-    ln -sfn "${PWD}/ssh_config" ~/.ssh/config
-    ln -sfn "${PWD}/config.fish" ~/.config/fish/config.fish
-fi
+case "$1" in
+    vim)
+        for i in _vim*
+        do
+           link_target $i
+        done
+        ;;
+    restore)
+        for i in _*
+        do
+            unlink_target $i
+        done
+        ;;
+    *)
+        for i in _*
+        do
+            link_target $i
+        done
+        ;;
+esac
