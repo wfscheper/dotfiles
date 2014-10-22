@@ -1,6 +1,8 @@
 # Path to your oh-my-fish.
 set fish_path $HOME/.oh-my-fish
 
+set TERM xterm-256color
+
 # set path
 set PATH $HOME/bin $HOME/.local/bin $PATH
 
@@ -8,8 +10,8 @@ set PATH $HOME/bin $HOME/.local/bin $PATH
 set EDITOR /bin/vim
 
 # Theme
-set fish_theme agnoster
-set theme_display_user yes
+set fish_function_path $fish_function_path "{repository_root}/powerline/bindings/fish"
+powerline-setup
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
