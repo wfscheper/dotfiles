@@ -10,7 +10,7 @@ set PATH $HOME/bin $HOME/.local/bin $PATH
 set EDITOR /bin/vim
 
 # Theme
-set fish_function_path $fish_function_path "$HOME/.dotfile/powerline/fish"
+set fish_function_path $fish_function_path "$HOME/.dotfiles/powerline_bindings/fish"
 powerline-setup
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
