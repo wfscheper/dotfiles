@@ -1,8 +1,6 @@
 # Path to your oh-my-fish.
 set fish_path $HOME/.oh-my-fish
 
-set TERM xterm-256color
-
 # set path
 set PATH $HOME/bin $HOME/.local/bin $PATH
 
