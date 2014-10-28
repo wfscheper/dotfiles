@@ -38,26 +38,40 @@
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set default shell
+set shell=/bin/sh
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Configure CamelCaseMotion before pathogen loads
+" => Load Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map .w <Plug>CamelCaseMotion_w
-omap i.w <plug>CamelCaseMotion_iw
-xmap i.w <plug>CamelCaseMotion_iw
-map .b <Plug>CamelCaseMotion_b
-omap i.b <plug>CamelCaseMotion_ib
-xmap i.b <plug>CamelCaseMotion_ib
-map .e <Plug>CamelCaseMotion_e
-omap i.e <plug>CamelCaseMotion_ie
-xmap i.e <plug>CamelCaseMotion_ie
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load pathogen
+" => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-runtime bundle/vim-pathogen/autoload/pathogen.vim
+Plugin 'vim-scripts/The-NERD-tree'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'elzr/vim-json'
+Plugin 'dag/vim-fish'
+Plugin 'wfscheper/paster'
+Plugin 'tpope/vim-fugitive'
+Plugin 'fatih/vim-go'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'klen/python-mode'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,14 +105,6 @@ nmap <leader>w :w!<cr>
 
 " for when we forget to use sudo to open/edit a file
 cmap w!! w !sudo tee % >/dev/null
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load pathogen with docs for all plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
-execute pathogen#infect()
-execute pathogen#helptags()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

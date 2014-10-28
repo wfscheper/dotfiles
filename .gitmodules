@@ -1,64 +1,7 @@
-[submodule "_vim/bundle/surround"]
-	path = _vim/bundle/surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "_vim/bundle/git"]
-	path = _vim/bundle/git
-	url = https://github.com/tpope/vim-git.git
-[submodule "_vim/bundle/gundo"]
-	path = _vim/bundle/gundo
-	url = https://github.com/sjl/gundo.vim.git
-[submodule "_vim/bundle/nerdtree"]
-	path = _vim/bundle/nerdtree
-	url = https://github.com/vim-scripts/The-NERD-tree.git
-[submodule "_vim/bundle/solarized"]
-	path = _vim/bundle/solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "_vim/bundle/markdown"]
-	path = _vim/bundle/markdown
-	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "_vim/bundle/vim-addon-mw-utils"]
-	path = _vim/bundle/vim-addon-mw-utils
-	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "_vim/bundle/vim-pathogen"]
-	path = _vim/bundle/vim-pathogen
-	url = git@github.com:tpope/vim-pathogen.git
-[submodule "_vim/bundle/argtextobj"]
-	path = _vim/bundle/argtextobj
-	url = https://github.com/vim-scripts/argtextobj.vim
-[submodule "_vim/bundle/vim-indent-object"]
-	path = _vim/bundle/vim-indent-object
-	url = https://github.com/michaeljsmith/vim-indent-object
-[submodule "_vim/bundle/CamelCaseMotion"]
-	path = _vim/bundle/CamelCaseMotion
-	url = https://github.com/bkad/CamelCaseMotion
-[submodule "_vim/bundle/vim-solarized"]
-	path = _vim/bundle/vim-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "_vim/bundle/vim-json"]
-	path = _vim/bundle/vim-json
-	url = https://github.com/elzr/vim-json
 [submodule "_oh-my-fish"]
 	path = _oh-my-fish
 	url = git@github.com:wfscheper/oh-my-fish.git
 	branch = master
-[submodule "_vim/bundle/vim-fish"]
-	path = _vim/bundle/vim-fish
-	url = https://github.com/dag/vim-fish.git
-[submodule "_vim/bundle/paster"]
-	path = _vim/bundle/paster
-	url = git@github.com:wfscheper/paster.git
-[submodule "_vim/bundle/python-mode"]
-	path = _vim/bundle/python-mode
-	url = https://github.com/klen/python-mode.git
-[submodule "_vim/bundle/vim-fugitive"]
-	path = _vim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule "_vim/bundle/tlib_vim"]
-	path = _vim/bundle/tlib_vim
-	url = https://github.com/tomtom/tlib_vim.git
-[submodule "_vim/bundle/vim-snipmate"]
-	path = _vim/bundle/vim-snipmate
-	url = https://github.com/garbas/vim-snipmate.git
-[submodule "_vim/bundle/vim-snippets"]
-	path = _vim/bundle/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
+[submodule "_vim/bundle/Vundle.vim"]
+	path = _vim/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
