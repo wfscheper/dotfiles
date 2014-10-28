@@ -17,7 +17,7 @@ case $MODE in
         ARGS="$DEST/ $(pwd)"
         ;;
     push)
-        ARGS="--delete $(pwd)/ $DEST"
+        ARGS="$(pwd)/ $DEST"
         ;;
     *)
         usage
@@ -25,4 +25,4 @@ case $MODE in
         ;;
 esac
 
-rsync -av --exclude='.*' --exclude='*/doc/tags' --exclude='bin/' $ARGS
+rsync -av --exclude='/.git*' --exclude='*/doc/tags' --exclude='bin/' "$@" $ARGS
