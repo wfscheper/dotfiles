@@ -2,9 +2,6 @@
 	path = _oh-my-fish
 	url = git@github.com:wfscheper/oh-my-fish.git
 	branch = master
-[submodule "_vim/bundle/Vundle.vim"]
-	path = _vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "_zbin"]
 	path = _zbin
 	url = https://github.com/rupa/z.git

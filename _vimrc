@@ -1,77 +1,49 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
-"       Amir Salihefendic
-"       http://amix.dk - amix@amix.dk
-"
-" Version:
-"       5.0 - 29/05/12 15:43:36
-"
-" Blog_post:
-"       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
-"
-" Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
-"
-"       Install the awesome version from:
-"
-"           https://github.com/amix/vimrc
-"
-" Syntax_highlighted:
-"       http://amix.dk/vim/vimrc.html
-"
-" Raw_version:
-"       http://amix.dk/vim/vimrc.txt
-"
-" Sections:
-"    -> General
-"    -> VIM user interface
-"    -> Colors and Fonts
-"    -> Files and backups
-"    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set default shell
 set shell=/bin/sh
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load Vundle
+" => Load NeoBundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+if has('vim_starting')
+  set nocompatible               " Be iMproved
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+    " Required:
+      set runtimepath+=~/.vim/bundle/neobundle.vim/
+      endif
+
+      " Required:
+      call neobundle#begin(expand('~/.vim/bundle/'))
+
+      " Let NeoBundle manage NeoBundle
+      " Required:
+      NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load Plugins
+=> Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'vim-scripts/The-NERD-tree'
-Plugin 'altercation/vim-colors-solarized.git'
-Plugin 'elzr/vim-json'
-Plugin 'dag/vim-fish'
-Plugin 'wfscheper/paster'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fatih/vim-go'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'klen/python-mode'
+NeoBundle 'vim-scripts/The-NERD-tree'
+NeoBundle 'altercation/vim-colors-solarized.git'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'dag/vim-fish'
+NeoBundle 'wfscheper/paster'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'klen/python-mode'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
