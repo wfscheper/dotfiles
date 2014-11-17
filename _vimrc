@@ -24,7 +24,7 @@ if has('vim_starting')
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-=> Load Plugins
+" => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 NeoBundle 'vim-scripts/The-NERD-tree'
 NeoBundle 'altercation/vim-colors-solarized.git'
@@ -140,6 +140,7 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
+set t_Co=16
 colorscheme solarized
 set background=dark
 
