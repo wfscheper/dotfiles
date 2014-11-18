@@ -47,7 +47,7 @@ NeoBundle 'dag/vim-fish'
 NeoBundle 'wfscheper/paster'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
-
+NeoBundle 'airblade/vim-gitgutter'
 
 call neobundle#end()
 
