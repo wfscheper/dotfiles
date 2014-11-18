@@ -26,14 +26,28 @@ if has('vim_starting')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 NeoBundle 'vim-scripts/The-NERD-tree'
+map <leader>n :NERDTreeToggle<cr>
+
+NeoBundle 'klen/python-mode'
+let g:pymode = 1
+let g:pymode_breakpoint_cmd = 'import epdb; epdb.set_trace()  # XXX BREAKPOINT'
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_lint_ignore = "E128"
+let g:pymode_trim_whitespaces = 0
+
+NeoBundle 'terryma/vim-expand-region'
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 NeoBundle 'altercation/vim-colors-solarized.git'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'dag/vim-fish'
 NeoBundle 'wfscheper/paster'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
-NeoBundle 'klen/python-mode'
+
 
 call neobundle#end()
 
@@ -69,8 +83,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -83,7 +97,7 @@ cmap w!! w !sudo tee % >/dev/null
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set so=3
 
 " Turn on the WiLd menu
 set wildmenu
@@ -209,6 +223,9 @@ set list listchars=tab:»·,trail:·
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
+" quick  entry into visual mode
+nmap <leader><leader> V
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -218,10 +235,10 @@ map j gj
 map k gk
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><space> :nohlsearch<cr>
+map <silent> <leader><cr> :nohlsearch<cr>
 
 " Rescan syntax highlighting
-map <silent> <leader><cr> :syntax sync fromstart<cr>
+map <silent> <leader><R> :syntax sync fromstart<cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -365,29 +382,14 @@ map <leader>pp :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerdtree Configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeToggle<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Pymode Configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pymode = 1
-let g:pymode_breakpoint_cmd = 'import epdb; epdb.set_trace()  # XXX BREAKPOINT'
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_lint_ignore = "E128"
-let g:pymode_trim_whitespaces = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Airline Configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make a simple "search" text object.
+" http://vim.wikia.com/wiki/Copy_or_change_search_hit
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
