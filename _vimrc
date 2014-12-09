@@ -1,6 +1,8 @@
 " set default shell
 set shell=/bin/sh
 
+" disable modelines (security issue)
+set nomodeline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load NeoBundle
@@ -11,16 +13,16 @@ if !1 | finish | endif
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
-    " Required:
-      set runtimepath+=~/.vim/bundle/neobundle.vim/
-      endif
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-      " Required:
-      call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-      " Let NeoBundle manage NeoBundle
-      " Required:
-      NeoBundleFetch 'Shougo/neobundle.vim'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -30,16 +32,28 @@ if has('vim_starting')
 NeoBundle 'vim-scripts/The-NERD-tree'
 map <leader>n :NERDTreeToggle<cr>
 
-NeoBundle 'klen/python-mode'
-let g:pymode = 1
-let g:pymode_breakpoint_cmd = 'import epdb; epdb.set_trace()  # XXX BREAKPOINT'
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_lint_ignore = "E128"
-let g:pymode_trim_whitespaces = 0
-
 NeoBundle 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
+
+NeoBundle 'benmills/vimux'
+map <Leader>vr :VimuxRunCommand("")<left><left>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vp :VimuxPromptCommand <CR>
+
+NeoBundle 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+NeoBundle 'klen/python-mode'
+map <Leader>l :PymodeLint<CR>
+let g:pymode = 1
+let g:pymode_breakpoint_cmd = 'import epdb; epdb.st()  # XXX breakpoint'
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_lint_ignore = "E702"
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
 
 NeoBundle 'altercation/vim-colors-solarized.git'
 NeoBundle 'elzr/vim-json'
@@ -48,6 +62,11 @@ NeoBundle 'wfscheper/paster'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'Valloric/YouCompleteMe', {
+    \ 'build': {
+    \    'unix' : './install.sh',
+    \   },
+    \ }
 
 call neobundle#end()
 
@@ -57,15 +76,6 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load powerline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -81,6 +91,10 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Leader bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = "\<Space>"
@@ -89,21 +103,103 @@ let g:mapleader = "\<Space>"
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" for when we forget to use sudo to open/edit a file
-cmap w!! w !sudo tee % >/dev/null
+" Reload vimrc
+nmap <leader>R :so $MYVIMRC<cr>
+
+" quick  entry into visual mode
+nmap <leader><leader> V
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :nohlsearch<cr>
+
+" Rescan syntax highlighting
+map <silent> <leader><R> :syntax sync fromstart<cr>
+
+" Buffer mappings
+map <leader>bn :bnext<cr>
+map <leader>bp :bprev<cr>
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
+" Useful mappings for managing tabs
+map <leader>tN :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tm :tabmove
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Open vimgrep and put the cursor in the right position
+map <leader>g :vimgrep // **/*<left><left><left><left><left><left>
+
+" Vimgreps in the current file
+map <leader>gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
+" Do :help cope if you are unsure what cope is. It's super useful!
+"
+" When you search with vimgrep, display your results in cope by doing:
+"   <leader>cc
+"
+" To go to the next search result do:
+"   <leader>n
+"
+" To go to the previous search results do:
+"   <leader>p
+"
+map <leader>cc :botright cope<cr>
+map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>N :cn<cr>
+map <leader>P :cp<cr>
+
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Quickly open a buffer for scripbble
+map <leader>q :e ~/buffer<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for when we forget to use sudo to open/edit a file
+cmap w!! w !sudo tee % >/dev/null
+
+" prefer vertical splits when diffing
+set diffopt+=vertical
+
+" use normal regex
+nnoremap / /\v
+vnoremap / /\v
+
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=3
+set scrolloff=3
 
 " Turn on the WiLd menu
 set wildmenu
+set wildmode=list:longest
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
+
+" show relative numbers
+set relativenumber
 
 "Always show current position
 set ruler
@@ -112,7 +208,7 @@ set ruler
 set cmdheight=2
 
 " A buffer becomes hidden when it is abandoned
-set hid
+set hidden
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -129,6 +225,9 @@ set hlsearch
 
 " Makes search act like search in modern browsers
 set incsearch
+
+" default to /g in replace commands
+set gdefault
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -168,7 +267,7 @@ if has("gui_running")
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+set encoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -203,17 +302,24 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Linebreak on 500 characters
-set lbr
-set tw=500
+" wrapping
+set wrap "Wrap lines
+set textwidth=79 " wrap at 79 characters
+set formatoptions=qrn1
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
 
 " mark whitespace characters
 set list listchars=tab:»·,trail:·
 
+" Disable F1 key
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" ; = :
+nnoremap ; :
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -223,9 +329,6 @@ set list listchars=tab:»·,trail:·
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
-" quick  entry into visual mode
-nmap <leader><leader> V
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -234,42 +337,11 @@ nmap <leader><leader> V
 map j gj
 map k gk
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :nohlsearch<cr>
-
-" Rescan syntax highlighting
-map <silent> <leader><R> :syntax sync fromstart<cr>
-
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Buffer mappings
-map <leader>bn :bnext<cr>
-map <leader>bp :bprev<cr>
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
-
-" Useful mappings for managing tabs
-map <leader>tN :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tm :tabmove
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
@@ -329,31 +401,6 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*<left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader>gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>N :cn<cr>
-map <leader>P :cp<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -371,15 +418,6 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
