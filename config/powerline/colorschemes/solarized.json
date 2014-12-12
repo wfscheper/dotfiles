@@ -11,7 +11,7 @@
 		"cwd":                { "fg": "solarized:base2", "bg": "solarized:base01", "attr": [] },
 		"cwd:current_folder": { "fg": "solarized:base3", "bg": "solarized:base01", "attr": ["bold"] },
 		"cwd:divider":        { "fg": "solarized:base1", "bg": "solarized:base01", "attr": [] },
-		"hostname":           { "fg": "solarized:base3", "bg": "solarized:orange", "attr": [] },
+		"hostname":           { "fg": "solarized:base3", "bg": "solarized:base01", "attr": [] },
 		"environment":        { "fg": "solarized:base3", "bg": "solarized:green", "attr": [] },
 		"attached_clients":   { "fg": "solarized:base3", "bg": "solarized:green", "attr": [] }
 	}
