@@ -8,8 +8,7 @@ set PATH $HOME/bin $HOME/.local/bin $PATH
 set EDITOR /bin/vim
 
 # Theme
-powerline-daemon -q
-set fish_function_path $fish_function_path "$HOME/.dotfiles/powerline_bindings/fish"
+set fish_function_path $fish_function_path "{powerline_root}/bindings/fish"
 powerline-setup
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
