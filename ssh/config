@@ -15,9 +15,6 @@ Host jtdevimg
     Hostname 10.12.17.235
     User rbuilder.wasche
 
-Host ws-devimage
-    User wscheper
-
 Host sasball sasball.unx.sas.com
     User root
 
