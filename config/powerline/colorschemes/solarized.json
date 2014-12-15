@@ -36,9 +36,9 @@
 		"branch_dirty":              { "fg": "solarized:yellow", "bg": "solarized:base02", "attr": [] },
 		"branch_clean":              { "fg": "solarized:base01", "bg": "solarized:base02", "attr": [] },
 		"branch:divider":            { "fg": "solarized:base01", "bg": "solarized:base02", "attr": [] },
-		"cwd":                       { "fg": "solarized:base0", "bg": "solarized:base02", "attr": [] },
-		"cwd:current_folder":        { "fg": "solarized:base1", "bg": "solarized:base02", "attr": ["bold"] },
-		"cwd:divider":               { "fg": "solarized:base01", "bg": "solarized:base02", "attr": [] },
+		"cwd":                       { "fg": "solarized:base00", "bg": "solarized:base2", "attr": [] },
+		"cwd:current_folder":        { "fg": "solarized:base01", "bg": "solarized:base2", "attr": ["bold"] },
+		"cwd:divider":               { "fg": "solarized:base1", "bg": "solarized:base2", "attr": [] },
 		"virtualenv":                { "fg": "solarized:base3", "bg": "solarized:cyan", "attr": [] },
 		"attached_clients":          { "fg": "solarized:base1", "bg": "solarized:base02", "attr": [] }
 	}
