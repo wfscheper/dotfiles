@@ -1,15 +1,15 @@
 {
 	"name": "Solarized dark for shell",
 	"groups": {
-		"jobnum":             { "fg": "solarized:base3", "bg": "solarized:orange", "attr": [] },
-		"exit_fail":          { "fg": "solarized:base3", "bg": "solarized:red", "attr": [] },
-		"exit_success":       { "fg": "solarized:base3", "bg": "solarized:green", "attr": [] },
-		"mode":               { "fg": "solarized:base3", "bg": "solarized:green", "attr": ["bold"] }
+		"jobnum":             { "fg": "solarized:base03", "bg": "solarized:orange", "attr": [] },
+		"exit_fail":          { "fg": "solarized:base03", "bg": "solarized:red", "attr": [] },
+		"exit_success":       { "fg": "solarized:base03", "bg": "solarized:green", "attr": [] },
+		"mode":               { "fg": "solarized:base03", "bg": "solarized:green", "attr": ["bold"] }
 	},
 	"mode_translations": {
 		"vicmd": {
 			"groups": {
-				"mode": { "fg": "solarized:base3", "bg": "solarized:blue", "attr": ["bold"] }
+				"mode": { "fg": "solarized:base03", "bg": "solarized:blue", "attr": ["bold"] }
 			}
 		}
 	}
