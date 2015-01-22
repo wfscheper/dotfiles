@@ -1,11 +1,11 @@
 {
 	"groups": {
-		"active_window_status": {"fg": "solarized:blue",   "bg": "solarized:base03",    "attr": []},
-		"window_status":        {"fg": "solarized:base01",     "bg": "solarized:base03",    "attr": []},
-		"activity_status":      {"fg": "solarized:yellow",     "bg": "solarized:base03",    "attr": []},
-		"bell_status":          {"fg": "solarized:red",        "bg": "solarized:base03",    "attr": []},
-		"window":               {"fg": "solarized:base01",      "bg": "solarized:base03",    "attr": []},
-		"window:divider":       {"fg": "solarized:base01",      "bg": "solarized:base03",    "attr": []},
+		"active_window_status": {"fg": "solarized:blue",   "bg": "solarized:base02",    "attr": []},
+		"window_status":        {"fg": "solarized:base01",     "bg": "solarized:base02",    "attr": []},
+		"activity_status":      {"fg": "solarized:yellow",     "bg": "solarized:base02",    "attr": []},
+		"bell_status":          {"fg": "solarized:red",        "bg": "solarized:base02",    "attr": []},
+		"window":               {"fg": "solarized:base01",      "bg": "solarized:base02",    "attr": []},
+		"window:divider":       {"fg": "solarized:base01",      "bg": "solarized:base02",    "attr": []},
 		"window:current":       {"fg": "solarized:base02", "bg": "solarized:blue", "attr": []},
 		"window_name":          {"fg": "solarized:base02",      "bg": "solarized:blue", "attr": ["bold"]},
 		"session":              {"fg": "solarized:base01",      "bg": "solarized:base2",   "attr": ["bold"]},
