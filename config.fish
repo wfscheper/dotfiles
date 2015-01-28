@@ -22,3 +22,8 @@ set fish_theme robbyrussell
 
 # Load oh-my-fish configuration.
 . $fish_path/oh-my-fish.fish
+
+# Load /etc/profile.d
+for conf in /etc/profile.d/*.fish
+    . $conf
+end
