@@ -5,3 +5,6 @@
 [submodule "_zbin"]
 	path = _zbin
 	url = https://github.com/rupa/z.git
+[submodule "_vim/bundle/neobundle.vim"]
+	path = _vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim
