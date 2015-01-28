@@ -56,7 +56,7 @@ let g:pymode_lint_ignore = "E702"
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 
-NeoBundle 'altercation/vim-colors-solarized.git'
+NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'dag/vim-fish'
 NeoBundle 'wfscheper/paster'
@@ -254,9 +254,7 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-set t_Co=16
-colorscheme solarized
-set background=dark
+colorscheme jellybeans
 
 " Set extra options when running in GUI mode
 if has("gui_running")
