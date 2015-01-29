@@ -14,7 +14,7 @@ set TERM xterm-256color
 set PYTHONSTARTUP $HOME/.pythonrc.py
 
 # Theme
-set fish_theme robbyrussell
+set fish_theme ratlaw
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
