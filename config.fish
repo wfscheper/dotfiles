@@ -30,3 +30,8 @@ set fish_theme ratlaw
 for conf in /etc/profile.d/*.fish
     . $conf
 end
+
+if which go
+    set GOPATH $HOME/go
+    set PATH $PATH $GOPATH/bin
+end
