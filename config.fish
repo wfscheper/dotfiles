@@ -7,6 +7,9 @@ set PATH $HOME/bin $HOME/.local/bin $PATH
 # set editor
 set EDITOR /usr/local/bin/vim
 
+# set TERM
+set TERM xterm-256color
+
 # set pythonrc
 set PYTHONSTARTUP $HOME/.pythonrc.py
 
