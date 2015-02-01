@@ -57,7 +57,6 @@ let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 
 NeoBundle 'jnurmine/Zenburn'
-
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'dag/vim-fish'

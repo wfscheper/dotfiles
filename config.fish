@@ -31,7 +31,7 @@ for conf in /etc/profile.d/*.fish
     . $conf
 end
 
-if which go
+if which go > /dev/null ^&1
     set GOPATH $HOME/go
     set PATH $PATH $GOPATH/bin
 end
