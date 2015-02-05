@@ -8,7 +8,9 @@ set PATH $HOME/bin $HOME/.local/bin $PATH
 set EDITOR /usr/local/bin/vim
 
 # set TERM
-set TERM xterm-256color
+if test "$TERM" = "xterm" -o "$TERM" = "screen"
+    set TERM "$TERM-256color"
+end
 
 # set pythonrc
 set PYTHONSTARTUP $HOME/.pythonrc.py
@@ -25,6 +27,8 @@ set fish_theme ratlaw
 
 # Load oh-my-fish configuration.
 . $fish_path/oh-my-fish.fish
+
+. $fish_path/custom/plugins/virtualfish/virtual.fish
 
 # Load /etc/profile.d
 for conf in /etc/profile.d/*.fish
