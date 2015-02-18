@@ -56,6 +56,7 @@ let g:pymode_lint_ignore = "E702"
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 
+NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'jnurmine/Zenburn'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'elzr/vim-json'
