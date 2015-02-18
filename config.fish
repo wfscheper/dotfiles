@@ -2,18 +2,18 @@
 set fish_path $HOME/.oh-my-fish
 
 # add home bin dirs to path
-set PATH $HOME/bin $HOME/.local/bin $PATH
+set -x PATH $HOME/bin $HOME/.local/bin $PATH
 
 # set editor
-set EDITOR /usr/local/bin/vim
+set -x EDITOR /usr/local/bin/vim
 
 # set TERM
 if test "$TERM" = "xterm" -o "$TERM" = "screen"
-    set TERM "$TERM-256color"
+    set -x TERM "$TERM-256color"
 end
 
 # set pythonrc
-set PYTHONSTARTUP $HOME/.pythonrc.py
+set -x PYTHONSTARTUP $HOME/.pythonrc.py
 
 # Theme
 set fish_theme ratlaw
@@ -37,5 +37,5 @@ end
 
 if which -s go
     set -x GOPATH $HOME/go
-    set PATH $PATH $GOPATH/bin
+    set -x PATH $PATH $GOPATH/bin
 end
