@@ -5,3 +5,7 @@
 [submodule "_zbin"]
 	path = _zbin
 	url = https://github.com/rupa/z.git
+[submodule "_bash_it"]
+	path = _bash_it
+	url = git@github.com:wfscheper/bash-it
+	branch = ratlaw
