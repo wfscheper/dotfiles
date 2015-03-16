@@ -25,4 +25,5 @@ case $MODE in
         ;;
 esac
 
-rsync -acv --exclude='/.git*' --exclude='*/doc/tags' --exclude='bin/' "$@" $ARGS
+rsync -acv --exclude='/.git*' --exclude='*/doc/tags' --exclude='/bin' \
+    --exclude='/bin/*' "$@" $ARGS
