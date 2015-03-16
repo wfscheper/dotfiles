@@ -9,3 +9,6 @@
 	path = _bash_it
 	url = git@github.com:wfscheper/bash-it
 	branch = ratlaw
+[submodule "_pyenv"]
+	path = _pyenv
+	url = https://github.com/yyuu/pyenv.git
