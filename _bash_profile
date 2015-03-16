@@ -1,20 +1,31 @@
-# .bash_profile
+#!/usr/bin/env bash
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+# Path to the bash it configuration
+export BASH_IT="$HOME/.bash_it"
+
+# Lock and Load a custom theme file
+# location /.bash_it/themes/
+export BASH_IT_THEME='ratlaw'
+
+# Set my editor and git editor
+export EDITOR='/usr/local/bin/vim'
+export GIT_EDITOR='/usr/local/bin/vim'
+
+# PYTHONSTARTUP
+export PYTHONSTARTUP="$HOME/.pythonrc.py"
+
+# force term
+if [[ "$TERM" = "xterm" || "$TERM" = "screen" ]]; then
+    export TERM="$TERM-256color"
 fi
 
-# User specific environment and startup programs
+# Set this to false to turn off version control status checking within the prompt for all themes
+export SCM_CHECK=true
 
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH
-
-if [ "$PS1" ]; then
-    # Turn off TTY "start" and "stop" commands in all interactive shells.
-    # They default to C-q and C-s, Bash uses C-s to do a forward history search.
-    stty start ''
-    stty stop  ''
-    stty -ixon # disable XON/XOFF flow control
-    stty ixoff # enable sending (to app) of start/stop characters
-    stty ixany # let any character restart output, not only start character
+if which go 2&>1 >/dev/null; then
+    export GOPATH="$HOME/go"
+    export PATH="$PATH:$GOPATH/bin"
 fi
+
+# Load Bash It
+source "$BASH_IT/bash_it.sh"
