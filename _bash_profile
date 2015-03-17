@@ -3,6 +3,9 @@
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"
 
+# Add homedir bin directories to path
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
 export BASH_IT_THEME='ratlaw'
