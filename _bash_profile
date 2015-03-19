@@ -25,7 +25,7 @@ fi
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
 
-if which go 2&>1 >/dev/null; then
+if which go 2>&1 > /dev/null; then
     export GOPATH="$HOME/go"
     export PATH="$PATH:$GOPATH/bin"
 fi
