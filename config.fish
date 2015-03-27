@@ -5,7 +5,8 @@ set fish_path $HOME/.oh-my-fish
 set -x PATH $HOME/bin $HOME/.local/bin $PATH
 
 # set editor
-set -x EDITOR /usr/local/bin/vim
+set -x EDITOR '/usr/local/bin/vim'
+set -x GIT_EDITOR "$EDITOR"
 
 # set TERM
 if test "$TERM" = "xterm" -o "$TERM" = "screen"
