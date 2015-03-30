@@ -255,7 +255,7 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme jellybeans
+colorscheme zenburn
 
 " Set extra options when running in GUI mode
 if has("gui_running")
