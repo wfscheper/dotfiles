@@ -17,8 +17,10 @@ end
 set -x PYTHONSTARTUP $HOME/.pythonrc.py
 
 # Theme
-set theme_display_user 'yes'
-set fish_theme agnoster-multiline
+powerline-daemon -q
+set -x POWERLINE_ROOT "$HOME/.local/lib/python2.6/site-packages/powerline"
+set fish_function_path $fish_function_path "$POWERLINE_ROOT/bindings/fish"
+powerline-setup
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
