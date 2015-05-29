@@ -58,6 +58,7 @@ let g:pymode_rope_completion = 0
 
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'dag/vim-fish'
@@ -309,7 +310,8 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-colorscheme zenburn
+set background=dark
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
