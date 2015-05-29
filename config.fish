@@ -22,6 +22,11 @@ set -x POWERLINE_ROOT "$HOME/.local/lib/python2.6/site-packages/powerline"
 set fish_function_path $fish_function_path "$POWERLINE_ROOT/bindings/fish"
 powerline-setup
 
+# dircolors
+if test -f $HOME/.dir_colors
+    eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
+end
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-fish/plugins/*)
 # Custom plugins may be added to ~/.oh-my-fish/custom/plugins/
 # Example format: set fish_plugins autojump bundler
