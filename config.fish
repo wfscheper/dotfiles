@@ -38,6 +38,7 @@ end
 . $fish_path/oh-my-fish.fish
 
 . $fish_path/custom/plugins/virtualfish/virtual.fish
+set -x VIRTUAL_ENV_DISABLE_PROMPT true
 
 # Load /etc/profile.d
 for conf in /etc/profile.d/*.fish
