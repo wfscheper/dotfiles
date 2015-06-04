@@ -41,3 +41,7 @@ Thumbs.db
 .project
 .pydevproject
 .ropeproject
+
+# Virtualenvs #
+###############
+venv/
