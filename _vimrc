@@ -50,7 +50,6 @@ NeoBundle 'klen/python-mode'
 map <Leader>l :PymodeLint<CR>
 let g:pymode = 1
 let g:pymode_breakpoint_cmd = 'import epdb; epdb.st()  # XXX breakpoint'
-let g:pymode_lint_on_write = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_ignore = "E702"
 let g:pymode_rope = 0
@@ -389,9 +388,6 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
 
 " Smart way to move between windows
 map <C-j> <C-W>j
