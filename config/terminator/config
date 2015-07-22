@@ -1,48 +1,21 @@
 [global_config]
-  enabled_plugins = PasteBinPlugin, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  suppress_multiple_term_dialog = True
-  handle_size = 1
-  focus = mouse
+  enabled_plugins = JiraUrlPlugin, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  focus = system
 [keybindings]
-  go_up = <Shift><Alt>k
-  switch_to_tab_10 = <Primary>0
-  switch_to_tab_4 = <Primary>4
-  switch_to_tab_6 = <Primary>6
-  switch_to_tab_7 = <Primary>7
-  go_down = <Shift><Alt>j
-  switch_to_tab_5 = <Primary>5
-  switch_to_tab_2 = <Primary>2
-  go_right = <Shift><Alt>l
-  switch_to_tab_1 = <Primary>1
-  go_left = <Shift><Alt>h
-  switch_to_tab_9 = <Primary>9
-  switch_to_tab_8 = <Primary>8
-  switch_to_tab_3 = <Primary>3
 [profiles]
   [[default]]
     scrollbar_position = hidden
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     visible_bell = True
     background_image = None
+    custom_command = /usr/bin/fish
     use_system_font = False
     foreground_color = "#839496"
-    icon_bell = False
-    font = Inconsolata Medium 11
+    use_custom_command = True
+    show_titlebar = False
+    font = Inconsolata Medium 10
     background_color = "#002b36"
     scrollback_infinite = True
-  [[small]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    visible_bell = True
-    background_image = None
-    use_system_font = False
-    foreground_color = "#839496"
-    icon_bell = False
-    font = Source Code Pro Semi-Bold 9
-    background_color = "#002b36"
-  [[delphi]]
-    use_system_font = False
-    font = Source Code Pro Semi-Bold 10
-    background_image = None
 [layouts]
   [[default]]
     [[[child1]]]
@@ -51,106 +24,7 @@
     [[[window0]]]
       type = Window
       parent = ""
-  [[wsdevimage]]
-    [[[child0]]]
-      position = 10:37
-      type = Window
-      order = 0
-      parent = ""
-      size = 1900, 1024
-    [[[child1]]]
-      position = 320
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 213
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[terminal2]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child1
-      command = connect ws-devimage
-    [[[terminal5]]]
-      profile = small
-      type = Terminal
-      order = 1
-      parent = child2
-      command = connect ws-devimage small2
-    [[[terminal4]]]
-      profile = small
-      type = Terminal
-      order = 0
-      parent = child2
-      command = connect ws-devimage small1
-  [[tripane]]
-    [[[child0]]]
-      position = 10:37
-      type = Window
-      order = 0
-      parent = ""
-      size = 1900, 1024
-    [[[child1]]]
-      position = 320
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 213
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[terminal2]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child1
-    [[[terminal5]]]
-      profile = small
-      type = Terminal
-      order = 1
-      parent = child2
-    [[[terminal4]]]
-      profile = small
-      type = Terminal
-      order = 0
-      parent = child2
-  [[jenkins]]
-    [[[child0]]]
-      position = 10:37
-      type = Window
-      order = 0
-      parent = ""
-      size = 1900, 1024
-    [[[child1]]]
-      position = 320
-      type = HPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      position = 213
-      type = VPaned
-      order = 1
-      parent = child1
-    [[[terminal2]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child1
-      command = connect jenkins@ws-devimage
-    [[[terminal5]]]
-      profile = small
-      type = Terminal
-      order = 1
-      parent = child2
-      command = connect jenkins@ws-devimage small2
-    [[[terminal4]]]
-      profile = small
-      type = Terminal
-      order = 0
-      parent = child2
-      command = connect jenkins@ws-devimage small1
 [plugins]
+  [[JiraUrlPlugin]]
+    match = "APPENG-[0-9]+"
+    jira_url = "https://rndjira.sas.com/browse"
