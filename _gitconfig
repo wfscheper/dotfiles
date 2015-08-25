@@ -33,7 +33,7 @@
 	out = !sh -c 'git outgoing'
 	in = !sh -c 'git incoming'
 	bmerge = merge --no-ff
-    up = remote update
+	up = remote update
 
 [merge]
 	renormalize = true
