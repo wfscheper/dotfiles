@@ -30,24 +30,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 NeoBundle 'vim-scripts/The-NERD-tree'
-map <leader>n :NERDTreeToggle<cr>
-
 NeoBundle 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 NeoBundle 'benmills/vimux'
-map <Leader>vr :VimuxRunCommand("")<left><left>
-map <Leader>vl :VimuxRunLastCommand<CR>
-map <Leader>vp :VimuxPromptCommand <CR>
-
 NeoBundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 NeoBundle 'klen/python-mode'
-map <Leader>l :PymodeLint<CR>
 let g:pymode = 1
 let g:pymode_breakpoint_cmd = 'import epdb; epdb.st()  # XXX breakpoint'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
@@ -135,7 +128,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -160,6 +152,17 @@ let g:mapleader = "\<Space>"
 
 " Run MakeGreen
 nmap <leader>m :MakeGreen<cr>
+
+" NERDTreeToggle
+nmap <Leader>N :NERDTreeToggle<CR>
+
+" Vimux commands
+map <Leader>vr :VimuxRunCommand("")<left><left>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vp :VimuxPromptCommand <CR>
+
+" manually run pymode lint
+map <Leader>l :PymodeLint<CR>
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -223,8 +226,8 @@ vnoremap <silent> <leader>h :call VisualSelection('replace')<CR>
 "
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>N :cn<cr>
-map <leader>P :cp<cr>
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
