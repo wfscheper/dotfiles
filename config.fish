@@ -49,3 +49,11 @@ if which go > /dev/null ^&1
     set -x GOPATH $HOME/go
     set -x PATH $PATH $GOPATH/bin
 end
+
+if which git > /dev/null ^&1
+    alias gpull 'git pull'
+    alias gpush 'git push'
+    alias gci 'git commit'
+    alias gco 'git checkout'
+    alias gst 'git status'
+end
