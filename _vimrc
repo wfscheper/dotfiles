@@ -165,7 +165,7 @@ nmap <leader>m :MakeGreen<cr>
 nmap <leader>w :w!<cr>
 
 " Reload vimrc
-nmap <leader>R :so $MYVIMRC<cr>
+nmap <leader>r :so $MYVIMRC<cr>
 
 " quick  entry into visual mode
 nmap <leader><leader> V
@@ -174,7 +174,7 @@ nmap <leader><leader> V
 map <silent> <leader><cr> :nohlsearch<cr>
 
 " Rescan syntax highlighting
-map <silent> <leader><R> :syntax sync fromstart<cr>
+map <silent> <leader>R :syntax sync fromstart<cr>
 
 " Buffer mappings
 map <leader>bn :bnext<cr>
@@ -207,8 +207,8 @@ map <leader>g :vimgrep // **/*<left><left><left><left><left><left>
 " Vimgreps in the current file
 map <leader>gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+" When you press <leader>h you can search and replace the selected text
+vnoremap <silent> <leader>h :call VisualSelection('replace')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -244,10 +244,6 @@ cmap w!! w !sudo tee % >/dev/null
 
 " prefer vertical splits when diffing
 set diffopt+=vertical
-
-" use normal regex
-nnoremap / /\v
-vnoremap / /\v
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set scrolloff=3
@@ -475,6 +471,7 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autowrite
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
