@@ -55,6 +55,8 @@ let g:pymode_lint_ignore = "E702"
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 
+NeoBundle 'reinh/vim-makegreen'
+NeoBundle 'lambdalisue/nose.vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'jnurmine/Zenburn'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -156,6 +158,9 @@ set autoread
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
+" Run MakeGreen
+nmap <leader>m :MakeGreen<cr>
+
 " Fast saving
 nmap <leader>w :w!<cr>
 
@@ -222,7 +227,7 @@ map <leader>N :cn<cr>
 map <leader>P :cp<cr>
 
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
