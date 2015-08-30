@@ -3,7 +3,11 @@ set -e
 
 function link_file {
     source="${PWD}/$1"
-    target="${HOME}/${1/_/.}"
+    if [[ -n "${2}" ]]; then
+        target="${HOME}/${2}"
+    else
+        target="${HOME}/${1/_/.}"
+    fi
 
     if [ -e "${target}" ] && [ ! -L "${target}" ]; then
         mv $target $target.df.bak
@@ -14,7 +18,11 @@ function link_file {
 
 function unlink_file {
     source="${PWD}/$1"
-    target="${HOME}/${1/_/.}"
+    if [[ -n "${2}" ]]; then
+        target="${HOME}/${2}"
+    else
+        target="${HOME}/${1/_/.}"
+    fi
 
     if [ -e "${target}.df.bak" ] && [ -L "${target}" ]; then
         unlink ${target}
@@ -40,5 +48,11 @@ case "$1" in
         do
             link_file $i
         done
+
+        # install .config dirs
+        for i in config/*; do
+            link_file $i .$i
+        done
+        link_file config.fish .config/fish/config.fish
         ;;
 esac
