@@ -48,6 +48,7 @@ let g:pymode_lint_ignore = "E702"
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 
+NeoBundle 'Konfekt/FastFold'
 NeoBundle 'reinh/vim-makegreen'
 NeoBundle 'lambdalisue/nose.vim'
 NeoBundle 'Raimondi/delimitMate'
