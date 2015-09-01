@@ -60,6 +60,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'davidhalter/jedi-vim'
+let g:jedi#show_call_signatures = "2"
 
 call neobundle#end()
 
