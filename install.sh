@@ -53,6 +53,5 @@ case "$1" in
         for i in config/*; do
             link_file $i .$i
         done
-        link_file config.fish .config/fish/config.fish
         ;;
 esac

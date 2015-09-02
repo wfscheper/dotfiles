@@ -1,3 +1,6 @@
+# configure syntax colors
+source $HOME/.config/fish/solarized.fish
+
 # add home bin dirs to path
 set -x PATH $HOME/bin $HOME/.local/bin $PATH
 
@@ -13,9 +16,10 @@ end
 # set pythonrc
 set -x PYTHONSTARTUP $HOME/.pythonrc.py
 
+set -x LOCAL_SITE_PKGS "$HOME/.local/lib/python2.7/site-packages"
+
 # Theme
 powerline-daemon -q
-set -x LOCAL_SITE_PKGS "$HOME/.local/lib/python2.7/site-packages"
 set fish_function_path $fish_function_path "$LOCAL_SITE_PKGS/powerline/bindings/fish"
 powerline-setup
 
@@ -24,12 +28,16 @@ if test -f $HOME/.dir_colors
     eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
 end
 
-. $fish_path/custom/plugins/virtualfish/virtual.fish
-set -x VIRTUAL_ENV_DISABLE_PROMPT true
+# load virtualfish
+if test -f $LOCAL_SITE_PKGS/virtualfish/virtual.fish
+    . $LOCAL_SITE_PKGS/virtualfish/virtual.fish
+    . $LOCAL_SITE_PKGS/virtualfish/auto_activation.fish
+    . $LOCAL_SITE_PKGS/virtualfish/global_requirements.fish
+end
 
 # Load /etc/profile.d
 for conf in /etc/profile.d/*.fish
-    . $conf
+    source $conf
 end
 
 if which go > /dev/null ^&1
