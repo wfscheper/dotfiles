@@ -62,3 +62,4 @@ gradle-app.setting
 *.egg-info/
 *.pyc
 *.pyo
+.venv/
