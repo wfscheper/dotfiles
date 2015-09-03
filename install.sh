@@ -53,5 +53,7 @@ case "$1" in
         for i in config/*; do
             link_file $i .$i
         done
+        link_file "ssh/config" ".ssh/config"
+        chmod 0600 ~/.ssh/config
         ;;
 esac
