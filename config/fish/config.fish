@@ -52,3 +52,10 @@ if which git > /dev/null ^&1
     alias gco 'git checkout'
     alias gst 'git status'
 end
+
+# load pyenv
+if test -d $HOME/.pyenv
+    set PYENV_ROOT $HOME/.pyenv
+    set -x PATH $PYENV_ROOT/bin $PATH
+    status --is-interactive; and . (pyenv init -|psub)
+end
