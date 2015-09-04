@@ -14,10 +14,12 @@ shift || (usage; exit 1)
 
 case $MODE in
     pull)
-        ARGS="$DEST/ $(pwd)"
+        src="${DEST}/"
+        dst="$(pwd)"
         ;;
     push)
-        ARGS="$(pwd)/ $DEST"
+        src="$(pwd)/"
+        dst="${DEST}"
         ;;
     *)
         usage
@@ -25,7 +27,10 @@ case $MODE in
         ;;
 esac
 
-rsync -acv --exclude='/.git*' --exclude='*/doc/tags' --exclude='/bin' \
-    --exclude='/bin/*' "$@" $ARGS
-
-chmod 0600 ~/.ssh/config
+diff -ur ${dst} ${src} | egrep -v "^Only in (${src}|${dst})" | less
+read -p "Accept these changes? [y/N] " RESPONSE
+if [[ "${RESPONSE}" = "y" || "${RESPONSE}" = "Y" ]]; then
+    rsync -acv --exclude='/.git*' --exclude='/bin' --exclude='/bin/*' "$@" \
+        ${src} ${dst}
+    chmod 0600 ~/.ssh/config
+fi
