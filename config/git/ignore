@@ -63,3 +63,5 @@ gradle-app.setting
 *.pyc
 *.pyo
 .venv
+.tox/
+.coverage
