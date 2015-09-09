@@ -60,8 +60,12 @@ NeoBundle 'dag/vim-fish'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'davidhalter/jedi-vim'
-let g:jedi#show_call_signatures = "2"
+NeoBundle 'Valloric/YouCompleteMe', {
+    \ 'build'      : {
+        \ 'mac'     : './install.py',
+        \ 'unix'     : './install.py',
+        \ }
+    \ }
 
 call neobundle#end()
 
