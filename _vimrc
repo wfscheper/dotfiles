@@ -41,12 +41,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 NeoBundle 'klen/python-mode'
-let g:pymode = 1
 let g:pymode_breakpoint_cmd = 'import epdb; epdb.st()  # XXX breakpoint'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_ignore = "E702"
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
+let g:pymode_options_max_line_length = 79
 
 NeoBundle 'Konfekt/FastFold'
 NeoBundle 'reinh/vim-makegreen'
