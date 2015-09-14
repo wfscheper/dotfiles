@@ -64,8 +64,8 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Valloric/YouCompleteMe', {
     \ 'build'      : {
-        \ 'mac'     : './install.py',
-        \ 'unix'     : './install.py',
+        \ 'mac': 'sed -i ''s/^TIMEOUT_SECONDS = 0\.5/TIMEOUT_SECTONS = 15/'' python/ycm/client/completion_request.py; ./install.py',
+        \ 'unix': 'sed -i ''s/^TIMEOUT_SECONDS = 0\.5/TIMEOUT_SECTONS = 15/'' python/ycm/client/completion_request.py; ./install.py',
         \ }
     \ }
 
