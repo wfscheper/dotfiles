@@ -50,6 +50,7 @@ let g:pymode_rope_completion = 0
 
 NeoBundle 'Konfekt/FastFold'
 NeoBundle 'reinh/vim-makegreen'
+NeoBundle '5long/pytest-vim-compiler'
 NeoBundle 'lambdalisue/nose.vim'
 NeoBundle '5long/pytest-vim-compiler'
 NeoBundle 'Raimondi/delimitMate'
