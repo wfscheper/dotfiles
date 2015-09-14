@@ -16,7 +16,6 @@
 	pager = less -R
 	eol = lf
 	autocrlf = input
-	excludesfile = /home/wasche/.gitignore
 
 [alias]
 	st = status
@@ -41,3 +40,9 @@
 [gui]
 	fontui = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+
+[rerere]
+	enabled = true
+
+[pull]
+	rebase = true
