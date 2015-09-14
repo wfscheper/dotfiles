@@ -1,0 +1,28 @@
+#!/usr/bin/env fish
+if (count $argv) -gt 1
+    echo "usage: attach [SESSION]"
+    exit 2
+end
+
+if test -n $TMUX
+    echo "error: already attached to a tmux session"
+    exit 2
+end
+
+if $argv[1]
+    setlocal session $argv[1]
+else
+    setlocal session "main"
+end
+
+if test -n "$SSH_AUTH_SOCK"
+    set -x ORIG_SSH_AUTH_SOCK "$SSH_AUTH_SOCK"
+    ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh_agent_$session"
+    set -x SSH_AUTH_SOCK "$HOME/.ssh_agent_$session"
+end
+
+if tmux ls -F '#S' | grep -q $session
+    tmux attach -d -t $session
+else
+    tmux new -s $session
+end
