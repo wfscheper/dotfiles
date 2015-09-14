@@ -30,7 +30,6 @@ esac
 diff -ur ${dst} ${src} | egrep -v "^Only in (${src}|${dst})" | less
 read -p "Accept these changes? [y/N] " RESPONSE
 if [[ "${RESPONSE}" = "y" || "${RESPONSE}" = "Y" ]]; then
-    rsync -acv --exclude='/.git*' --exclude='/bin' --exclude='/bin/*' "$@" \
-        ${src} ${dst}
+    rsync -acv --exclude='/.git*' --exclude='/bin/sync' "$@" ${src} ${dst}
     chmod 0600 ~/.ssh/config
 fi
