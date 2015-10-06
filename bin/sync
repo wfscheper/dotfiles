@@ -27,7 +27,7 @@ case $MODE in
         ;;
 esac
 
-diff -ur ${dst} ${src} | less
+diff -ur ${dst} ${src} | egrep -v "^Only in ${dst}"
 read -p "Accept these changes? [y/N] " RESPONSE
 if [[ "${RESPONSE}" = "y" || "${RESPONSE}" = "Y" ]]; then
     rsync -acv --exclude='/.git*' --exclude='/bin/sync' "$@" ${src} ${dst}
