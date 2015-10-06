@@ -62,10 +62,13 @@ NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'janko-m/vim-test'
+let test#strategy = 'dispatch'
+
 NeoBundle 'Valloric/YouCompleteMe', {
     \ 'build'      : {
-        \ 'mac': 'sed -i ''s/^TIMEOUT_SECONDS = 0\.5/TIMEOUT_SECTONS = 15/'' python/ycm/client/completion_request.py; ./install.py',
-        \ 'unix': 'sed -i ''s/^TIMEOUT_SECONDS = 0\.5/TIMEOUT_SECTONS = 15/'' python/ycm/client/completion_request.py; ./install.py',
+        \ 'mac': './install.py',
+        \ 'unix': './install.py',
         \ }
     \ }
 
@@ -100,8 +103,13 @@ set autoread
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
-" Run MakeGreen
-nmap <leader>m :MakeGreen<cr>
+" Run tests
+nmap <leader>M :MakeGreen<cr>
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 " NERDTreeToggle
 nmap <Leader>N :NERDTreeToggle<CR>
@@ -112,7 +120,7 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vp :VimuxPromptCommand <CR>
 
 " manually run pymode lint
-map <Leader>l :PymodeLint<CR>
+map <Leader>L :PymodeLint<CR>
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -155,10 +163,10 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*<left><left><left><left><left><left>
+map <leader>G :vimgrep // **/*<left><left><left><left><left><left>
 
 " Vimgreps in the current file
-map <leader>gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+map <leader>Gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>h you can search and replace the selected text
 vnoremap <silent> <leader>h :call VisualSelection('replace')<CR>
