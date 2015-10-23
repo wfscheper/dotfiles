@@ -64,6 +64,7 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'janko-m/vim-test'
 let test#strategy = 'dispatch'
+let test#python#pytest#file_pattern = '^.*test.*\.py$'
 
 NeoBundle 'Valloric/YouCompleteMe', {
     \ 'build'      : {
