@@ -273,7 +273,7 @@ set tm=500
 syntax enable
 
 colorscheme solarized
-if expand('$SSH_AUTH_SOCK') == '$SSH_AUTH_SOCK'
+if expand('$SSH_CONNECTION') == '$SSH_CONNECTION'
     set background=light
 else
     set background=dark
