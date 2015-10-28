@@ -105,7 +105,7 @@ let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
 " Run tests
-nmap <leader>M :MakeGreen<cr>
+nmap <leader>m :MakeGreen<cr>
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
