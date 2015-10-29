@@ -2,7 +2,12 @@
 source $HOME/.config/fish/solarized.fish
 
 # add home bin dirs to path
-set -x PATH $HOME/bin $HOME/.local/bin $PATH
+set -x PATH $HOME/bin $HOME/.local/bin /usr/local/opt/coreutils/libexec/gnubin \
+    $HOME/.gem/ruby/2.0.0/bin $PATH
+
+# setup homebrew manpath
+set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman /usr/local/share/man \
+    /usr/share/man
 
 # set editor
 set -x EDITOR '/usr/local/bin/vim'
@@ -16,7 +21,7 @@ end
 # set pythonrc
 set -x PYTHONSTARTUP $HOME/.pythonrc.py
 
-set -x LOCAL_SITE_PKGS "$HOME/.local/lib/python2.7/site-packages"
+set -x LOCAL_SITE_PKGS "/usr/local/lib/python2.7/site-packages"
 
 # Theme
 powerline-daemon -q
@@ -26,13 +31,6 @@ powerline-setup
 # dircolors
 if test -f $HOME/.dir_colors
     eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
-end
-
-# load virtualfish
-if test -f $LOCAL_SITE_PKGS/virtualfish/virtual.fish
-    . $LOCAL_SITE_PKGS/virtualfish/virtual.fish
-    . $LOCAL_SITE_PKGS/virtualfish/auto_activation.fish
-    . $LOCAL_SITE_PKGS/virtualfish/global_requirements.fish
 end
 
 # Load /etc/profile.d
