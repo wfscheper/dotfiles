@@ -1,34 +1,12 @@
-#!/usr/bin/env bash
+# .bash_profile
 
-# Path to the bash it configuration
-export BASH_IT="$HOME/.bash_it"
-
-# Add homedir bin directories to path
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-# Lock and Load a custom theme file
-# location /.bash_it/themes/
-export BASH_IT_THEME='powerline'
-
-# Set my editor and git editor
-export EDITOR='/usr/bin/vim'
-export GIT_EDITOR="$EDITOR"
-
-# PYTHONSTARTUP
-export PYTHONSTARTUP="$HOME/.pythonrc.py"
-
-# force term
-if [[ "$TERM" = "xterm" || "$TERM" = "screen" ]]; then
-    export TERM="$TERM-256color"
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
 fi
 
-# Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
+# User specific environment and startup programs
 
-if which go 2>1 > /dev/null; then
-    export GOPATH="$HOME/go"
-    export PATH="$PATH:$GOPATH/bin"
-fi
+PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
-# Load Bash It
-source "$BASH_IT/bash_it.sh"
+export PATH
