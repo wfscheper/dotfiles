@@ -1,8 +1,8 @@
 # Path to Oh My Fish install.
-set -gx OMF_PATH /Users/wasche/.local/share/omf
+set -gx OMF_PATH $HOME/.local/share/omf
 
 # Customize Oh My Fish configuration path.
-#set -gx OMF_CONFIG /Users/wasche/.config/omf
+set -gx OMF_CONFIG $HOME/.config/omf
 
 # load virtualfish
 if test -f $LOCAL_SITE_PKGS/virtualfish/virtual.fish
