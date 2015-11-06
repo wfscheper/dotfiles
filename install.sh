@@ -10,7 +10,7 @@ function link_file {
     fi
 
     if [ -e "${target}" ] && [ ! -L "${target}" ]; then
-        mv "${target}" "${target.df.bak}"
+        mv "${target}" "${target}.df.bak"
     fi
 
     ln -sfn "${source}" "${target}"
@@ -26,7 +26,7 @@ function unlink_file {
 
     if [ -e "${target}.df.bak" ] && [ -L "${target}" ]; then
         unlink "${target}"
-        mv "${target.df.bak}" "${target}"
+        mv "${target}.df.bak" "${target}"
     fi
 }
 
