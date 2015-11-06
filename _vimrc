@@ -40,13 +40,10 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-NeoBundle 'klen/python-mode'
-let g:pymode_breakpoint_cmd = 'import epdb; epdb.st()  # XXX breakpoint'
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-let g:pymode_lint_ignore = "E702"
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_options_max_line_length = 79
+NeoBundle 'tmhedberg/SimpylFold'
+NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'nvie/vim-flake8'
+autocmd BufWritePost *.py call Flake8()
 
 NeoBundle 'Konfekt/FastFold'
 NeoBundle 'reinh/vim-makegreen'
@@ -66,12 +63,9 @@ NeoBundle 'janko-m/vim-test'
 let test#strategy = 'dispatch'
 let test#python#pytest#file_pattern = '^.*test.*\.py$'
 
-NeoBundle 'Valloric/YouCompleteMe', {
-    \ 'build'      : {
-        \ 'mac': './install.py',
-        \ 'unix': './install.py',
-        \ }
-    \ }
+NeoBundle 'davidhalter/jedi-vim'
+let g:jedi#force_py_version = 3
+let g:jedi#show_call_signatures = 2
 
 call neobundle#end()
 
@@ -299,7 +293,8 @@ set ffs=unix,dos,mac
 " => Visual display
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight anything in column 80 and beyond
-autocmd FileType python,sh,fish match ErrorMsg /\%81v[^\n].*/
+set colorcolumn=79
+autocmd FileType python,sh,fish match ErrorMsg /\%80v[^\n].*/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
