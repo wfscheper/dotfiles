@@ -29,6 +29,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+NeoBundle 'davidhalter/jedi-vim'
+if system("python --version | awk '{print $2}' | awk -F. '{print $1}'") ==# 3
+    let g:jedi#force_py_version = 3
+else
+    let g:jedi#force_py_version = 2
+endif
+let g:jedi#show_call_signatures = 2
+
 NeoBundle 'vim-scripts/The-NERD-tree'
 NeoBundle 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
@@ -62,10 +70,6 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'janko-m/vim-test'
 let test#strategy = 'dispatch'
 let test#python#pytest#file_pattern = '^.*test.*\.py$'
-
-NeoBundle 'davidhalter/jedi-vim'
-let g:jedi#force_py_version = 3
-let g:jedi#show_call_signatures = 2
 
 call neobundle#end()
 
