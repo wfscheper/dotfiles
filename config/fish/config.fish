@@ -43,7 +43,8 @@ set -gx OMF_CONFIG $HOME/.config/omf
 
 # load virtualfish
 if test -f $LOCAL_SITE_PKGS/virtualfish/virtual.fish
-    eval (python -m virtualfish auto_activation global_requirements projects)
+    set -x VIRTUALFISH_COMPAT_ALIASES true
+    eval (python -m virtualfish compat_aliases auto_activation global_requirements projects)
 end
 
 # Load oh-my-fish configuration.
