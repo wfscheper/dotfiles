@@ -42,6 +42,7 @@ case "$1" in
         do
             unlink_file "$i"
         done
+        rm -rf "${HOME}/.local/share/omf"
         ;;
     *)
         for i in _*
@@ -53,8 +54,12 @@ case "$1" in
         for i in config/*; do
             link_file "$i" ".$i"
         done
-        link_file local/share/omf .local/share/omf
         link_file ssh/config .ssh/config
         chmod 0600 ~/.ssh/config
+        if ! [[ -d "${HOME}/.local/share/omf" ]]; then
+            # clone repo ignoring errors
+            git clone https://github.com/oh-my-fish/oh-my-fish \
+                "${HOME}/.local/share/omf" || true
+        fi
         ;;
 esac

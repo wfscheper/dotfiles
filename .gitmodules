@@ -10,6 +10,3 @@
 [submodule "_bash_it"]
 	path = _bash_it
 	url = http://github.com/bash-it/bash-it.git
-[submodule "local/share/omf"]
-	path = local/share/omf
-	url = https://github.com/oh-my-fish/oh-my-fish
