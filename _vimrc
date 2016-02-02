@@ -29,6 +29,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+NeoBundle 'Valloric/YouCompleteMe', {
+    \ 'build': {
+        \ 'mac': './install.py --gocode-completer',
+        \ 'unix':  './install.py --gocode-completer',
+        \ }
+    \ }
+let g:ycm_filetype_specific_completion_to_disable = {
+    \ 'python': 1
+    \}
 NeoBundle 'davidhalter/jedi-vim'
 if system("python --version | awk '{print $2}' | awk -F. '{print $1}'") ==# 3
     let g:jedi#force_py_version = 3
@@ -49,6 +58,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 NeoBundle 'tmhedberg/SimpylFold'
+let g:SimplyFold_docstring_preview = 1
 NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'nvie/vim-flake8'
 autocmd BufWritePost *.py call Flake8()
@@ -437,6 +447,9 @@ map <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autowrite
+
+" set compiler to pytest for python files
+autocmd BufReadPost *.py :compiler pytest
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
