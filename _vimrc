@@ -281,11 +281,7 @@ set tm=500
 syntax enable
 
 colorscheme solarized
-if expand('$SSH_CONNECTION') == '$SSH_CONNECTION'
-    set background=light
-else
-    set background=dark
-endif
+set background=light
 
 " Set extra options when running in GUI mode
 if has("gui_running")
