@@ -29,15 +29,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-NeoBundle 'Valloric/YouCompleteMe', {
+NeoBundleLazy 'Valloric/YouCompleteMe', {
     \ 'build': {
         \ 'mac': './install.py --gocode-completer',
         \ 'unix':  './install.py --gocode-completer',
         \ }
     \ }
+autocmd FileType go NeoBundleSource YouCompleteMe
 let g:ycm_filetype_specific_completion_to_disable = {
     \ 'python': 1
     \}
+
 NeoBundle 'davidhalter/jedi-vim'
 if system("python --version | awk '{print $2}' | awk -F. '{print $1}'") ==# 3
     let g:jedi#force_py_version = 3
