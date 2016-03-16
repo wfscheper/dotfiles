@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+OMF_DIR="${HOME}/.local/share/om"
+DEIN_DIR="${HOME}/.vim/bundle/repos/github.com/Shougo/dein.vim"
+
 function link_file {
     source="${PWD}/$1"
     if [[ -n "$2" ]]; then
@@ -36,13 +39,18 @@ case "$1" in
         do
            link_file "$i"
         done
+        if ! [[ -d "${DEIN_DIR}" ]]; then
+            # clone repo ignoring errors
+            git clone https://github.com/Shougo/dein.vim.git \
+                "${DEIN_DIR}" || true
+        fi
         ;;
     restore)
         for i in _*
         do
             unlink_file "$i"
         done
-        rm -rf "${HOME}/.local/share/omf"
+        echo "You may wish to remove ${OMF_DIR} and ${DEIN_DIR}"
         ;;
     *)
         for i in _*
@@ -56,10 +64,15 @@ case "$1" in
         done
         link_file ssh/config .ssh/config
         chmod 0600 ~/.ssh/config
-        if ! [[ -d "${HOME}/.local/share/omf" ]]; then
+        if ! [[ -d "${OMF_DIR}" ]]; then
             # clone repo ignoring errors
             git clone https://github.com/oh-my-fish/oh-my-fish \
-                "${HOME}/.local/share/omf" || true
+                "${OMF_DIR}" || true
+        fi
+        if ! [[ -d "${DEIN_DIR}" ]]; then
+            # clone repo ignoring errors
+            git clone https://github.com/Shougo/dein.vim.git \
+                "${DEIN_DIR}" || true
         fi
         DEIN_DIR="${HOME}/.vim/bundle/repos/github.com/Shougo/dein.vim"
         if ! [[ -d "${DEIN_DIR}" ]]; then
