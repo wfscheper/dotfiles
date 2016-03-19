@@ -26,9 +26,9 @@ if not set -qU Z_SCRIPT_PATH
     echo "Z_SCRIPT_PATH set to $Z_SCRIPT_PATH"
 end
 
-if test -f ~/go
+if test -d ~/go
     if not set -qU GOPATH
-        set -xU GOPATH ~/go/bin
+        set -xU GOPATH ~/go
         echo "GOPATH set to $GOPATH"
         set -U fish_user_paths $fish_user_paths $GOPATH/bin
         echo "fish_user_paths set to $fish_user_paths"
