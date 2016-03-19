@@ -5,92 +5,92 @@ set shell=/bin/sh
 set nomodeline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load NeoBundle
+" => Load Dein
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Note: Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
-
-if has('vim_starting')
+if &compatible
   set nocompatible               " Be iMproved
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+set runtimepath^=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+call dein#begin(expand('~/.vim/bundle/'))
 
-" Let NeoBundle manage NeoBundle
+" Let dein manage dein
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
+call dein#add('Shougo/dein.vim')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call dein#add('5long/pytest-vim-compiler')
+call dein#add('Konfekt/FastFold')
+call dein#add('Raimondi/delimitMate')
+call dein#add('Shougo/vimproc.vim', {
+    \ 'build' : {
+    \   'cygwin' : 'make -f make_cygwin.mak',
+    \   'linux' : 'make',
+    \   'mac' : 'make',
+    \   'unix' : 'gmake',
+    \   'windows' : 'tools\\update-dll-mingw',
+    \   },
+    \ })
+call dein#add('Valloric/YouCompleteMe', {
+    \ 'build': './install.py --gocode-completer',
+    \ 'lazy': 1,
+    \ })
+call dein#add('airblade/vim-gitgutter')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('benmills/vimux')
+call dein#add('dag/vim-fish')
+call dein#add('elzr/vim-json')
+call dein#add('fatih/vim-go')
+call dein#add('hynek/vim-python-pep8-indent')
+call dein#add('jnurmine/Zenburn')
+call dein#add('lambdalisue/nose.vim')
+call dein#add('nanotech/jellybeans.vim')
+call dein#add('nvie/vim-flake8')
+call dein#add('reinh/vim-makegreen')
+call dein#add('terryma/vim-expand-region')
+call dein#add('tmhedberg/SimpylFold')
+call dein#add('tpope/vim-dispatch')
+call dein#add('tpope/vim-fugitive')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('vim-scripts/The-NERD-tree',
+    \ { 'on_cmd': 'NERDTreeToggle' })
 
-NeoBundleLazy 'Valloric/YouCompleteMe', {
-    \ 'build': {
-        \ 'mac': './install.py --gocode-completer',
-        \ 'unix':  './install.py --gocode-completer',
-        \ }
-    \ }
-autocmd FileType go NeoBundleSource YouCompleteMe
-let g:ycm_filetype_specific_completion_to_disable = {
-    \ 'python': 1
-    \}
-
-NeoBundle 'davidhalter/jedi-vim'
-if system("python --version | awk '{print $2}' | awk -F. '{print $1}'") ==# 3
-    let g:jedi#force_py_version = 3
-else
-    let g:jedi#force_py_version = 2
-endif
-let g:jedi#show_call_signatures = 2
-
-NeoBundle 'vim-scripts/The-NERD-tree'
-NeoBundle 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-NeoBundle 'benmills/vimux'
-NeoBundle 'bling/vim-airline'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-NeoBundle 'tmhedberg/SimpylFold'
-let g:SimplyFold_docstring_preview = 1
-NeoBundle 'hynek/vim-python-pep8-indent'
-NeoBundle 'nvie/vim-flake8'
-autocmd BufWritePost *.py call Flake8()
-
-NeoBundle 'Konfekt/FastFold'
-NeoBundle 'reinh/vim-makegreen'
-NeoBundle 'lambdalisue/nose.vim'
-NeoBundle '5long/pytest-vim-compiler'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'jnurmine/Zenburn'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'dag/vim-fish'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'janko-m/vim-test'
-let test#strategy = 'dispatch'
-let test#python#pytest#file_pattern = '^.*test.*\.py$'
-
-call neobundle#end()
+call dein#end()
 
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+if dein#check_install()
+    call dein#install()
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Configure Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if dein#tap('YouCompleteMe')
+    let g:ycm_python_binary_path = system('which python')[:-2]
+    let g:ycm_python_binary_path = '/usr/local/bin/python2'
+endif
+if dein#tap('vim-expand-region')
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
+endif
+if dein#tap('vim-airline')
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+endif
+if dein#tap('SimplyFold')
+    let g:SimplyFold_docstring_preview = 1
+endif
+if dein#tap('vim-flake8')
+    autocmd BufWritePost *.py call Flake8()
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General

@@ -61,5 +61,11 @@ case "$1" in
             git clone https://github.com/oh-my-fish/oh-my-fish \
                 "${HOME}/.local/share/omf" || true
         fi
+        DEIN_DIR="${HOME}/.vim/bundle/repos/github.com/Shougo/dein.vim"
+        if ! [[ -d "${DEIN_DIR}" ]]; then
+            # clone repo ignoring errors
+            git clone https://github.com/Shougo/dein.vim \
+                "${DEIN_DIR}" || true
+        fi
         ;;
 esac
