@@ -4,9 +4,6 @@
 [submodule "_pyenv"]
 	path = _pyenv
 	url = https://github.com/yyuu/pyenv.git
-[submodule "_vim/bundle/neobundle.vim"]
-	path = _vim/bundle/neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
 [submodule "_bash_it"]
 	path = _bash_it
 	url = http://github.com/bash-it/bash-it.git
