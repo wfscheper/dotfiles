@@ -2,7 +2,7 @@
 set -e
 
 OMF_DIR="${HOME}/.local/share/om"
-DEIN_DIR="${HOME}/.vim/bundle/repos/github.com/Shougo/dein.vim"
+DEIN_DIR="${HOME}/.vim/dein/repos/github.com/Shougo/dein.vim"
 
 function link_file {
     source="${PWD}/$1"

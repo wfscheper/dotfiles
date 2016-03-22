@@ -10,10 +10,10 @@ set nomodeline
 if &compatible
   set nocompatible               " Be iMproved
 endif
-set runtimepath^=~/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
 " Required:
-call dein#begin(expand('~/.vim/bundle/'))
+call dein#begin(expand('~/.vim/dein'))
 
 " Let dein manage dein
 " Required:
