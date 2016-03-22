@@ -56,14 +56,14 @@ call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('vim-scripts/The-NERD-tree',
-    \ { 'on_cmd': 'NERDTreeToggle' })
+call dein#add('vim-scripts/The-NERD-tree', {'on_cmd': 'NERDTreeToggle'})
 
 call dein#end()
 
 " Required:
 filetype plugin indent on
 
+" Install missing plugins
 if dein#check_install()
     call dein#install()
 endif
@@ -74,20 +74,29 @@ endif
 
 if dein#tap('YouCompleteMe')
     let g:ycm_python_binary_path = system('which python')[:-2]
-    let g:ycm_python_binary_path = '/usr/local/bin/python2'
+    let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+    let g:ycm_autoclose_preview_window_after_insertion = 1
 endif
+
+" Set expand-region keybindings
 if dein#tap('vim-expand-region')
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
 endif
+
+" airline configuration
 if dein#tap('vim-airline')
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#buffer_nr_show = 1
 endif
+
+" preview docstrings in folds
 if dein#tap('SimplyFold')
     let g:SimplyFold_docstring_preview = 1
 endif
+
+" call Flake8 after writing python files
 if dein#tap('vim-flake8')
     autocmd BufWritePost *.py call Flake8()
 endif
@@ -291,7 +300,7 @@ if has("gui_running")
     set guioptions+=e
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Consolas:h14,Source\ Code\ Pro:h13,Monospace:h13
+    set guifont=Hack:h10
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -305,7 +314,7 @@ set ffs=unix,dos,mac
 " => Visual display
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight anything in column 80 and beyond
-set colorcolumn=79
+set colorcolumn=80
 autocmd FileType python,sh,fish match ErrorMsg /\%80v[^\n].*/
 
 
