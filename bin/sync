@@ -6,30 +6,41 @@ usage () {
     echo "$0 push TO"
 }
 
-MODE=$1
-shift || (usage; exit 1)
+main() {
+    local mode=
+    mode="$1"
+    shift || (usage; exit 1)
 
-DEST=$1
-shift || (usage; exit 1)
+    local dest=
+    dest="$1"
+    shift || (usage; exit 1)
 
-case $MODE in
-    pull)
-        src="${DEST}/"
-        dst="$(pwd)"
-        ;;
-    push)
-        src="$(pwd)/"
-        dst="${DEST}"
-        ;;
-    *)
-        usage
-        exit 1
-        ;;
-esac
+    local cwd=
+    cwd="$(pwd)"
 
-diff -ur ${dst} ${src} | egrep -v "^Only in ${dst}"
-read -p "Accept these changes? [y/N] " RESPONSE
-if [[ "${RESPONSE}" = "y" || "${RESPONSE}" = "Y" ]]; then
-    rsync -acv --exclude='/.git*' --exclude='/bin/sync' "$@" ${src} ${dst}
-    chmod 0600 ~/.ssh/config
-fi
+    case "${mode}" in
+        pull)
+            src="${dest}/"
+            dst="$(pwd)"
+            diff -qr "${dest}" "${cwd}" | egrep -v "^Only in ${dest}"
+            ;;
+        push)
+            src="$(pwd)/"
+            dst="${dest}"
+            diff -ur "${dest}" "${cwd}" | egrep -v "^Only in ${dest}"
+            local response=
+            read -p "Accept these changes? [y/N] " response
+            if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
+                rsync -acv --exclude='/.git*' --exclude='/bin/sync' "$@" \
+                    "${cwd}/" "${dest}"
+                chmod 0600 ~/.ssh/config
+            fi
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
