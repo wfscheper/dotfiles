@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-OMF_DIR="${HOME}/.local/share/om"
+OMF_DIR="${HOME}/.local/share/omf"
 DEIN_DIR="${HOME}/.vim/dein/repos/github.com/Shougo/dein.vim"
 
 function link_file {
