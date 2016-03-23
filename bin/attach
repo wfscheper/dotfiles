@@ -15,14 +15,11 @@ else
     set session "main"
 end
 
-if test "$SSH_AUTH_SOCK"
-    set -x ORIG_SSH_AUTH_SOCK "$SSH_AUTH_SOCK"
-    ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh_agent_$session"
-    set -x SSH_AUTH_SOCK "$HOME/.ssh_agent_$session"
-end
-
-if tmux ls -F '#S' ^/dev/null | grep -q $session
-    tmux new-session -d -s $session
+if not tmux ls -F '#S' ^/dev/null | grep -q $session
+    tmux new-session -d -s $session -n irssi \
+        'ssh -t delphi.unx.sas.com bin/attach irssi'
     # create extra windows and set default layouts
+    tmux new-window
+    tmux select-window -t 1
 end
 tmux attach-session -d -t $session
