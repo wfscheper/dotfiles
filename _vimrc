@@ -11,6 +11,7 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+let g:dein#install_process_timeout = 1500
 
 " Required:
 call dein#begin(expand('~/.vim/dein'))
@@ -36,7 +37,6 @@ call dein#add('Shougo/vimproc.vim', {
     \ })
 call dein#add('Valloric/YouCompleteMe', {
     \ 'build': './install.py --gocode-completer',
-    \ 'lazy': 1,
     \ })
 call dein#add('airblade/vim-gitgutter')
 call dein#add('altercation/vim-colors-solarized')
