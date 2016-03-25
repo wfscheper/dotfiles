@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 usage () {
@@ -7,40 +7,67 @@ usage () {
 }
 
 main() {
+    local cwd=
+    local dst=
+    local globstar=
     local mode=
+    local src=
+    local target=
+
     mode="$1"
     shift || (usage; exit 1)
 
-    local dest=
-    dest="$1"
+    target="$1"
     shift || (usage; exit 1)
 
-    local cwd=
     cwd="$(pwd)"
 
     case "${mode}" in
         pull)
-            src="${dest}/"
-            dst="$(pwd)"
-            diff -qr "${dest}" "${cwd}" | egrep -v "^Only in ${dest}"
+            src="${target}"
+            dst="${cwd}"
             ;;
         push)
-            src="$(pwd)/"
-            dst="${dest}"
-            diff -ur "${dest}" "${cwd}" | egrep -v "^Only in ${dest}"
-            local response=
-            read -p "Accept these changes? [y/N] " response
-            if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
-                rsync -acv --exclude='/.git*' --exclude='/bin/sync' "$@" \
-                    "${cwd}/" "${dest}"
-                chmod 0600 ~/.ssh/config
-            fi
+            src="${cwd}"
+            dst="${target}"
             ;;
         *)
             usage
             exit 1
             ;;
     esac
+
+    # turn on globstar
+    if ! shopt -q globstar; then
+        globstar=1
+        shopt -s globstar
+    fi
+
+    for file in _* bin/attach config/*/** ssh/**; do
+        if [[ -f "${file}" ]] && ! diff -q "${src}/${file}" "${dst}/${file}"
+        then
+            vimdiff "${src}/${file}" "${dst}/${file}"
+        fi
+    done
+
+    if [[ -n "${globstar}" ]]; then
+        shopt -u globstar
+    fi
+
+    diff -ur "${dst}" "${src}" | egrep -v "^Only in ${dst}"
+    local response=
+    read -p "Accept these changes? [y/N] " response
+    if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
+        rsync -acv \
+            --exclude='/.git*' \
+            --exclude='/bin/sync' \
+            --exclude='/_vim/dein' \
+            --exclude='/config/fish/fish_history' \
+            --exclude='/config/fish/fishd.*' \
+            "$@" \
+            "${src}/" "${dst}"
+        chmod 0600 ~/.ssh/config
+    fi
 }
 
 main "$@"
