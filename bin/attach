@@ -16,10 +16,7 @@ else
 end
 
 if not tmux ls -F '#S' ^/dev/null | grep -q $session
-    tmux new-session -d -s $session -n irssi \
-        'ssh -t delphi.unx.sas.com bin/attach irssi'
-    # create extra windows and set default layouts
-    tmux new-window
-    tmux select-window -t 1
+    tmux new-session -d -s $session
+    # create extra windows and set default layouts here
 end
 tmux attach-session -d -t $session
