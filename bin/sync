@@ -43,10 +43,10 @@ main() {
         shopt -s globstar
     fi
 
-    for file in _* bin/attach config/*/** ssh/**; do
+    for file in _* install.sh bin/attach config/*/** ssh/** _vim/*/**; do
         if [[ -f "${file}" ]] && ! diff -q "${src}/${file}" "${dst}/${file}"
         then
-            vimdiff "${src}/${file}" "${dst}/${file}"
+            vimdiff "${dst}/${file}" "${src}/${file}"
         fi
     done
 
@@ -54,18 +54,29 @@ main() {
         shopt -u globstar
     fi
 
-    diff -ur "${dst}" "${src}" | egrep -v "^Only in ${dst}"
+    rsync -acvn "$@" \
+        --exclude='/.git*' \
+        --exclude='/bin/sync' \
+        --exclude='/_vim/dein' \
+        --exclude='/config/fish/fish_history' \
+        --exclude='/config/fish/fishd.*' \
+        "${src}/_bash_it" \
+        "${src}/_pyenv" \
+        "${src}/_zbin" \
+        "${dst}"
     local response=
     read -p "Accept these changes? [y/N] " response
     if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
-        rsync -acv \
+        rsync -acv "$@" \
             --exclude='/.git*' \
             --exclude='/bin/sync' \
             --exclude='/_vim/dein' \
             --exclude='/config/fish/fish_history' \
             --exclude='/config/fish/fishd.*' \
-            "$@" \
-            "${src}/" "${dst}"
+            "${src}/_bash_it" \
+            "${src}/_pyenv" \
+            "${src}/_zbin" \
+            "${dst}"
         chmod 0600 ~/.ssh/config
     fi
 }
