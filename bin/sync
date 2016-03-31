@@ -6,6 +6,28 @@ usage () {
     echo "$0 push TO"
 }
 
+interactive_merge() {
+    local src="$1"
+    local dst="$2"
+
+    # turn on globstar
+    if ! shopt -q globstar; then
+        globstar=1
+        shopt -s globstar
+    fi
+
+    for file in _* install.sh bin/attach config/*/** ssh/** _vim/*/**; do
+        if [[ -f "${file}" ]] && ! diff -q "${src}/${file}" "${dst}/${file}"
+        then
+            vimdiff "${dst}/${file}" "${src}/${file}"
+        fi
+    done
+
+    if [[ -n "${globstar}" ]]; then
+        shopt -u globstar
+    fi
+
+}
 main() {
     local cwd=
     local dst=
@@ -26,59 +48,37 @@ main() {
         pull)
             src="${target}"
             dst="${cwd}"
+            interactive_merge "${src}" "${dst}"
             ;;
         push)
             src="${cwd}"
             dst="${target}"
+            # don't interactive merge when dst does not exist
+            if [[ -d "${dst}" ]]; then
+                interactive_merge "${src}" "${dst}"
+            fi
+
+            RSYNC_ARGS="-acv $@ \
+                --exclude='/.git*' \
+                --exclude='/bin/sync' \
+                ${src}/_bash_it \
+                ${src}/_pyenv \
+                ${src}/_zbin \
+                ${dst}"
+            rsync --dry-run ${RSYNC_ARGS}
+            local response=
+            read -p "Accept these changes? [y/N] " response
+            if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
+                rsync ${RSYNC_ARGS}
+                [[ -f ~/dotfiles/ssh/config ]] && \
+                    chmod 0600 ~/dotfiles/ssh/config
+            fi
             ;;
         *)
             usage
             exit 1
             ;;
     esac
-
-    # turn on globstar
-    if ! shopt -q globstar; then
-        globstar=1
-        shopt -s globstar
-    fi
-
-    for file in _* install.sh bin/attach config/*/** ssh/** _vim/*/**; do
-        if [[ -f "${file}" ]] && ! diff -q "${src}/${file}" "${dst}/${file}"
-        then
-            vimdiff "${dst}/${file}" "${src}/${file}"
-        fi
-    done
-
-    if [[ -n "${globstar}" ]]; then
-        shopt -u globstar
-    fi
-
-    rsync -acvn "$@" \
-        --exclude='/.git*' \
-        --exclude='/bin/sync' \
-        --exclude='/_vim/dein' \
-        --exclude='/config/fish/fish_history' \
-        --exclude='/config/fish/fishd.*' \
-        "${src}/_bash_it" \
-        "${src}/_pyenv" \
-        "${src}/_zbin" \
-        "${dst}"
-    local response=
-    read -p "Accept these changes? [y/N] " response
-    if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
-        rsync -acv "$@" \
-            --exclude='/.git*' \
-            --exclude='/bin/sync' \
-            --exclude='/_vim/dein' \
-            --exclude='/config/fish/fish_history' \
-            --exclude='/config/fish/fishd.*' \
-            "${src}/_bash_it" \
-            "${src}/_pyenv" \
-            "${src}/_zbin" \
-            "${dst}"
-        chmod 0600 ~/.ssh/config
-    fi
 }
 
 main "$@"
