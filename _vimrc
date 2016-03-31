@@ -5,105 +5,61 @@ set shell=/bin/sh
 set nomodeline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Load Dein
+" => Load Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &compatible
   set nocompatible               " Be iMproved
 endif
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
-let g:dein#install_process_timeout = 1500
+filetype off
+set runtimepath+=~/.vim/bundle/Vundle.vim
 
 " Required:
-call dein#begin(expand('~/.vim/dein'))
+call vundle#begin()
 
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+" Let vundle manage vundle
+Plugin 'VundleVim/Vundle.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call dein#add('5long/pytest-vim-compiler')
-call dein#add('Konfekt/FastFold')
-call dein#add('Raimondi/delimitMate')
-call dein#add('Shougo/vimproc.vim', {
-    \ 'build' : {
-    \   'cygwin' : 'make -f make_cygwin.mak',
-    \   'linux' : 'make',
-    \   'mac' : 'make',
-    \   'unix' : 'gmake',
-    \   'windows' : 'tools\\update-dll-mingw',
-    \   },
-    \ })
-call dein#add('Valloric/YouCompleteMe', {
-    \ 'build': './install.py --gocode-completer',
-    \ })
-call dein#add('airblade/vim-gitgutter')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('benmills/vimux')
-call dein#add('dag/vim-fish')
-call dein#add('elzr/vim-json')
-call dein#add('fatih/vim-go')
-call dein#add('hynek/vim-python-pep8-indent')
-call dein#add('jnurmine/Zenburn')
-call dein#add('lambdalisue/nose.vim')
-call dein#add('nanotech/jellybeans.vim')
-call dein#add('nvie/vim-flake8')
-call dein#add('reinh/vim-makegreen')
-call dein#add('terryma/vim-expand-region')
-call dein#add('tmhedberg/SimpylFold')
-call dein#add('tpope/vim-dispatch')
-call dein#add('tpope/vim-fugitive')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('vim-scripts/The-NERD-tree', {'on_cmd': 'NERDTreeToggle'})
+Plugin '5long/pytest-vim-compiler'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'benmills/vimux'
+Plugin 'dag/vim-fish'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'janko-m/vim-test'
+Plugin 'jnurmine/Zenburn'
+Plugin 'lambdalisue/nose.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'reinh/vim-makegreen'
+Plugin 'terryma/vim-expand-region'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/The-NERD-tree'
 
-call dein#end()
+" Required:
+call vundle#end()
 
 " Required:
 filetype plugin indent on
 
-" Install missing plugins
-if dein#check_install()
-    call dein#install()
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Configure Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-if dein#tap('YouCompleteMe')
-    let g:ycm_python_binary_path = system('which python')[:-2]
-    let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
-    let g:ycm_autoclose_preview_window_after_insertion = 1
-endif
-
-" Set expand-region keybindings
-if dein#tap('vim-expand-region')
-    vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
-endif
-
-" airline configuration
-if dein#tap('vim-airline')
-    let g:airline_powerline_fonts = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#buffer_nr_show = 1
-endif
-
-" preview docstrings in folds
-if dein#tap('SimplyFold')
-    let g:SimplyFold_docstring_preview = 1
-endif
-
-" call Flake8 after writing python files
-if dein#tap('vim-flake8')
-    autocmd BufWritePost *.py call Flake8()
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -114,33 +70,60 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Leader bindings
+" => Configure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = "\<Space>"
-let g:mapleader = "\<Space>"
+" Ycm config
+let g:ycm_python_binary_path = system('which python')[:-2]
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" Run tests
-nmap <leader>m :MakeGreen<cr>
+" YCM commands
+nmap <leader>K :YcmCompleter GetDoc<cr>
+nmap <leader>k :YcmCompleter GoTo<cr>
+nmap <leader>yr :YcmCompleter GoToReferences<cr>
+
+" force SimpylFold
+autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+
+" vimux commands
+map <leader>vr :VimuxRunCommand("")<left><left>
+map <leader>vl :VimuxRunLastCommand<CR>
+map <leader>vp :VimuxPromptCommand <CR>
+
+" vim-test
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>v :TestVisit<CR>
+let g:test#strategy = 'dispatch'
 
-" NERDTreeToggle
-nmap <Leader>N :NERDTreeToggle<CR>
+" call Flake8 when writing python files
+autocmd BufWritePost *.py call Flake8()
 
-" Vimux commands
-map <Leader>vr :VimuxRunCommand("")<left><left>
-map <Leader>vl :VimuxRunLastCommand<CR>
-map <Leader>vp :VimuxPromptCommand <CR>
+" MakeGreen
+nmap <leader>m :MakeGreen<cr>
 
-" manually run pymode lint
-map <Leader>L :PymodeLint<CR>
+" Set expand-region keybindings
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Show docstring preview in folds
+let g:SimplyFold_docstring_preview = 1
+
+" airline configuraiton
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" toggle NERDTree
+nmap <leader>N :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => leader bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -208,7 +191,7 @@ map <leader>cn :cn<cr>
 map <leader>cp :cp<cr>
 
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
