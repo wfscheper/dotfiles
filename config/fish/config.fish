@@ -43,7 +43,7 @@ if not set -qU PYENV_ROOT
     if test -d ~/.pyenv
         set -xU PYENV_ROOT ~/.pyenv
         echo "PYENV_ROOT set to $PYENV_ROOT"
-        set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+        set -U fish_user_paths $PYENV_ROOT/shims $PYENV_ROOT/bin $fish_user_paths
         echo "fish_user_paths set to $fish_user_paths"
     end
 end
