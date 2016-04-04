@@ -26,3 +26,9 @@ if which git > /dev/null ^&1
     alias gco 'git checkout'
     alias gst 'git status'
 end
+
+# load pyenv
+if status --is-interactive
+    # load pyenv
+    source (pyenv init -|psub)
+end

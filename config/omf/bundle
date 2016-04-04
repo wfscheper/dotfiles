@@ -1,5 +1,4 @@
 package gi
-package pyenv
 package python
 package z
 theme default
