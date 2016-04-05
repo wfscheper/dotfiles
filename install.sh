@@ -2,7 +2,7 @@
 set -e
 
 OMF_DIR="${HOME}/.local/share/omf"
-DEIN_DIR="${HOME}/.vim/dein/repos/github.com/Shougo/dein.vim"
+VUNDLE_DIR="${HOME}/.vim/bundle/Vundle.vim"
 
 function link_file {
     source="${PWD}/$1"
@@ -39,10 +39,10 @@ case "$1" in
         do
            link_file "$i"
         done
-        if ! [[ -d "${DEIN_DIR}" ]]; then
+        if ! [[ -d "${VUNDLE_DIR}" ]]; then
             # clone repo ignoring errors
-            git clone https://github.com/Shougo/dein.vim.git \
-                "${DEIN_DIR}" || true
+            git clone https://github.com/VundleVim/Vundle.vim.git \
+                "${VUNDLE_DIR}" || true
         fi
         ;;
     restore)
@@ -50,7 +50,7 @@ case "$1" in
         do
             unlink_file "$i"
         done
-        echo "You may wish to remove ${OMF_DIR} and ${DEIN_DIR}"
+        echo "You may wish to remove ${OMF_DIR} and ${VUNDLE_DIR}"
         ;;
     *)
         for i in _*
@@ -69,16 +69,10 @@ case "$1" in
             git clone https://github.com/oh-my-fish/oh-my-fish \
                 "${OMF_DIR}" || true
         fi
-        if ! [[ -d "${DEIN_DIR}" ]]; then
+        if ! [[ -d "${VUNDLE_DIR}" ]]; then
             # clone repo ignoring errors
-            git clone https://github.com/Shougo/dein.vim.git \
-                "${DEIN_DIR}" || true
-        fi
-        DEIN_DIR="${HOME}/.vim/bundle/repos/github.com/Shougo/dein.vim"
-        if ! [[ -d "${DEIN_DIR}" ]]; then
-            # clone repo ignoring errors
-            git clone https://github.com/Shougo/dein.vim \
-                "${DEIN_DIR}" || true
+            git clone https://github.com/VundleVim/Vundle.vim.git \
+                "${VUNDLE_DIR}" || true
         fi
         ;;
 esac
