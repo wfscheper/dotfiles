@@ -38,6 +38,7 @@ Plugin 'lambdalisue/nose.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'reinh/vim-makegreen'
+Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-dispatch'
@@ -73,6 +74,16 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Configure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " Ycm config
 let g:ycm_python_binary_path = system('which python')[:-2]
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
