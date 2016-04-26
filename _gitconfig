@@ -40,6 +40,7 @@
 [merge]
 	renormalize = true
 	tool = vimdiff
+
 [gui]
 	fontui = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
@@ -48,4 +49,4 @@
 	enabled = true
 
 [pull]
-	rebase = true
+	ff = only
