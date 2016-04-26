@@ -2,12 +2,6 @@
 	name = Walter Scheper
 	email = ratlaw@gmail.com
 
-[color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = auto
-
 [push]
 	default = upstream
 
@@ -33,6 +27,15 @@
 	in = !sh -c 'git incoming'
 	bmerge = merge --no-ff
 	up = remote update
+	lg = !"git lg1"
+	lg1 = !"git lg1-specific --all"
+	lg2 = !"git lg2-specific --all"
+	lg3 = !"git lg3-specific --all"
+
+	lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(bold cyan)- %an%C(reset)%C(yellow)%d%C(reset)'
+	lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %s% %C(bold cyan)- %an%C(reset)'
+	lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset) %C(cyan)(committed: %cD)%C(reset) %C(yellow)%d%C(reset)%n''          %s%n''          %C(bold cyan)- %an <%ae> %C(reset) %C(bold cyan)(committer: %cn <%ce>)%C(reset)'
+
 
 [merge]
 	renormalize = true
