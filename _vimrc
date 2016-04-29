@@ -85,6 +85,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Syntastic+vim-go
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
 " Ycm config
 let g:ycm_python_binary_path = system('which python')[:-2]
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
