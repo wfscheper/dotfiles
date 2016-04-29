@@ -26,6 +26,7 @@ Plugin '5long/pytest-vim-compiler'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'alfredodeza/coveragepy.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
 Plugin 'dag/vim-fish'
@@ -75,6 +76,10 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Configure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coveragepy
+nmap <leader>c :Coveragepy report<cr>:Coveragepy session<cr>
+nmap <leader>C :Coveragepy session<cr>
+
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -115,9 +120,6 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#strategy = 'dispatch'
-
-" call Flake8 when writing python files
-autocmd BufWritePost *.py call Flake8()
 
 " MakeGreen
 nmap <leader>m :MakeGreen<cr>
