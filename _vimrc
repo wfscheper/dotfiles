@@ -37,6 +37,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'janko-m/vim-test'
 Plugin 'jnurmine/Zenburn'
 Plugin 'lambdalisue/nose.vim'
+Plugin 'mindriot101/vim-yapf'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'reinh/vim-makegreen'
@@ -138,6 +139,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " toggle NERDTree
 nmap <leader>N :NERDTreeToggle<CR>
+
+" vim-yapf
+nnoremap <leader>y :Yapf<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => leader bindings
