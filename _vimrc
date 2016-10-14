@@ -140,6 +140,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " toggle NERDTree
 nmap <leader>N :NERDTreeToggle<CR>
 
+" vim-json
+let g:vim_json_syntax_conceal = 0
+
 " vim-yapf
 nnoremap <leader>y :Yapf<cr>
 
