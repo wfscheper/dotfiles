@@ -1,5 +1,6 @@
 # configure syntax colors
 source $HOME/.config/omf/solarized.fish
+set -g theme_color_scheme solarized-light
 
 # tmux updatenv command
 source $HOME/.config/omf/tmux.fish
@@ -8,11 +9,6 @@ source $HOME/.config/omf/tmux.fish
 if test "$TERM" = "xterm" -o "$TERM" = "screen"
     set -x TERM "$TERM-256color"
 end
-
-# Theme
-powerline-daemon -q
-set fish_function_path $fish_function_path "$LOCAL_SITE_PKGS/powerline/bindings/fish"
-powerline-setup
 
 # dircolors
 if test -f $HOME/.dir_colors
