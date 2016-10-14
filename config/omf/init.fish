@@ -19,7 +19,7 @@ if test -f $HOME/.dir_colors
     eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
 end
 
-if which git > /dev/null ^&1
+if command -s git > /dev/null ^&1
     alias gpull 'git pull'
     alias gpush 'git push'
     alias gci 'git commit'
@@ -29,19 +29,12 @@ end
 
 # load pyenv
 if status --is-interactive
-    setenv PYENV_SHELL fish
-    source (dirname (realpath (which pyenv)))/../completions/pyenv.fish
-    command pyenv rehash 2>/dev/null
+    source (pyenv init - | psub)
 
-    function pyenv
-      set command $argv[1]
-      set -e argv[1]
-
-      switch "$command"
-      case rehash shell
-        . (pyenv "sh-$command" $argv|psub)
-      case '*'
-        command pyenv "$command" $argv
-      end
+    set __tty (tty)
+    if test $GPG_TTY != __tty
+        # reset GPG_TTY
+        set -xg GPG_TTY $__tty
     end
+    set -e __tty
 end
