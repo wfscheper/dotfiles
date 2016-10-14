@@ -121,6 +121,7 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#strategy = 'dispatch'
+let g:test#python#pytest#file_pattern = '.*test.*\.py'
 
 " MakeGreen
 nmap <leader>m :MakeGreen<cr>
