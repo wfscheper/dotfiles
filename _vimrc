@@ -147,6 +147,10 @@ let g:vim_json_syntax_conceal = 0
 " vim-yapf
 nnoremap <leader>y :Yapf<cr>
 
+" vim-go
+" use goimorts as autofmt command
+let g:go_fmt_command = "goimports"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => leader bindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
