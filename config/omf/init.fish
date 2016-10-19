@@ -27,10 +27,14 @@ end
 if status --is-interactive
     source (pyenv init - | psub)
 
-    set __tty (tty)
-    if test $GPG_TTY != __tty
-        # reset GPG_TTY
-        set -xg GPG_TTY $__tty
+    if set -q GPG_TTY
+        set __tty (tty)
+        if test $GPG_TTY != __tty
+            # reset GPG_TTY
+            set -xg GPG_TTY $__tty
+        end
+        set -e __tty
+    else
+        set -xg GPG_TTY (tty)
     end
-    set -e __tty
 end
