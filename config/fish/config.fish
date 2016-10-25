@@ -1,6 +1,6 @@
 # set universal variables if they aren't set
 if not set -qU fish_user_paths
-    set -U fish_user_paths ~/.local/bin ~/bin
+    set -U fish_user_paths $HOME/.local/bin $HOME/bin
     echo "fish_user_paths set to $fish_user_paths"
 end
 
@@ -19,7 +19,7 @@ if not set -qU LOCAL_SITE_PKGS
 end
 
 if not set -qU PYTHONSTARTUP
-    set -xU PYTHONSTARTUP ~/.pythonrc.py
+    set -xU PYTHONSTARTUP $HOME/.pythonrc.py
     echo "PYTHONSTARTUP set to $PYTHONSTARTUP"
 end
 
@@ -31,8 +31,8 @@ if not set -qU Z_SCRIPT_PATH
 end
 
 if not set -qU GOPATH
-    if test -d ~/go
-        set -xU GOPATH ~/go
+    if test -d $HOME/go
+        set -xU GOPATH $HOME/go
         echo "GOPATH set to $GOPATH"
         set -U fish_user_paths $fish_user_paths $GOPATH/bin
         echo "fish_user_paths set to $fish_user_paths"
@@ -40,8 +40,8 @@ if not set -qU GOPATH
 end
 
 if not set -qU PYENV_ROOT
-    if test -d ~/.pyenv
-        set -xU PYENV_ROOT ~/.pyenv
+    if test -d $HOME/.pyenv
+        set -xU PYENV_ROOT $HOME/.pyenv
         echo "PYENV_ROOT set to $PYENV_ROOT"
         set -U fish_user_paths $PYENV_ROOT/shims $PYENV_ROOT/bin $fish_user_paths
         echo "fish_user_paths set to $fish_user_paths"
