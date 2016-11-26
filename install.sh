@@ -1,35 +1,43 @@
 #!/usr/bin/env bash
 set -e
 
-OMF_DIR="${HOME}/.local/share/omf"
-VUNDLE_DIR="${HOME}/.vim/bundle/Vundle.vim"
+readonly OMF_DIR="${HOME}/.local/share/omf"
+readonly VUNDLE_DIR="${HOME}/.vim/bundle/Vundle.vim"
+
+function link_dir {
+    local src="$1"
+    local dst="${HOME}/${1/_/.}"
+
+    if [[ ! -d "${dst}" ]]; then
+        mkdir -p "${dst}"
+    fi
+    for i in ${src}/*; do
+        if [[ -f "${i}" ]]; then
+            link_file "$i"
+        else
+            link_dir "$i"
+        fi
+    done
+}
 
 function link_file {
-    source="${PWD}/$1"
-    if [[ -n "$2" ]]; then
-        target="${HOME}/$2"
-    else
-        target="${HOME}/${1/_/.}"
+    local target="${PWD}/$1"
+    local link_name="${HOME}/${1/_/.}"
+
+    if [[ -e "${link_name}" ]] && [[ ! -L "${link_name}" ]]; then
+        mv "${link_name}" "${link_name}.df.bak"
     fi
 
-    if [ -e "${target}" ] && [ ! -L "${target}" ]; then
-        mv "${target}" "${target}.df.bak"
-    fi
-
-    ln -sfn "${source}" "${target}"
+    ln -sfn "${target}" "${link_name}"
 }
 
 function unlink_file {
-    source="${PWD}/$1"
-    if [[ -n "$2" ]]; then
-        target="${HOME}/$2"
-    else
-        target="${HOME}/${1/_/.}"
-    fi
+    local target="${PWD}/$1"
+    local link_name="${HOME}/${1/_/.}"
 
-    if [ -e "${target}.df.bak" ] && [ -L "${target}" ]; then
-        unlink "${target}"
-        mv "${target}.df.bak" "${target}"
+    if [[ -e "${link_name}.df.bak" ]] && [[ -L "${link_name}" ]]; then
+        unlink "${link_name}"
+        mv "${link_name}.df.bak" "${link_name}"
     fi
 }
 
@@ -39,7 +47,7 @@ case "$1" in
         do
            link_file "$i"
         done
-        if ! [[ -d "${VUNDLE_DIR}" ]]; then
+        if [[ ! -d "${VUNDLE_DIR}" ]]; then
             # clone repo ignoring errors
             git clone https://github.com/VundleVim/Vundle.vim.git \
                 "${VUNDLE_DIR}" || true
@@ -55,21 +63,20 @@ case "$1" in
     *)
         for i in _*
         do
-            link_file "$i"
+            if [[ -f "$i" ]]; then
+                link_file "$i"
+            else
+                link_dir "$i"
+            fi
         done
 
-        # install .config dirs
-        for i in config/*; do
-            link_file "$i" ".$i"
-        done
-        link_file ssh/config .ssh/config
         chmod 0600 ~/.ssh/config
-        if ! [[ -d "${OMF_DIR}" ]]; then
+        if [[ ! -d "${OMF_DIR}" ]]; then
             # clone repo ignoring errors
             git clone https://github.com/oh-my-fish/oh-my-fish \
                 "${OMF_DIR}" || true
         fi
-        if ! [[ -d "${VUNDLE_DIR}" ]]; then
+        if [[ ! -d "${VUNDLE_DIR}" ]]; then
             # clone repo ignoring errors
             git clone https://github.com/VundleVim/Vundle.vim.git \
                 "${VUNDLE_DIR}" || true
