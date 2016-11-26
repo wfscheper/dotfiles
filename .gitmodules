@@ -1,9 +1,0 @@
-[submodule "_zbin"]
-	path = _zbin
-	url = https://github.com/rupa/z.git
-[submodule "_pyenv"]
-	path = _pyenv
-	url = https://github.com/yyuu/pyenv.git
-[submodule "_bash_it"]
-	path = _bash_it
-	url = http://github.com/bash-it/bash-it.git
