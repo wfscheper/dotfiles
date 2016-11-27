@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 set -e
 
-readonly OMF_DIR="${HOME}/.local/share/omf"
-readonly VUNDLE_DIR="${HOME}/.vim/bundle/Vundle.vim"
+function install_repo {
+    local repository="$1"
+    local directory="$2"
+    local name=
+    local response=
+
+    name="${repository##*/}"
+    name="${name%%.git}"
+
+    read -p "Install ${name}? [y/N] " response
+    if [[ "${response}" =~ ^[yY]([eE][sS])?$ ]]; then
+        git clone --recursive "${repository}" "${directory}" 2>/dev/null || true
+    fi
+}
 
 function link_dir {
     local src="$1"
@@ -47,18 +59,14 @@ case "$1" in
         do
            link_file "$i"
         done
-        if [[ ! -d "${VUNDLE_DIR}" ]]; then
-            # clone repo ignoring errors
-            git clone https://github.com/VundleVim/Vundle.vim.git \
-                "${VUNDLE_DIR}" || true
-        fi
+        [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]] && install_repo https://github.com/VundleVim/Vundle.vim.git \
+            "${HOME}/.vim/bundle/Vundle.vim"
         ;;
     restore)
         for i in _*
         do
             unlink_file "$i"
         done
-        echo "You may wish to remove ${OMF_DIR} and ${VUNDLE_DIR}"
         ;;
     *)
         for i in _*
@@ -69,17 +77,13 @@ case "$1" in
                 link_dir "$i"
             fi
         done
-
         chmod 0600 ~/.ssh/config
-        if [[ ! -d "${OMF_DIR}" ]]; then
-            # clone repo ignoring errors
-            git clone https://github.com/oh-my-fish/oh-my-fish \
-                "${OMF_DIR}" || true
-        fi
-        if [[ ! -d "${VUNDLE_DIR}" ]]; then
-            # clone repo ignoring errors
-            git clone https://github.com/VundleVim/Vundle.vim.git \
-                "${VUNDLE_DIR}" || true
-        fi
+        [[ -d "${HOME}/.local/share/omf" ]] && install_repo https://github.com/oh-my-fish/oh-my-fish \
+            "${HOME}/.local/share/omf"
+        [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]] && install_repo https://github.com/VundleVim/Vundle.vim.git \
+            "${HOME}/.vim/bundle/Vundle.vim"
+        [[ -d "${HOME}/.bash_it" ]] && install_repo https://github.com/Bash-it/bash-it.git "${HOME}/.bash_it"
+        [[ -d "${HOME}/.pyenv" ]] && install_repo https://github.com/yyuu/pyenv.git "${HOME}/.pyenv"
+        [[ -d "${HOME}/.zbin" ]] && install_repo https://github.com/rupa/z "${HOME}/.zbin"
         ;;
 esac
