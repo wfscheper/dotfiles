@@ -2,8 +2,8 @@
 set -e
 
 usage () {
-    echo "$0 pull FROM"
-    echo "$0 push TO"
+    echo "$0 pull FROM [rsync options]"
+    echo "$0 push TO [rsync options]"
 }
 
 interactive_merge() {
@@ -58,18 +58,12 @@ main() {
                 interactive_merge "${src}" "${dst}"
             fi
 
-            RSYNC_ARGS="-acv $@ \
-                --exclude='/.git*' \
-                --exclude='/bin/sync' \
-                ${src}/_bash_it \
-                ${src}/_pyenv \
-                ${src}/_zbin \
-                ${dst}"
-            rsync --dry-run ${RSYNC_ARGS}
+            rsync_args="-acv --exclude-from=${src}/.rsyncignore $@ ${src}/ ${dst}"
+            rsync --dry-run ${rsync_args}
             local response=
             read -p "Accept these changes? [y/N] " response
             if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
-                rsync ${RSYNC_ARGS}
+                rsync ${rsync_args}
                 [[ -f ~/dotfiles/ssh/config ]] && \
                     chmod 0600 ~/dotfiles/ssh/config
             fi
