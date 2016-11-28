@@ -59,7 +59,7 @@ case "$1" in
         do
            link_file "$i"
         done
-        [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]] && install_repo https://github.com/VundleVim/Vundle.vim.git \
+        [[ -e "${HOME}/.vim/bundle/Vundle.vim" ]] || install_repo https://github.com/VundleVim/Vundle.vim.git \
             "${HOME}/.vim/bundle/Vundle.vim"
         ;;
     restore)
@@ -78,12 +78,12 @@ case "$1" in
             fi
         done
         chmod 0600 ~/.ssh/config
-        [[ -d "${HOME}/.local/share/omf" ]] && install_repo https://github.com/oh-my-fish/oh-my-fish \
+        [[ -e "${HOME}/.local/share/omf" ]] || install_repo https://github.com/oh-my-fish/oh-my-fish \
             "${HOME}/.local/share/omf"
-        [[ -d "${HOME}/.vim/bundle/Vundle.vim" ]] && install_repo https://github.com/VundleVim/Vundle.vim.git \
+        [[ -e "${HOME}/.vim/bundle/Vundle.vim" ]] || install_repo https://github.com/VundleVim/Vundle.vim.git \
             "${HOME}/.vim/bundle/Vundle.vim"
-        [[ -d "${HOME}/.bash_it" ]] && install_repo https://github.com/Bash-it/bash-it.git "${HOME}/.bash_it"
-        [[ -d "${HOME}/.pyenv" ]] && install_repo https://github.com/yyuu/pyenv.git "${HOME}/.pyenv"
-        [[ -d "${HOME}/.zbin" ]] && install_repo https://github.com/rupa/z "${HOME}/.zbin"
+        [[ -e "${HOME}/.bash_it" ]] || install_repo https://github.com/Bash-it/bash-it.git "${HOME}/.bash_it"
+        [[ -e "${HOME}/.pyenv" ]] || install_repo https://github.com/yyuu/pyenv.git "${HOME}/.pyenv"
+        [[ -e "${HOME}/.zbin" ]] || install_repo https://github.com/rupa/z "${HOME}/.zbin"
         ;;
 esac
