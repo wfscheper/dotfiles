@@ -10,24 +10,16 @@ interactive_merge() {
     local src="$1"
     local dst="$2"
 
-    # turn on globstar
-    if ! shopt -q globstar; then
-        globstar=1
-        shopt -s globstar
+    if [[ -f "${src}" ]] && ! diff -q "${dst}" "${src}"; then
+        vimdiff "${dst}" "${src}"
+    elif [[ -d "${src}" ]]; then
+        [[ ! -d "${dst}" ]] && mkdir -pv "${dst}"
+        for i in ${src}/*; do
+            interactive_merge "${i}" "${dst}/$(basename "${i}")"
+        done
     fi
-
-    for file in _* install.sh bin/attach config/*/** ssh/** _vim/*/**; do
-        if [[ -f "${file}" ]] && ! diff -q "${src}/${file}" "${dst}/${file}"
-        then
-            vimdiff "${dst}/${file}" "${src}/${file}"
-        fi
-    done
-
-    if [[ -n "${globstar}" ]]; then
-        shopt -u globstar
-    fi
-
 }
+
 main() {
     local cwd=
     local dst=
@@ -58,14 +50,14 @@ main() {
                 interactive_merge "${src}" "${dst}"
             fi
 
-            rsync_args="-acv --exclude-from=${src}/.rsyncignore $@ ${src}/ ${dst}"
+            # rsync the rest
+            rsync_args="-acv --delete --exclude-from=${src}/.rsyncignore $@ ${src}/ ${dst}"
             rsync --dry-run ${rsync_args}
             local response=
             read -p "Accept these changes? [y/N] " response
             if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
                 rsync ${rsync_args}
-                [[ -f ~/dotfiles/ssh/config ]] && \
-                    chmod 0600 ~/dotfiles/ssh/config
+                [[ -f ~/dotfiles/ssh/config ]] && chmod 0600 ~/dotfiles/ssh/config
             fi
             ;;
         *)
