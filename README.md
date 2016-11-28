@@ -1,14 +1,8 @@
 ## Files
-.vim
+\_vim
     directory of file type configurations and plugins
-.vimrc
-    my vim configuration
-.screenrc
-    my screen configuration
-.weechat
-    my configuration for weechat, a great irc client
-.gimp
-    my tweaks/additions to gimp (fonts, brushes, etc)
+\_vimrc
+    vim configuration
 
 ## Instructions
 ### Creating source files
@@ -40,15 +34,3 @@ To replace installed files with the originals:
     ./install.sh restore
 
 Note that if there was not an original version, the installed links will not be removed.
-
-## Requirements
-### Shell
-* bash
-
-### Vim
-* python
-  * pep8
-  * pyflakes
-  * rope
-* ruby
-  * rake
