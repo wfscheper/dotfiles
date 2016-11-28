@@ -39,7 +39,7 @@
 
 [merge]
 	renormalize = true
-	tool = vimdiff
+	tool = fugitive
 
 [gui]
 	fontui = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
@@ -53,6 +53,3 @@
 
 [mergetool "fugitive"]
 	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
-
-[mergetool]
-	tool = fugitive
