@@ -37,7 +37,6 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'janko-m/vim-test'
 Plugin 'jnurmine/Zenburn'
 Plugin 'lambdalisue/nose.vim'
-Plugin 'mindriot101/vim-yapf'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'reinh/vim-makegreen'
@@ -95,9 +94,11 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
+" Syntastic+python
+let g:syntastic_python_checkers = ['python', 'flake8']
+
 " Ycm config
-let g:ycm_python_binary_path = system('which python')[:-2]
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+let g:ycm_python_binary_path = 'python'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " YCM commands
@@ -105,9 +106,11 @@ nmap <leader>K :YcmCompleter GetDoc<cr>
 nmap <leader>k :YcmCompleter GoTo<cr>
 nmap <leader>yr :YcmCompleter GoToReferences<cr>
 
-" force SimpylFold
+" SimpylFold
 autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+" Show docstring preview in folds
+let g:SimpylFold_docstring_preview = 1
 
 " vimux commands
 map <leader>vr :VimuxRunCommand("")<left><left>
@@ -121,7 +124,12 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#strategy = 'dispatch'
-let g:test#python#pytest#file_pattern = '.*test.*\.py'
+let g:test#python#pytest#file_pattern = '^.*test.*\.py$'
+let g:test#python#pytest#options = {
+    \ 'file': '--vv --tb=short',
+    \ 'nearest': '--vv --tb=short',
+    \ 'suite': '--vv --tb=short --cov',
+    \}
 
 " MakeGreen
 nmap <leader>m :MakeGreen<cr>
@@ -141,11 +149,13 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " toggle NERDTree
 nmap <leader>N :NERDTreeToggle<CR>
 
+" YAPF
+map <C-Y> :call yapf#YAPF()<cr>
+imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+autocmd FileType python nnoremap <leader>y :0,$!yapf<cr>
+
 " vim-json
 let g:vim_json_syntax_conceal = 0
-
-" vim-yapf
-nnoremap <leader>y :Yapf<cr>
 
 " vim-go
 " use goimorts as autofmt command
@@ -219,6 +229,11 @@ map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>cn :cn<cr>
 map <leader>cp :cp<cr>
+
+" move through location list
+map <leader>ll :botright lope<cr>
+map <leader>ln :lnext<cr>
+map <leader>lp :lprevious<cr>
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
