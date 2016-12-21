@@ -24,10 +24,10 @@ function link_dir {
         mkdir -p "${dst}"
     fi
     for i in ${src}/*; do
-        if [[ -f "${i}" ]]; then
-            link_file "$i"
-        else
+        if [[ -d "${i}" ]]; then
             link_dir "$i"
+        else
+            link_file "$i"
         fi
     done
 }
@@ -71,10 +71,10 @@ case "$1" in
     *)
         for i in _*
         do
-            if [[ -f "$i" ]]; then
-                link_file "$i"
-            else
+            if [[ -d "$i" ]]; then
                 link_dir "$i"
+            else
+                link_file "$i"
             fi
         done
         chmod 0600 ~/.ssh/config
