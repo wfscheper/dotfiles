@@ -51,8 +51,8 @@ main() {
             fi
 
             # rsync the rest
-            rsync_args="-acv --delete --exclude-from=${src}/.rsyncignore $@ ${src}/ ${dst}"
-            rsync --dry-run ${rsync_args}
+            rsync_args="-ac --delete --exclude-from=${src}/.rsyncignore $@ ${src}/ ${dst}"
+            rsync --dry-run -v ${rsync_args}
             local response=
             read -p "Accept these changes? [y/N] " response
             if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
