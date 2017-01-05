@@ -1,7 +1,7 @@
 # set universal variables if they aren't set
 if not set -qU fish_user_paths
     set -U fish_user_paths $HOME/.local/bin $HOME/bin
-    echo "Added $HOME/.local/bin $HOME/bin to fish_user_paths"
+    echo "Set fish_user_paths: $fish_user_paths"
 end
 
 if not set -qU EDITOR
@@ -35,7 +35,7 @@ if not set -qU GOPATH
         set -xU GOPATH $HOME/go
         echo "GOPATH set to $GOPATH"
         set -U fish_user_paths $fish_user_paths $GOPATH/bin
-        echo "fish_user_paths set to $fish_user_paths"
+        echo "Set fish_user_paths: $fish_user_paths"
     end
 end
 
@@ -43,8 +43,8 @@ if not set -qU PYENV_ROOT
     if test -d $HOME/.pyenv
         set -xU PYENV_ROOT $HOME/.pyenv
         echo "PYENV_ROOT set to $PYENV_ROOT"
-        set -U fish_user_paths $PYENV_ROOT/shims $PYENV_ROOT/bin $fish_user_paths
-        echo "Added $PYENV_ROOT/shims $PYENV_ROOT/bin to fish_user_paths"
+        set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+        echo "Set fish_user_paths: $fish_user_paths"
     end
 end
 
