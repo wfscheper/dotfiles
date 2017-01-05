@@ -126,9 +126,9 @@ nmap <silent> <leader>v :TestVisit<CR>
 let g:test#strategy = 'dispatch'
 let g:test#python#pytest#file_pattern = '^.*test.*\.py$'
 let g:test#python#pytest#options = {
-    \ 'file': '--vv --tb=short',
-    \ 'nearest': '--vv --tb=short',
-    \ 'suite': '--vv --tb=short --cov',
+    \ 'file': '-vv --tb=short',
+    \ 'nearest': '-vv --tb=short',
+    \ 'suite': '-vv --tb=short --cov',
     \}
 
 " MakeGreen
