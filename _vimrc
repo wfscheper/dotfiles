@@ -77,8 +77,10 @@ set autoread
 " => Configure plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coveragepy
-nmap <leader>c :Coveragepy report<cr>:Coveragepy session<cr>
-nmap <leader>C :Coveragepy session<cr>
+" Toggle the report split
+nmap <leader>c :Coveragepy session<cr>
+" Reload coverage report and markings
+nmap <leader>C :Coveragepy report<cr>
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -96,6 +98,9 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 " Syntastic+python
 let g:syntastic_python_checkers = ['python', 'flake8']
+
+" Syntastic+sphinx
+let g:syntastic_rst_checkers = ['sphinx']
 
 " Ycm config
 let g:ycm_python_binary_path = 'python'
