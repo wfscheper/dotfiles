@@ -143,9 +143,6 @@ nmap <leader>m :MakeGreen<cr>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" Show docstring preview in folds
-let g:SimplyFold_docstring_preview = 1
-
 " airline configuraiton
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
