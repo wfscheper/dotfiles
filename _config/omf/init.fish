@@ -32,3 +32,7 @@ if status --is-interactive
         set -xg GPG_TTY (tty)
     end
 end
+
+if test $TMUX
+    set -x SSH_AUTH_SOCK ~/.ssh_auth_sock_(tmux display-message -p '#S')
+end
