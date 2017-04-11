@@ -1,3 +1,6 @@
+# load aliases
+source $OMF_CONFIG/aliases.fish
+
 # configure syntax colors
 source $OMF_CONFIG/solarized.fish
 set -g theme_color_scheme solarized-light
