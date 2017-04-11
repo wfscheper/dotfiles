@@ -1,9 +1,9 @@
 # configure syntax colors
-source $HOME/.config/omf/solarized.fish
+source $OMF_CONFIG/solarized.fish
 set -g theme_color_scheme solarized-light
 
 # tmux updatenv command
-source $HOME/.config/omf/tmux.fish
+source $OMF_CONFIG/tmux.fish
 
 # set TERM
 if test "$TERM" = "xterm" -o "$TERM" = "screen"
