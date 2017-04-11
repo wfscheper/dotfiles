@@ -1,31 +1,3 @@
-Host ws-fedora
-Hostname ws-fedora.unx.sas.com
-
-Host delphi.unx.sas.com delphi
-User wscheper
-
-Host barney.unx.sas.com barney
-User wscheper
-
-Host scc.unx.sas.com scc
-User wscheper
-
-Host sasball.unx.sas.com sasball
-User root
-
-Host jenkins2.unx.sas.com jenkins2
-User wscheper
-
-Host ws-rce-devel.na.sas.com ws-rce-devel
-Hostname ws-rce-devel.na.sas.com
-User wscheper
-
-Host ws-devel
-Hostname ws-devel.ws-devel.sashq-r.openstack.sas.com
-
-Host *.ws-devel.sashq-r.openstack.sas.com ws-fedora.unx.sas.com ws-fedora ws-devel
-ForwardAgent yes
-
 Host *
 ControlMaster auto
 ControlPath ~/.ssh/sockets/%r@%h:%p
