@@ -116,10 +116,7 @@ nmap <leader>k :YcmCompleter GoTo<cr>
 nmap <leader>yr :YcmCompleter GoToReferences<cr>
 
 " SimpylFold
-autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-" Show docstring preview in folds
-let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_docstring_preview = 1  " Show docstring preview in folds
 
 " vimux commands
 map <leader>vr :VimuxRunCommand("")<left><left>
