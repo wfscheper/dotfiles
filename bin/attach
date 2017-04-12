@@ -16,7 +16,7 @@ else
 end
 
 # set up symlink to ssh-agent socket
-if test $SSH_TTY -a $SSH_AUTH_SOCK
+if test -n "$SSH_TTY" -a -n "$SSH_AUTH_SOCK"
     ln -sfn $SSH_AUTH_SOCK ~/.ssh_auth_sock_$session
 end
 
@@ -25,4 +25,6 @@ if not tmux ls -F '#S' ^/dev/null | grep -q $session
     # create extra windows and set default layouts here
 end
 tmux attach-session -d -t $session
-rm ~/.ssh_auth_sock_$session
+if test -e ~/.ssh_auth_sock_$session
+    rm ~/.ssh_auth_sock_$session
+end
