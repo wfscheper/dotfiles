@@ -24,40 +24,59 @@ main() {
     local cwd=
     local dst=
     local globstar=
+    local interactive=
     local mode=
+    local rsync_opts=
     local src=
     local target=
 
-    mode="$1"
-    shift || (usage; exit 1)
-
-    target="$1"
-    shift || (usage; exit 1)
-
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            push|pull)
+                mode="$1"
+                ;;
+            -i|--interactive)
+                interactive=true
+                ;;
+            --no-interactive)
+                interactive=false
+                ;;
+            -*)
+                rsync_opts="${rsync_opts} $1"
+                ;;
+            *)
+                [[ -n "${target}" ]] && (usage; exit 1)
+                target="$1"
+                ;;
+        esac
+        shift
+    done
     cwd="$(pwd)"
-
     case "${mode}" in
         pull)
             src="${target}"
             dst="${cwd}"
+            [[ "${interactive}" = true ]] && (echo "error: unknown option '--interactive'" >&2; exit 1)
+            [[ "${interactive}" = false ]] && (echo "error: unknown option '--no-interactive'" >&2; exit 1)
             interactive_merge "${src}" "${dst}"
             ;;
         push)
             src="${cwd}"
             dst="${target}"
+            rsync_opts="-ac --delete --exclude-from=${src}/.rsyncignore"
+            [[ -z "${interactive}" ]] && interactive=true
             # don't interactive merge when dst does not exist
-            if [[ -d "${dst}" ]]; then
+            [[ ! -d "${dst}" ]] && interactive=false
+            if [[ "${interactive}" = true ]]; then
                 interactive_merge "${src}" "${dst}"
             fi
-
             # rsync the rest
-            rsync_args="-ac --delete --exclude-from=${src}/.rsyncignore $@ ${src}/ ${dst}"
-            rsync --dry-run -v ${rsync_args}
+            rsync --dry-run -v ${rsync_opts} ${src}/ ${dst}
             local response=
             read -p "Accept these changes? [y/N] " response
             if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
-                rsync ${rsync_args}
-                [[ -f ~/dotfiles/ssh/config ]] && chmod 0600 ~/dotfiles/ssh/config
+                rsync ${rsync_opts} ${src}/ ${dst}
+                [[ -f ~/dotfiles/_ssh/config ]] && chmod 0600 ~/dotfiles/_ssh/config
             fi
             ;;
         *)
