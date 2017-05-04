@@ -19,7 +19,9 @@ if test -f $HOME/.dir_colors
 end
 
 if status --is-interactive
-    source (pyenv init - | psub)
+    if test -f $HOME/.pyenv/bin/pyenv
+        source (pyenv init - | psub)
+    end
 
     if set -q GPG_TTY
         set __tty (tty)
