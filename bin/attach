@@ -16,7 +16,7 @@ else
 end
 
 # set up symlink to ssh-agent socket
-if test -n "$SSH_TTY" -a -n "$SSH_AUTH_SOCK"
+if test -n "$SSH_AUTH_SOCK"
     ln -sfn $SSH_AUTH_SOCK ~/.ssh_auth_sock_$session
 end
 
