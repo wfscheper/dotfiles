@@ -2,30 +2,30 @@
 set -e
 
 prog="$(basename $0)"
-
-if [[ "$#" -gt 1 ]]; then
-    echo "usage: $prog [SESSION]" >&2
-    exit 2
-fi
-session="${1:-main}"
+session='main'
 
 if [[ -n "$TMUX" ]]; then
-    echo 'error: already attached to a tmux session'
+    echo "error: already attached to a tmux session"
     exit 2
+fi
+
+if [[ -n "$1" && "$1" != -* ]]; then
+    session="$1"
+    shift
 fi
 
 # set up symlink to ssh-agent socket
-if [[ -n "$SSH_AUTH_SOCK" ]]; then
+if [[ -n "$SSH_TTY" && -n "$SSH_AUTH_SOCK" ]]; then
     ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock_$session"
 fi
 
-if ! tmux ls -F '#S' 2>/dev/null | grep -q "$session"; then
+if ! tmux ls -F '#S' ^/dev/null | grep -q "$session"; then
     tmux new-session -d -s "$session"
-    # create extra windows and set default layouts here
 fi
 
-tmux attach-session -d -t "$session"
+tmux "$@" attach-session -d -t "$session"
 
+# clean up ssh auth sock symlink
 if [[ -e "$HOME/.ssh_auth_sock_$session" ]]; then
     rm "$HOME/.ssh_auth_sock_$session"
 fi
