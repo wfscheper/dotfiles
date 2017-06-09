@@ -15,11 +15,11 @@ if [[ -n "$1" && "$1" != -* ]]; then
 fi
 
 # set up symlink to ssh-agent socket
-if [[ -n "$SSH_TTY" && -n "$SSH_AUTH_SOCK" ]]; then
+if [[ -n "$SSH_AUTH_SOCK" ]]; then
     ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock_$session"
 fi
 
-if ! tmux ls -F '#S' ^/dev/null | grep -q "$session"; then
+if ! tmux ls -F '#S' 2>/dev/null | grep -q "$session"; then
     tmux new-session -d -s "$session"
 fi
 
