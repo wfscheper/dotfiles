@@ -3,7 +3,12 @@ source $OMF_CONFIG/aliases.fish
 
 # configure syntax colors
 source $OMF_CONFIG/solarized.fish
+
+# configure theme
 set -g theme_color_scheme solarized-light
+set -g theme_display_date no
+set -g theme_display_cmd_duration no
+set -g theme_newline_cursor yes
 
 # tmux updatenv command
 source $OMF_CONFIG/tmux.fish
