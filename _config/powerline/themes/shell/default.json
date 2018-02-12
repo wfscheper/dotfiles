@@ -31,19 +31,12 @@
 				"priority": 10
 			},
 			{
-				"function": "powerline.segments.common.vcs.branch",
-				"priority": 40,
-                "args": {
-                    "status_colors": true
-                }
+				"function": "powerline.segments.common.vcs.stash",
+				"priority": 50
 			},
 			{
-				"function": "powerline.segments.common.time.date",
-				"priority": 50,
-				"args": {
-					"istime": true,
-					"format": "%Y/%m/%d %H:%M"
-				}
+				"function": "powerline.segments.common.vcs.branch",
+				"priority": 40
 			}
 		]
 	}

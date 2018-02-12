@@ -1,7 +1,6 @@
 {
 	"name": "Solarized dark for shell",
 	"groups": {
-		"hostname": { "fg": "solarized:base3", "bg": "solarized:orange", "attrs": [] },
 		"mode": { "fg": "solarized:base3", "bg": "solarized:green", "attrs": ["bold"] }
 	},
 	"mode_translations": {
