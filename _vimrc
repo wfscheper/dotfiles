@@ -347,9 +347,8 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual display
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight anything in column 80 and beyond
-set colorcolumn=80
-autocmd FileType python,sh,fish match ErrorMsg /\%80v[^\n].*/
+" Highlight anything in column 120 and beyond
+" autocmd FileType python,sh,fish match ErrorMsg /\%120[^\n].*/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
