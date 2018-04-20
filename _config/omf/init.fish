@@ -5,9 +5,12 @@ source $OMF_CONFIG/aliases.fish
 source $OMF_CONFIG/solarized.fish
 
 # configure theme
-set -g theme_color_scheme solarized-light
-set -g theme_display_date no
+set -g theme_color_scheme solarized
 set -g theme_display_cmd_duration no
+set -g theme_display_date no
+set -g theme_display_k8s_context no
+set -g theme_display_user yes
+set -g theme_nerd_fonts yes
 set -g theme_newline_cursor yes
 
 # tmux updatenv command
@@ -42,4 +45,9 @@ end
 
 if test $TMUX
     set -x SSH_AUTH_SOCK ~/.ssh_auth_sock_(tmux display-message -p '#S')
+end
+
+function fish_title
+    echo $USER@(hostname) ' ' $_ ' '
+    pwd
 end
