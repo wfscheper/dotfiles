@@ -2,9 +2,6 @@
 	name = Walter Scheper
 	email = ratlaw@gmail.com
 
-[push]
-	default = upstream
-
 [core]
 	editor = vim
 	pager = less -R
@@ -39,7 +36,7 @@
 
 [merge]
 	renormalize = true
-	tool = fugitive
+	tool = vimdiff
 
 [gui]
 	fontui = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
