@@ -5,4 +5,4 @@ if test -f $LOCAL_SITE_PKGS/virtualfish/virtual.fish
 end
 
 # set vim runtime
-set -gx plugin_vundle_runtime $HOME/.vim_runtime
+set -gx plugin_vundle_runtimepath $HOME/.vim_runtime
