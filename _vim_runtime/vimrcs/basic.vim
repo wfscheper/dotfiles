@@ -58,7 +58,6 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,7 +68,13 @@ set scrolloff=7
 set diffopt+=vertical
 
 " Turn on the WiLd menu
+set wildmode=longest,list,full
 set wildmenu
+
+" force python3 unless otherwise told to
+if exists('py2') && has('python')
+elseif has('python3')
+endif
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -237,12 +242,17 @@ map <leader>ba :bufdo bd<cr>
 map <leader>bn :bnext<cr>
 map <leader>bp :bprevious<cr>
 
+" Opens a new buffer with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>be :edit <c-r>=expand("%:p:h")<cr>/
+
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
+map <leader>tN :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr> 
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -339,8 +349,6 @@ map <leader>G :vimgrep // **/*<left><left><left><left><left><left>
 " Vimgreps in the current file
 map <leader>Gc :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
-" set compiler to pytest for python files
-autocmd BufReadPost *.py :compiler pytest
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -415,40 +423,3 @@ function! DiffToggle()
         diffthis
     endif
 :endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => leader bindings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" When you press <leader>h you can search and replace the selected text
-vnoremap <silent> <leader>h :call VisualSelection('replace')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>cn :cn<cr>
-map <leader>cp :cp<cr>
-
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
-

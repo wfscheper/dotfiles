@@ -16,12 +16,13 @@ Plugin 'VundleVim/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin '5long/pytest-vim-compiler'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
 Plugin 'airblade/vim-gitgutter'
 Plugin 'alfredodeza/coveragepy.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'ambv/black'
 Plugin 'benmills/vimux'
 Plugin 'chikamichi/mediawiki.vim'
 Plugin 'dag/vim-fish'
@@ -50,6 +51,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/The-NERD-tree'
 Plugin 'vim-scripts/mru.vim'
+Plugin 'wfscheper/pytest-vim-compiler'
 
 " Required:
 call vundle#end()
@@ -58,7 +60,7 @@ call vundle#end()
 filetype plugin indent on
 
 """"""""""""""""""""""""""""""
-" => MRU plugin
+" => vim-scripts/mru.vim
 """"""""""""""""""""""""""""""
 let MRU_Max_Entries = 400
 map <leader>f :MRU<CR>
@@ -78,6 +80,12 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 nmap <leader>c :Coveragepy session<cr>
 " Reload coverage report and markings
 nmap <leader>C :Coveragepy report<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ambv/black
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:black_linelength = 132
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,7 +138,7 @@ map <leader>vp :VimuxPromptCommand <CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-test
+" => vim-test
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -138,12 +146,14 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>v :TestVisit<CR>
 let g:test#strategy = 'dispatch'
-let g:test#python#pytest#file_pattern = '^.*test.*\.py$'
 let g:test#python#pytest#options = {
-    \ 'file': '-vv --tb=short',
-    \ 'nearest': '-vv --tb=short',
-    \ 'suite': '-vv --tb=short --cov',
+    \ 'nearest': '--tb=short -q',
+    \ 'file': '--tb=short -q',
+    \ 'suite': '--tb=short -q --cov',
     \}
+let g:test#java#runner = 'gradletest'
+let g:test#java#gradletest#executable = './gradlew test'
+let g:test#java#gradletest#file_pattern = '\v^(.*[Ss]pec|[Tt]est.*|.*[Tt]est(s|Case)?)\.(java|groovy)$'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -227,3 +237,14 @@ let g:vim_json_syntax_conceal = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use goimorts as autofmt command
 let g:go_fmt_command = "goimports"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-isort
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pick the python interpreter
+if exists('py2')
+    let g:vim_isort_python_version = 'python2'
+else
+    let g:vim_isort_python_version = 'python3'
+endif
