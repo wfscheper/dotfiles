@@ -1,3 +1,21 @@
+# set path
+if status is-login;
+    # set a basic path
+    set -gx PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
+
+    # add custom paths
+    for path in \
+            $HOME/bin \
+            $HOME/.local/bin \
+            $HOME/.local/go/bin \
+            $HOME/go/bin \
+            $HOME/.pyenv/bin \
+            $HOME/.poetry/bin
+        test -d $path
+        and set -gx PATH $path $PATH
+    end
+end
+
 # load aliases
 source $OMF_CONFIG/aliases.fish
 
