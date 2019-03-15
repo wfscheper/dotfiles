@@ -27,8 +27,9 @@ if test -f $HOME/.dir_colors
 end
 
 if status --is-interactive
-    which -s pyenv;
-        and source (pyenv init - | psub)
+    which pyenv >/dev/null 2>&1
+    and contains $HOME/.pyenv/shims $PATH
+    or source (pyenv init - | psub)
 
     if set -q GPG_TTY
         set __tty (tty)
