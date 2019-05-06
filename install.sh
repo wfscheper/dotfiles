@@ -78,12 +78,13 @@ case "$1" in
             fi
         done
         chmod 0600 ~/.ssh/config
-        [[ -e "${HOME}/.local/share/omf" ]] || install_repo https://github.com/oh-my-fish/oh-my-fish \
-            "${HOME}/.local/share/omf"
+        [[ -e "${HOME}/.local/src/fisher" ]] || (set -eu; \
+            install_repo https://github.com/jorgebucaran/fisher "${HOME}/.local/src/fisher"; \
+            cd ${HOME}/.local/src/fisher; \
+            git checkout 3.2.9
+            )
         [[ -e "${HOME}/.vim_runtime/bundle/Vundle.vim" ]] || install_repo https://github.com/VundleVim/Vundle.vim.git \
             "${HOME}/.vim_runtime/bundle/Vundle.vim"
-        [[ -e "${HOME}/.bash_it" ]] || install_repo https://github.com/Bash-it/bash-it.git "${HOME}/.bash_it"
-        [[ -e "${HOME}/.pyenv" ]] || install_repo https://github.com/yyuu/pyenv.git "${HOME}/.pyenv"
-        [[ -e "${HOME}/.zbin" ]] || install_repo https://github.com/rupa/z "${HOME}/.zbin"
+        [[ -e "${HOME}/.pyenv" ]] || install_repo https://github.com/pyenv/pyenv.git "${HOME}/.pyenv"
         ;;
 esac
