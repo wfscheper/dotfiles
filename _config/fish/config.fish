@@ -47,6 +47,11 @@ if status is-login;
         set -xg GPG_TTY (tty)
     end
 
+    # TMUX ssh-agent handling
+    test -n $TMUX
+    and test -n $SSH_AUTH_SOCK
+    and set -x SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
     # set TERM
     test "$TERM" = "xterm" -o "$TERM" = "screen"
     and set -x TERM "$TERM-256color"
@@ -69,9 +74,6 @@ and eval (command python3 -m virtualfish compat_aliases auto_activation global_r
 
 # set vim runtime
 set -gx plugin_vundle_runtimepath $HOME/.vim_runtime
-
-test $TMUX
-and set -x SSH_AUTH_SOCK ~/.ssh_auth_sock_(tmux display-message -p '#S')
 
 function fish_title
     echo $USER@(hostname) ' ' $_ ' '

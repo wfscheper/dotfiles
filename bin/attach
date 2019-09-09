@@ -16,9 +16,7 @@ fi
 
 # set up symlink to ssh-agent socket
 if [[ -n "$SSH_AUTH_SOCK" ]]; then
-    ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh_auth_sock_$session"
-    export OLD_SSH_AUTH_SOCK="$SSH_AUTH_SOCK"
-    export SSH_AUTH_SOCK="$HOME/.ssh_auth_sock_$session"
+    ln -sfn "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
 fi
 
 if ! tmux ls -F '#S' 2>/dev/null | grep -q "$session"; then
@@ -26,10 +24,3 @@ if ! tmux ls -F '#S' 2>/dev/null | grep -q "$session"; then
 fi
 
 tmux "$@" attach-session -d -t "$session"
-
-# clean up ssh auth sock symlink
-if [[ -e "$HOME/.ssh_auth_sock_$session" ]]; then
-    export SSH_AUTH_SOCK="$OLD_SSH_AUTH_SOCK"
-    unset OLD_SSH_AUTH_SOCK
-    rm "$HOME/.ssh_auth_sock_$session"
-fi
