@@ -16,30 +16,22 @@ Plugin 'VundleVim/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'Raimondi/delimitMate'
-Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
 Plugin 'airblade/vim-gitgutter'
 Plugin 'alfredodeza/coveragepy.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ambv/black'
 Plugin 'benmills/vimux'
-Plugin 'chikamichi/mediawiki.vim'
-Plugin 'dag/vim-fish'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'elzr/vim-json'
+Plugin 'dense-analysis/ale'
 Plugin 'fatih/vim-go', {'pinned': 1}
 Plugin 'fisadev/vim-isort'
-Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'janko-m/vim-test'
-Plugin 'jnurmine/Zenburn'
-Plugin 'lambdalisue/nose.vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'mileszs/ack.vim'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'prettier/vim-prettier'
 Plugin 'reinh/vim-makegreen'
-Plugin 'scrooloose/syntastic'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-abolish'
@@ -52,6 +44,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/The-NERD-tree'
 Plugin 'vim-scripts/mru.vim'
 Plugin 'wfscheper/pytest-vim-compiler'
+Plugin 'ycm-core/YouCompleteMe', {'pinned': 1}
 
 " Required:
 call vundle#end()
@@ -76,10 +69,12 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Coveragepy
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Toggle the report split
-nmap <leader>c :Coveragepy session<cr>
 " Reload coverage report and markings
 nmap <leader>C :Coveragepy report<cr>
+" Toggle the report split
+nmap <leader>Cs :Coveragepy session<cr>
+" Toggle marks
+nmap <leader>Cm :Coveragepy show<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,26 +84,37 @@ let g:black_linelength = 132
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic
+" => ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Syntastic+vim-go
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-" Syntastic+python
-let g:syntastic_python_checkers = ['python', 'flake8']
-
-" Syntastic+sphinx
-let g:syntastic_rst_checkers = ['sphinx']
+let g:jsx_ext_required = 0
+let g:ale_linters = {
+            \   'javascript': ['eslint'],
+            \   'jsx': ['eslint'],
+            \   'python': ['flake8'],
+            \}
+let g:ale_linter_aliases = {
+            \   'jsx': ['css', 'javascript'],
+            \}
+let g:ale_fixers = {
+            \   'graphql': ['prettier'],
+            \   'html': ['prettier'],
+            \   'javascript': ['prettier', 'eslint'],
+            \   'javascript.jsx': ['prettier', 'eslint'],
+            \   'json': ['prettier'],
+            \   'markdown': ['prettier'],
+            \   'python': ['black', 'isort'],
+            \   'typescript': ['prettier', 'eslint'],
+            \   'yaml': ['prettier'],
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \}
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+let g:ale_linters_explicit = 1
+let g:ale_open_list = 1
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
