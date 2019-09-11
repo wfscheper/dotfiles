@@ -18,7 +18,8 @@ for path in \
         $HOME/.local/bin \
         $HOME/.local/go/bin \
         $HOME/go/bin \
-        $HOME/.pyenv/bin
+        $HOME/.pyenv/bin \
+        $HOME/.poetry/bin
     test -d $path
     and set -gx PATH $path $PATH
 end
