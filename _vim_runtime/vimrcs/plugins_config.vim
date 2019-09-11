@@ -17,13 +17,11 @@ Plugin 'VundleVim/Vundle.vim'
 " => Load Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'Raimondi/delimitMate'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'alfredodeza/coveragepy.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ambv/black'
 Plugin 'benmills/vimux'
 Plugin 'dense-analysis/ale'
-Plugin 'fatih/vim-go', {'pinned': 1}
 Plugin 'fisadev/vim-isort'
 Plugin 'janko-m/vim-test'
 Plugin 'maxbrunsfeld/vim-yankstack'
