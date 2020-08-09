@@ -5,10 +5,10 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 filetype off
-set runtimepath+=~/.vim_runtime/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 
 " Required:
-call vundle#begin('~/.vim_runtime/bundle/')
+call vundle#begin('~/.vim/bundle/')
 
 " Let vundle manage vundle
 Plugin 'VundleVim/Vundle.vim'
