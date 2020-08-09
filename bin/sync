@@ -11,11 +11,15 @@ interactive_merge() {
     local dst="$2"
 
     if [[ -f "${src}" ]] && ! diff -q "${dst}" "${src}"; then
-        vimdiff "${dst}" "${src}"
+        if command -v code; then
+            code --diff --wait "${dst}" "${src}"
+        else
+            vimdiff "${dst}" "${src}"
+        fi
     elif [[ -d "${src}" ]]; then
         [[ ! -d "${dst}" ]] && mkdir -pv "${dst}"
-        for i in ${src}/*; do
-            interactive_merge "${i}" "${dst}/$(basename "${i}")"
+        for i in $(ls -A "${src}"); do
+            interactive_merge "${src}/${i}" "${dst}/${i}"
         done
     fi
 }
@@ -63,7 +67,7 @@ main() {
         push)
             src="${cwd}"
             dst="${target}"
-            rsync_opts="-ac --delete --exclude-from=${src}/.rsyncignore"
+            rsync_opts="-acO --delete --exclude-from=${src}/.rsyncignore"
             [[ -z "${interactive}" ]] && interactive=true
             # don't interactive merge when dst does not exist
             [[ ! -d "${dst}" ]] && interactive=false
