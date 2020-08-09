@@ -3,7 +3,7 @@
 	email = ratlaw@gmail.com
 
 [core]
-	editor = vim
+	editor = code --wait
 	pager = less -R
 	eol = lf
 	autocrlf = input
