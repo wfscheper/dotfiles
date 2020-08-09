@@ -2,4 +2,9 @@
 
 set -e
 
-stow bash fish git powerline python ssh tmux vim
+packages="bash fish git powerline python ssh tmux vim"
+if [[ "$(uname)" == Darwin ]]; then
+    packages="${packages} iterm"
+fi
+
+stow ${packages}

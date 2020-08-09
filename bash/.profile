@@ -22,3 +22,5 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 fi
+
+[[ -f ~/.iterm2_shell_integration.bash ]] && source ~/.iterm2_shell_integration.bash

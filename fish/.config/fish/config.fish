@@ -14,17 +14,17 @@ set -gx PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
 
 # add custom paths
 for path in \
-        $HOME/bin \
-        $HOME/.local/bin \
-        $HOME/.local/go/bin \
-        $HOME/go/bin \
-        $HOME/.pyenv/bin \
-        $HOME/.poetry/bin
+    $HOME/bin \
+    $HOME/.local/bin \
+    $HOME/.local/go/bin \
+    $HOME/go/bin \
+    $HOME/.pyenv/bin \
+    $HOME/.poetry/bin
     test -d $path
     and set -gx PATH $path $PATH
 end
 
-if status is-login;
+if status is-login
     # configure bobthefish
     set -g theme_color_scheme solarized
     set -g theme_display_cmd_duration no
@@ -80,3 +80,6 @@ function fish_title
     echo $USER@(hostname) ' ' $_ ' '
     pwd
 end
+
+test -f $HOME/.iterm2_shell_integration.fish
+and source $HOME/.iterm2_shell_integration.fish
