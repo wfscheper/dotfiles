@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ "$(uanme)" == Darwin ]]; then
+if [[ "$(uname)" == Darwin ]]; then
     brew bundle
 fi
 
