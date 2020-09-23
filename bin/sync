@@ -16,7 +16,7 @@ interactive_merge() {
         else
             vimdiff "${dst}" "${src}"
         fi
-    elif [[ -d "${src}" ]]; then
+    elif [[ -d "${src}" && ! "${src}" == */.vim_runtime/temp_dirs ]]; then
         [[ ! -d "${dst}" ]] && mkdir -pv "${dst}"
         for i in $(ls -A "${src}"); do
             interactive_merge "${src}/${i}" "${dst}/${i}"
