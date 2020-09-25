@@ -9,21 +9,6 @@ end
 # set aliases
 source $HOME/.config/fish/aliases.fish
 
-# set a basic path
-set -gx PATH /usr/local/bin /usr/bin /usr/local/sbin /usr/sbin
-
-# add custom paths
-for path in \
-    $HOME/bin \
-    $HOME/.local/bin \
-    $HOME/.local/go/bin \
-    $HOME/go/bin \
-    $HOME/.pyenv/bin \
-    $HOME/.poetry/bin
-    test -d $path
-    and set -gx PATH $path $PATH
-end
-
 if status is-login
     # configure bobthefish
     set -g theme_color_scheme solarized
@@ -48,18 +33,13 @@ if status is-login
         set -xg GPG_TTY (tty)
     end
 
-    # TMUX ssh-agent handling
-    test -n $TMUX
-    and test -n $SSH_AUTH_SOCK
-    and set -x SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
-
     # set TERM
     test "$TERM" = "xterm" -o "$TERM" = "screen"
     and set -x TERM "$TERM-256color"
 
     # dircolors
     test -f $HOME/.dir_colors
-    and eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
+    and eval (gdircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
 end
 
 # load pyenv
@@ -67,11 +47,6 @@ which pyenv >/dev/null 2>&1
 and contains $HOME/.pyenv/shims $PATH
 or source (pyenv init - | psub)
 and source (pyenv virtualenv-init - | psub)
-
-# load virtualfish
-test -f $LOCAL_SITE_PKGS/virtualfish/virtual.fish
-and set -x VIRTUALFISH_COMPAT_ALIASES true
-and eval (command python3 -m virtualfish compat_aliases auto_activation global_requirements projects)
 
 # set vim runtime
 set -gx plugin_vundle_runtimepath $HOME/.vim_runtime
