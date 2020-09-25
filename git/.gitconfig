@@ -9,7 +9,6 @@
 	autocrlf = input
 
 [alias]
-	lg = log -p
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	ls = ls-files
@@ -45,3 +44,6 @@
 
 [mergetool "fugitive"]
 	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+
+[mergetool "vscode"]
+	cmd = code --wait "$MERGED"
