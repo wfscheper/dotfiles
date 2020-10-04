@@ -6,16 +6,16 @@ usage () {
     echo "$0 push TO [rsync options]"
 }
 
+# readonly difftool=code --wait --diff
+readonly difftool='nvim -d'
+
+
 interactive_merge() {
     local src="$1"
     local dst="$2"
 
     if [[ -f "${src}" ]] && ! diff -q "${dst}" "${src}"; then
-        if command -v code; then
-            code --diff --wait "${dst}" "${src}"
-        else
-            vimdiff "${dst}" "${src}"
-        fi
+        $difftool "${dst}" "${src}"
     elif [[ -d "${src}" && ! "${src}" == */.vim_runtime/temp_dirs ]]; then
         [[ ! -d "${dst}" ]] && mkdir -pv "${dst}"
         for i in $(ls -A "${src}"); do

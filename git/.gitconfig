@@ -30,7 +30,7 @@
 
 [merge]
 	renormalize = true
-	tool = vimdiff
+	tool = nvim
 
 [gui]
 	fontui = -family \"Source Code Pro\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
@@ -45,5 +45,11 @@
 [mergetool "fugitive"]
 	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 
+[mergetool "nvim"]
+	cmd = nvim -d \"$MERGED\"
+
 [mergetool "vscode"]
 	cmd = code --wait "$MERGED"
+
+[init]
+	defaultBranch = main
