@@ -1,3 +1,4 @@
 /.git*
 /.rsyncignore
 /bin/sync
+/README.md
