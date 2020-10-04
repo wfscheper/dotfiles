@@ -1,36 +1,31 @@
-## Files
-\_vim
-    directory of file type configurations and plugins
-\_vimrc
-    vim configuration
+# dotfiles
 
-## Instructions
-### Creating source files
-Any file which matches the shell glob `_*` will be linked into `$HOME` as a symlink with the first `_`  replaced with a `.`
+Uses [stow](https://www.gnu.org/software/stow/) to manage sets of dotfiles.
 
-For example:
 
-    _bashrc
+## Install
 
-becomes
+While you can just clone the repository directly to `~/.dotfiles`,
+this makes it tricky to manage any local edits.
+The following instructions enable tracking of local changes.
 
-    ${HOME}/.bashrc
+1. Clone the repository
+   ```bash
+   git clone git@github.com:wfscheper/dotfiles.git ~/git/dotfiles
+   cd ~/git/dotfiles/
+   ```
+2. Create a local branch for local modifications
+    ```bash
+    git checkout -b local
+    ```
+3. Sync files to `~/.dotfiles`.
+   ```bash
+   ./bin/sync push ~/.dotfiles
+   ```
 
-### Installing source files
-It's as simple as running:
-
-    ./install.sh
-
-From this top-level directory.
-
-### Only install and build vim Files
-Because this bit is pretty portable
-
-    ./install.sh vim
-
-### Restore old source Files
-To replace installed files with the originals:
-
-    ./install.sh restore
-
-Note that if there was not an original version, the installed links will not be removed.
+If you make changes to the dotfiles directly,
+you can sync those chnages back to the git repository:
+```bash
+cd ~/git/dotfiles
+./bin/sync pull ~/.dotfiles
+```
