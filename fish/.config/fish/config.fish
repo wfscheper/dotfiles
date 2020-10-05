@@ -48,9 +48,6 @@ and contains $HOME/.pyenv/shims $PATH
 or source (pyenv init - | psub)
 and source (pyenv virtualenv-init - | psub)
 
-# set vim runtime
-set -gx plugin_vundle_runtimepath $HOME/.vim_runtime
-
 function fish_title
     echo $USER@(hostname) ' ' $_ ' '
     pwd
