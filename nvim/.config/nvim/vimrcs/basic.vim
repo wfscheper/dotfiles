@@ -231,7 +231,7 @@ map <leader>bp :bprevious<cr>
 " Super useful when editing files in the same directory
 map <leader>be :edit <c-r>=expand("%:p:h")<cr>/
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -245,7 +245,7 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 map <leader>tn :tabnext<cr>
 map <leader>to :tabonly<cr>
-map <leader>tp :tabprevious<cr> 
+map <leader>tp :tabprevious<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -317,9 +317,10 @@ map <leader>sp [s
 
 " => Misc {{{
 """""""""""""
-" setup python3 provider
-let g:python3_host_prog  = '~/.pyenv/versions/neovim/bin/python'
-let g:python_host_prog = '~/.virtualenvs/neovim2/bin/python'
+" setup providers
+let g:python3_host_prog = '~/.virtualenvs/pynvim3/bin/python'
+let g:python_host_prog  = '~/.virtualenvs/pynvim2/bin/python'
+let g:ruby_host_prog    = '/usr/local/lib/ruby/gems/2.7.0/bin/neovim-ruby-host'
 
 " set keystrokes to toggle paste mode
 set pastetoggle=<leader>pp
@@ -397,7 +398,7 @@ function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
