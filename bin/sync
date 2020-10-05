@@ -14,10 +14,16 @@ interactive_merge() {
     local src="$1"
     local dst="$2"
 
+    # ignore these directories
+    if [[ "${src}" == */dotfiles/.git* || "${src}" == */dotfiles/.rsyncignore ]]; then
+        return
+    fi
+
     if [[ -f "${src}" ]] && ! diff -q "${dst}" "${src}"; then
         $difftool "${dst}" "${src}"
-    elif [[ -d "${src}" && ! "${src}" == */.vim_runtime/temp_dirs ]]; then
-        [[ ! -d "${dst}" ]] && mkdir -pv "${dst}"
+    elif [[ -d "${src}" ]]; then
+        # don't interative merge new directories
+        [[ ! -d "${dst}" ]] && return
         for i in $(ls -A "${src}"); do
             interactive_merge "${src}/${i}" "${dst}/${i}"
         done
