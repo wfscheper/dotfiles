@@ -1,9 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-set -e
+set -eu
 
-if [[ "$(uname)" == Darwin ]]; then
+# install deps
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    pushd macos || exit
     brew bundle
+    popd || exit
+elif  [[ -e /etc/redhat-release ]]; then
+    xargs -a redhat/packages.txt sudo dnf install -y
+elif [[ -e /etc/lsb-release ]]; then
+    sudo apt-get update
+    xargs -a ubuntu/packages.txt sudo apt-get install -y
 fi
 
-bash ./update.sh
+"$(dirname $0)"/update.sh "$@"

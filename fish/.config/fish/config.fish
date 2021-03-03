@@ -1,11 +1,3 @@
-# check for fisher
-if not functions -q fisher
-    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME $HOME/.config
-    test -f $HOME/.local/src/fisher/fisher.fish
-    and ln -s $HOME/.local/src/fisher/fisher.fish $XDG_CONFIG_HOME/fish/functions/fisher.fish
-    fish -c fisher
-end
-
 # set aliases
 source $HOME/.config/fish/aliases.fish
 
@@ -43,10 +35,10 @@ if status is-login
 end
 
 # load pyenv
-which pyenv >/dev/null 2>&1
-and contains $HOME/.pyenv/shims $PATH
-or source (pyenv init - | psub)
-and source (pyenv virtualenv-init - | psub)
+if command -v pyenv >/dev/null 2>&1
+    source (pyenv init - | psub)
+    source (pyenv virtualenv-init - | psub)
+end
 
 function fish_title
     echo $USER@(hostname) ' ' $_ ' '

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
-packages="bash fish git nvim powerline python ssh tmux vim"
-if [[ "$(uname)" == Darwin ]]; then
+packages="fish git nvim powerline python ssh tmux vim"
+if [[ "$OSTYPE" == "darwin" ]]; then
     packages="${packages} iterm"
 fi
 
-stow ${packages}
+stow ${packages} "$@"
