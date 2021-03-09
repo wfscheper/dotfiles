@@ -30,12 +30,17 @@ if status is-login
     and set -x TERM "$TERM-256color"
 
     # dircolors
-    test -f $HOME/.dir_colors
-    and eval (gdircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
+    if test -f $HOME/.dir_colors
+        if command -v dircolors &>/dev/null
+            eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
+        else if  command -v gdircolors &>/dev/null
+            eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
+        end
+    end
 end
 
 # load pyenv
-if command -v pyenv >/dev/null 2>&1
+if command -v pyenv &>/dev/null
     source (pyenv init - | psub)
     source (pyenv virtualenv-init - | psub)
 end
