@@ -31,16 +31,16 @@ if status is-interactive
 
     # dircolors
     if test -f $HOME/.dir_colors
-        if command -v dircolors &>/dev/null
+        if command -v dircolors >/dev/null 2>&1
             eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
-        else if  command -v gdircolors &>/dev/null
+        else if  command -v gdircolors >/dev/null 2>&1
             eval (dircolors -c $HOME/.dir_colors | sed 's/>&\/dev\/null$//')
         end
     end
 end
 
 # load pyenv
-if command -v pyenv &>/dev/null
+if command -v pyenv >/dev/null 2>&1
     source (pyenv init - | psub)
     source (pyenv virtualenv-init - | psub)
 end
