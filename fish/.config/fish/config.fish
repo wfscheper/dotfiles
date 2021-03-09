@@ -1,7 +1,7 @@
 # set aliases
 source $HOME/.config/fish/aliases.fish
 
-if status is-login
+if status is-interactive
     # configure bobthefish
     set -g theme_color_scheme solarized
     set -g theme_display_cmd_duration no
