@@ -2,13 +2,11 @@
 set -e
 
 usage () {
-    echo "$0 pull FROM [rsync options]"
-    echo "$0 push TO [rsync options]"
+    echo "$0 [options] DEST [rsync options]"
 }
 
 # readonly difftool=code --wait --diff
 readonly difftool='nvim -d'
-
 
 interactive_merge() {
     local src="$1"
@@ -35,16 +33,12 @@ main() {
     local dst=
     local globstar=
     local interactive=
-    local mode=
     local rsync_opts=
     local src=
     local target=
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            push|pull)
-                mode="$1"
-                ;;
             -i|--interactive)
                 interactive=true
                 ;;
@@ -55,45 +49,33 @@ main() {
                 rsync_opts="${rsync_opts} $1"
                 ;;
             *)
-                [[ -n "${target}" ]] && (usage; exit 1)
+                [[ -n "${target}" ]] && (echo "$0: too many postional arguments" >&2; usage; exit 1)
                 target="$1"
                 ;;
         esac
         shift
     done
+
+    [[ -z "${target}" ]] && (echo "$0: missing required positional argument DEST" >&2; usage; exit 1)
+
     cwd="$(pwd)"
-    case "${mode}" in
-        pull)
-            src="${target}"
-            dst="${cwd}"
-            [[ "${interactive}" = true ]] && (echo "error: unknown option '--interactive'" >&2; exit 1)
-            [[ "${interactive}" = false ]] && (echo "error: unknown option '--no-interactive'" >&2; exit 1)
-            interactive_merge "${src}" "${dst}"
-            ;;
-        push)
-            src="${cwd}"
-            dst="${target}"
-            rsync_opts="-acO --delete --exclude-from=${src}/.rsyncignore"
-            [[ -z "${interactive}" ]] && interactive=true
-            # don't interactive merge when dst does not exist
-            [[ ! -d "${dst}" ]] && interactive=false
-            if [[ "${interactive}" = true ]]; then
-                interactive_merge "${src}" "${dst}"
-            fi
-            # rsync the rest
-            rsync --dry-run -v ${rsync_opts} ${src}/ ${dst}
-            local response=
-            read -p "Accept these changes? [y/N] " response
-            if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
-                rsync ${rsync_opts} ${src}/ ${dst}
-                [[ -f ~/dotfiles/_ssh/config ]] && chmod 0600 ~/dotfiles/_ssh/config
-            fi
-            ;;
-        *)
-            usage
-            exit 1
-            ;;
-    esac
+    src="${cwd}"
+    dst="${target}"
+    rsync_opts="-acO --delete --exclude-from=${src}/.rsyncignore"
+    [[ -z "${interactive}" ]] && interactive=true
+    # don't interactive merge when dst does not exist
+    [[ ! -d "${dst}" ]] && interactive=false
+    if [[ "${interactive}" = true ]]; then
+        interactive_merge "${src}" "${dst}"
+    fi
+    # rsync the rest
+    rsync --dry-run -v ${rsync_opts} ${src}/ ${dst}
+    local response=
+    read -p "Accept these changes? [y/N] " response
+    if [[ "${response}" =~ [yY]([eE][sS])? ]]; then
+        rsync ${rsync_opts} ${src}/ ${dst}
+        [[ -f ~/dotfiles/_ssh/config ]] && chmod 0600 ~/dotfiles/_ssh/config
+    fi
 }
 
 main "$@"
