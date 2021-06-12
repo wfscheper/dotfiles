@@ -53,5 +53,3 @@
 
 [init]
 	defaultBranch = main
-[credential]
-	helper = "!f() { /home/vscode/.vscode-server/bin/f30a9b73e8ffc278e71575118b6bf568f04587c8/node /tmp/vscode-remote-containers-e13e994f5c72b6ac50e79475ba2b32c5d1416e38.js $*; }; f"
