@@ -193,5 +193,6 @@ call plug#end()
 
 " => Colorscheme {{{
 set background=dark
+set termguicolors
 colorscheme gruvbox
 " }}}
