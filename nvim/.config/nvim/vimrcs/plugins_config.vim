@@ -11,12 +11,13 @@ call plug#begin('~/.local/share/nvim/plugged/')
 
 " => Load colorscheme
 Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 
 " => Lightline {{{
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 let g:lightline = {
-  \ 'colorscheme': 'solarized',
+  \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \     'left': [
   \         [ 'mode', 'paste' ],
@@ -192,5 +193,5 @@ call plug#end()
 
 " => Colorscheme {{{
 set background=dark
-colorscheme solarized8
+colorscheme gruvbox
 " }}}
