@@ -162,7 +162,7 @@ let g:ale_sign_warning = '⚠️'
 " -> go
 Plug 'fatih/vim-go', {
             \ 'do': ':GoUpdateBinaries',
-            \ 'tag': 'v1.24',
+            \ 'tag': 'v1.25',
             \}
 " use goimorts as autofmt command
 let g:go_fmt_command = "goimports"
